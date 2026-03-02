@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -259,6 +260,7 @@ nav.scrolled{background:rgba(10,10,14,0.95);border-bottom:1px solid rgba(255,255
   height: 100vh;
   background: rgba(10,10,14,0.95); /* Darker overlay */
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* For Safari */
   z-index: 950;
   flex-direction: column;
   align-items: center;
@@ -1297,7 +1299,7 @@ footer .container{
   <li><a href="#" onclick="showPage('contact')">Contact</a></li>
   <li><a href="#" onclick="showPage('blog')">Blog</a></li>
   <li><a href="#" onclick="showPage('faq')">FAQ</a></li>
-  <li><a href="#" onclick="showPage('book-quote')" class="btn btn-sun">Get Free Quote</a></li>
+  <li><button class="btn btn-sun" onclick="showPage('book-quote')">Get Free Quote</button></li>
   <li><a href="tel:03184195665" class="btn btn-ghost">Call Now</a></li>
 </ul>
 
@@ -1397,7 +1399,7 @@ footer .container{
 
       <div class="video-wrapper sr">
         <iframe
-          src="https://player.vimeo.com/video/1169513528?autoplay=0&loop=0&title=0&byline=0&portrait=0"
+          src="https://player.vimeo.com/video/1169513528?autoplay=1&loop=0&title=0&byline=0&portrait=0&muted=1"
           frameborder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen>
@@ -1406,7 +1408,7 @@ footer .container{
 
       <div class="video-wrapper sr d1">
         <iframe
-          src="https://player.vimeo.com/video/1169513528?autoplay=0&loop=0&title=0&byline=0&portrait=0"
+          src="https://player.vimeo.com/video/1169513528?autoplay=1&loop=0&title=0&byline=0&portrait=0&muted=1"
           frameborder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen>
@@ -1416,16 +1418,7 @@ footer .container{
     </div>
   </div>
 </section>
-<script>
-// Dummy function, video embeds usually autoplay on click
-function playVid(wrapper, videoId) {
-  const iframe = wrapper.querySelector('iframe');
-  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-  iframe.style.display = 'block';
-  wrapper.style.cursor = 'default';
-  wrapper.onclick = null;
-}
-</script>
+
 
 
 <!-- BRANDS/PARTNERS TICKER -->
@@ -1478,7 +1471,7 @@ function playVid(wrapper, videoId) {
 <!-- REVIEWS PREVIEW -->
 <section class="sec">
   <div class="container">
-    <div class="sr" style="text-align:center;margin-bottom:3rem;">
+    <div style="text-align:center;margin-bottom:3rem;" class="sr">
       <span class="eyebrow">✦ Client Reviews</span>
       <h2 class="sec-title">What Our <span>Clients Say</span></h2>
     </div>
@@ -1531,7 +1524,7 @@ function playVid(wrapper, videoId) {
       <h3>Commercial & Industrial Solar</h3>
       <p>For businesses and factories, solar energy is not just eco-friendly but also a smart financial investment. Our commercial and industrial solar systems significantly reduce your operating costs, increase profitability, and provide energy independence.</p>
       <ul>
-        <li><strong>Large-Scale Installations:</strong> Projects from 20kW to MW level.</li>
+        <li><strong>Large-Scale Installations:</b> Projects from 20kW to MW level.</li>
         <li><strong>Energy Audits:</strong> Customized solutions based on your specific energy consumption.</li>
         <li><strong>Quick ROI:</strong> Recover your investment quickly.</li>
         <li><strong>Reduced Operational Costs:</strong> Eliminate reliance on diesel generators.</li>
@@ -1920,9 +1913,9 @@ function playVid(wrapper, videoId) {
     </div>
     <div class="loc-grid">
       <div class="loc-info sr">
-        <div class="ci-card"><div class="ci-icon">📍</div><div><div class="ci-label">Address</div><div class="ci-val">Multan, Punjab, Pakistan</div></div></div>
-        <div class="ci-card"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><div class="ci-val">0318-4195665</div></div></div>
-        <div class="ci-card"><div class="ci-icon">⏰</div><div><div class="ci-label">Office Hours</div><div class="ci-val">Mon–Sat: 9AM – 6PM</div></div></div>
+        <div class="ci-card"><div class="ci-icon">📍</div><div><div class="ci-label">Address</div><div class="ci-val">Multan, Punjab, Pakistan</div></div></a>
+        <div class="ci-card"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><div class="ci-val">0318-4195665</div></div></a>
+        <div class="ci-card"><div class="ci-icon">⏰</div><div><div class="ci-label">Office Hours</div><div class="ci-val">Mon–Sat: 9AM – 6PM</div></div></a>
         <div class="ci-card"><div class="ci-icon">🚗</div><div><div class="ci-label">Free Site Survey</div><div class="ci-val">We Come to You — Free!</div></div></div>
       </div>
       <div class="loc-frame sr d2">
@@ -2136,7 +2129,7 @@ function playVid(wrapper, videoId) {
           <li><strong>Solar Sales Executive:</strong> Experience in solar sales preferred.</li>
           <li><strong>Electrical Engineer (Solar Focus):</strong> PEC certified, 2+ years experience.</li>
           <li><strong>Solar Technician:</strong> Hands-on experience with installations.</li>
-          <li><strong>Customer Support Representative:</strong> Excellent communication skills.</li>
+          <li><strong>Customer Support Representative:</b> Excellent communication skills.</li>
         </ul>
         <p>To apply, please send your resume to <a href="mailto:careers@cityofsaintssolar.com" >careers@cityofsaintssolar.com</a> or contact us directly.</p>
       </div>
