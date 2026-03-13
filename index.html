@@ -58,15 +58,16 @@ nav{position:sticky;top:0;z-index:1000;background:var(--white-color);box-shadow:
 
 /* --- MOBILE OVERLAY (Minor adjustments for new colors) --- */
 .mob-overlay{
-  position:fixed;top:0;bottom:0;right:0;width: min(320px, 90vw); /* Wider for mobile */
-  background:var(--white-color);z-index:2000;display:flex;flex-direction:column;
+  position:fixed;top:0;bottom:0;right:0;width: min(220px, 55vw); /* Changed to narrower for mobile */
+  background:var(--pink-frame); /* Changed background to Deep Pink */
+  z-index:2000;display:flex;flex-direction:column;
   align-items:flex-start;padding: 2rem 2rem;
   transform:translateX(100%);transition:transform .4s ease-out;
   box-shadow: -8px 0 30px rgba(0,0,0,0.2);
 }
 .mob-overlay.open{transform:translateX(0);}
 .mob-close{
-  position:absolute;top:2rem;right:2rem;font-size:2.4rem;color:var(--dark-shade);cursor:pointer;
+  position:absolute;top:2rem;right:2rem;font-size:2.4rem;color:var(--white-color);cursor:pointer; /* Changed close button color to white */
   transition:transform .3s ease;
 }
 .mob-close:hover{transform:rotate(90deg);}
@@ -75,11 +76,12 @@ nav{position:sticky;top:0;z-index:1000;background:var(--white-color);box-shadow:
 }
 .mob-nav-list li{margin-bottom:1.2rem;}
 .mob-nav-list li a{
-  color:var(--primary-blue);font-size:1.3rem;font-weight:600;text-decoration:none;transition:all .2s ease;
+  color:var(--white-color);font-size:1.3rem;font-weight:600;text-decoration:none;transition:all .2s ease; /* Changed text color to white */
   cursor:pointer;display:block;padding:.7rem 1.1rem;border-radius:9px;
 }
 .mob-nav-list li a:hover{
-  background:var(--light-bg-shade);color:var(--secondary-green);
+  background:rgba(255, 255, 255, 0.2); /* Adjusted hover background for pink */
+  color:var(--white-color); /* Kept hover text white */
 }
 .mob-nav-list li a.mob-cta {
   background:var(--secondary-green);color:var(--white-color) !important;
@@ -281,13 +283,37 @@ h2 span{color:var(--primary-blue);}
 /* --- DOCTOR CARD --- */
 .doc-card{background:var(--white-color);border-radius:18px;overflow:hidden;border:1.5px solid var(--border-light);transition:all .3s ease;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
 .doc-card:hover{border-color:var(--primary-blue);transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,123,255,0.15);}
-.doc-img{height:220px;background:linear-gradient(135deg,var(--light-bg-shade),#e0f2f4);display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;background-size: cover; background-position: center;}
-.doc-badge{position:absolute;bottom:1.3rem;right:1.3rem;background:var(--secondary-green);color:var(--white-color);font-size:.8rem;font-weight:700;padding:.4rem .9rem;border-radius:50px;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
-.doc-body{padding:1.6rem;}
-.doc-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--dark-shade);margin-bottom:.5rem;}
-.doc-spec{font-size:.9rem;color:var(--primary-blue);font-weight:600;margin-bottom:.8rem;}
-.doc-exp{font-size:.9rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6;}
-.doc-stars{font-size:.95rem;color:var(--accent-yellow);margin-bottom:1.2rem;}
+/* Updated doc-img for circular shape */
+.doc-img{
+  width: 150px; /* Make it square for perfect circle */
+  height: 150px; /* Make it square for perfect circle */
+  border-radius: 50%; /* Make it circular */
+  margin: 1.5rem auto 1rem; /* Center the image in the card and add spacing */
+  background:linear-gradient(135deg,var(--light-bg-shade),#e0f2f4); /* Fallback background */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0; /* Hide emoji if background image is present */
+  position:relative;
+  background-size: cover; /* Cover the circle */
+  background-repeat: no-repeat; /* Ensure no repetition */
+  border: 4px solid var(--primary-blue); /* Added border to make it distinct */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Add subtle shadow */
+  overflow: hidden; /* Ensure image doesn't spill out of circle */
+}
+/* Specific styling for the content *inside* doc-img if it's an emoji fallback */
+.doc-img i, .doc-img span:not(.doc-badge) { /* Target potential Font Awesome icons or emojis if no image */
+    font-size: 4rem; /* Adjusted for smaller circle */
+    color: var(--primary-blue); /* Default color for emoji/icon */
+    line-height: 1; /* Center vertically */
+}
+
+.doc-badge{position:absolute;bottom:5px;right:5px;background:var(--secondary-green);color:var(--white-color);font-size:.8rem;font-weight:700;padding:.4rem .9rem;border-radius:50px;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
+.doc-body{padding:1rem; text-align: center;} /* Reduced padding and centered text */
+.doc-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--dark-shade);margin-bottom:.5rem; text-align: center;} /* Center name */
+.doc-spec{font-size:.9rem;color:var(--primary-blue);font-weight:600;margin-bottom:.8rem; text-align: center;} /* Center spec */
+/* Removed doc-exp and doc-stars styles as they are removed from HTML */
+
 
 /* --- TREAT ITEM --- */
 .treat-item{background:var(--light-bg-shade);border-radius:16px;padding:1.6rem 1.1rem;text-align:center;transition:all .3s ease;cursor:pointer;border:1.5px solid transparent; display: flex; flex-direction: column; align-items: center;box-shadow:0 3px 10px rgba(0,0,0,0.08);}
@@ -854,7 +880,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <span><i class="fas fa-clock"></i> Open Daily 9AM–11:30PM &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> BOR Society, Johar Town, Lahore</span>
+  <span><i class="fas fa-clock"></i> Open Daily 11:30AM–11:30PM &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> BOR Society, Johar Town, Lahore</span>
   <div>
     <a href="tel:03214105096"><i class="fas fa-phone-alt"></i> 0321-4105096</a>
     <a href="https://wa.me/923214105096"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -907,7 +933,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 <!-- EMERGENCY -->
 <div class="emergency">
   <p><i class="fas fa-exclamation-triangle"></i> Dental Emergency? We are available RIGHT NOW!</p>
-  <a href="tel:03214105096">📞 Call: 0321-4105096</a>
+  <a href="tel:03244335870">📞 Call:0324-4335870 </a>
 </div>
 
 <!-- ==================== HOME PAGE ==================== -->
@@ -1171,6 +1197,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   <div class="sec">
     <div class="tag">Services</div><h2>Our Comprehensive Dental <span>Services</span></h2>
     <p class="sub">From routine check-ups to advanced cosmetic and restorative procedures, Al-Fazal Dental offers a full spectrum of dental services to meet all your family's oral health needs.</p>
+    <p class="sub" style="margin-top: -2rem;">Every service at Al-Fazal Medical & Dental Care is performed with utmost care and precision, reflecting our unwavering commitment to your oral health.</p>
     <div class="g4">
       <div class="svc-card" onclick="openSvc('Scaling &amp; Cleaning','🦷','Professional teeth cleaning to remove plaque, tartar, and stains for healthier gums and a brighter, fresher smile. This preventive treatment helps in averting gum disease, reducing bad breath, and maintaining overall oral hygiene. Recommended every 6 months for optimal results.','From Rs. 2,000',['Removes stubborn plaque & tartar buildup','Effectively prevents gum disease & cavities','Significantly reduces chronic bad breath','Restores your natural tooth brightness & polish'])"><div class="svc-icon">🦷</div><div class="svc-name">Scaling &amp; Cleaning</div><div class="svc-desc">Removes plaque, tartar and stains professionally.</div><div class="svc-price">From Rs. 2,000</div><span class="more">Learn More →</span></div>
       <div class="svc-card" onclick="openSvc('Teeth Whitening','✨','Advanced teeth whitening treatments that can brighten your smile by 5–10 shades in just one visit. Our safe and supervised procedure effectively removes years of stains caused by coffee, tea, and tobacco, giving you a long-lasting, dazzling smile.','From Rs. 8,000',['Brightens your smile by an impressive 5–10 shades','Effectively removes coffee, tea, and tobacco stains','Safe and professionally supervised procedure','Results typically last between 1–3 years with proper care']))"><div class="svc-icon">✨</div><div class="svc-name">Teeth Whitening</div><div class="svc-desc">Brighten smile by several shades in one visit.</div><div class="svc-price">From Rs. 8,000</div><span class="more">Learn More →</span></div>
@@ -1187,46 +1214,34 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
       
       <!-- DR YASIR KHAWAJA -->
       <div class="doc-card">
-        <!-- ڈاکٹر یاسر کی تصویر کی سیٹنگ (center 20%) کی گئی ہے تاکہ ان کا چہرہ بالکل سینٹر میں زونش کی طرح آئے -->
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg'); background-size: cover; background-position: center 20%; height: 350px;">
-          <span class="doc-badge">Chief Consultant</span>
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg'); background-size: cover; background-position: center 20%;">
+          <span class="doc-badge">Specialist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR YASIR KHAWAJA</div>
           <div class="doc-spec">B.D.S RDS C.ORTHO C.IMPLANTS C.LASER C.ALIGNER</div>
-          <div class="doc-exp">20+ Years · Specialist in Ortho, Implants & Laser Dentistry</div>
-          <div class="doc-stars">★★★★★ Leading Specialist</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Yasir Khawaja', 'B.D.S RDS C.ORTHO C.IMPLANTS C.LASER C.ALIGNER', '20+ Years', '★★★★★ Leading Specialist', 'https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg', 'Dr. Yasir Khawaja is our esteemed Chief Consultant, bringing over two decades of invaluable experience to Al-Fazal Dental. He is a highly accomplished specialist with certifications in Orthodontics, Dental Implants, Laser Dentistry, and Clear Aligners. Dr. Khawaja is dedicated to pioneering advanced dental techniques, ensuring patients receive cutting-edge, effective, and comfortable treatments. His commitment to excellence and continuous learning makes him a leading figure in modern dentistry, consistently delivering outstanding results and transforming smiles with precision and artistry.',['Orthodontics & Braces','Dental Implants & Bone Grafting','Advanced Laser Dentistry','Cosmetic Smile Design','Complex Restorative Procedures','Aesthetic Aligners'])" style="font-size:.82rem;padding:.6rem 1.2rem">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR AYESHA -->
       <div class="doc-card">
-        <!-- ڈاکٹر عائشہ کی سیٹنگ بھی ایڈجسٹ کر دی گئی ہے -->
-        <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center 20%; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center 20%;">
           <span class="doc-badge">General Dentist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR AYESHA</div>
           <div class="doc-spec">B.D.S — General Dentistry</div>
-          <div class="doc-exp">8+ Years · Specialist in General & Cosmetic Procedures</div>
-          <div class="doc-stars">★★★★★ Patient Favourite</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Ayesha', 'B.D.S — General Dentistry', '8+ Years', '★★★★★ Patient Favourite', 'https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=800&auto=format&fit=crop&q=80', 'Dr. Ayesha is a highly compassionate and skilled General Dentist with over 8 years of experience. She specializes in a wide range of general and cosmetic procedures, from routine check-ups and cleanings to advanced fillings and teeth whitening. Patients consistently praise her gentle touch, thorough explanations, and ability to make every visit a comfortable and positive experience. Dr. Ayesha is dedicated to promoting optimal oral health and creating beautiful, confident smiles for all her patients.',['Routine Dental Check-ups & Cleanings','Cosmetic Fillings & Bonding','Teeth Whitening','Gum Disease Management','Preventive Dentistry','Minor Extractions'])" style="font-size:.82rem;padding:.6rem 1.2rem">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR ZUNASH SOHAIL -->
       <div class="doc-card">
-        <!-- ڈاکٹر زونش کی سیٹنگ بالکل پرفیکٹ ہے اس لیے ویسے ہی رکھی ہے -->
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg'); background-size: cover; background-position: center top; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg'); background-size: cover; background-position: center top;">
           <span class="doc-badge">Restorative Dentist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR ZUNASH SOHAIL</div>
           <div class="doc-spec">B.D.S RDS — Restorative & Endodontics</div>
-          <div class="doc-exp">7+ Years · Expert in Fillings & Root Canal Treatments</div>
-          <div class="doc-stars">★★★★★ Highly Skilled</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Zunash Sohail', 'B.D.S RDS — Restorative & Endodontics', '7+ Years', '★★★★★ Highly Skilled', 'https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg', 'Dr Zunash Sohail is a highly skilled Restorative Dentist and Endodontic specialist with 7 years of dedicated practice. Her expertise lies in restoring damaged teeth to their optimal health and aesthetics, with a particular focus on pain-free root canal treatments and natural-looking dental fillings. Dr Zunash Sohail is committed to precision and patient comfort, ensuring long-lasting results and preserving the natural integrity of your teeth. She is known for her meticulous approach and compassionate care.',['Root Canal Therapy (RCT)','Dental Fillings (Composite & Amalgam)','Dental Crowns & Bridges','Inlays & Onlays','Post & Core Restorations','Diagnosis & Treatment of Dental Pain'])" style="font-size:.82rem;padding:.6rem 1.2rem">👤 View Profile</button>
         </div>
       </div>
     </div>
@@ -1261,7 +1276,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
         </div>
         <div class="frow">
           <div class="fg"><label for="appt-date">Date</label><input type="date" id="appt-date" required></div>
-          <div class="fg"><label for="appt-time">Time</label><select id="appt-time" required><option>Morning (9-12)</option><option>Afternoon (12-5)</option><option>Evening (5-11)</option></select></div>
+          <div class="fg"><label for="appt-time">Time</label><select id="appt-time" required><option>Morning (11:30-2)</option><option>Afternoon (2-6)</option><option>Evening (6-11:30)</option></select></div>
         </div>
         <button type="submit" class="btn" style="width:100%;justify-content:center"><i class="far fa-calendar-alt"></i> Submit Booking</button>
       </form>
@@ -1438,6 +1453,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   <div class="sec">
     <div class="tag">What We Offer</div><h2>All Our Specialized <span>Services</span></h2>
     <p class="sub">Al-Fazal Medical & Dental Care offers a complete range of dental services designed to cater to every aspect of your oral health. Our team utilizes the latest techniques and equipment to ensure effective and comfortable treatments for patients of all ages.</p>
+    <p class="sub" style="margin-top: -2rem;">Every service at Al-Fazal Medical & Dental Care is performed with utmost care and precision, reflecting our unwavering commitment to your oral health.</p>
     <div class="g4">
       <!-- Preventive Dentistry -->
       <div class="svc-card" onclick="openSvc('Dental Check-up','🔬','A comprehensive dental examination including X-ray assessment, early cavity detection, and personalized oral hygiene guidance. Regular checkups are vital for maintaining optimal oral health.','From Rs. 1,000',['Crucial for early detection of potential problems','Includes thorough X-ray assessment for hidden issues','Provides personalized oral hygiene tips and advice','Includes oral cancer screening for early diagnosis'])"><div class="svc-icon">🔬</div><div class="svc-name">Dental Check-up</div><div class="svc-desc">Comprehensive examination for optimal oral health.</div><div class="svc-price">From Rs. 1,000</div></div>
@@ -1512,113 +1528,89 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
       
       <!-- DR YASIR KHAWAJA -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg'); background-size: cover; background-position: center 20%; height: 350px;">
-          <span class="doc-badge">Chief Consultant</span>
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg'); background-size: cover; background-position: center 20%;">
+          <span class="doc-badge">Specialist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR YASIR KHAWAJA</div>
           <div class="doc-spec">B.D.S RDS C.ORTHO C.IMPLANTS C.LASER C.ALIGNER</div>
-          <div class="doc-exp">20+ Years · Specialist in Ortho, Implants & Laser Dentistry</div>
-          <div class="doc-stars">★★★★★ Leading Specialist</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Yasir Khawaja', 'B.D.S RDS C.ORTHO C.IMPLANTS C.LASER C.ALIGNER', '20+ Years', '★★★★★ Leading Specialist', 'https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg', 'Dr. Yasir Khawaja is our esteemed Chief Consultant, bringing over two decades of invaluable experience to Al-Fazal Dental. He is a highly accomplished specialist with certifications in Orthodontics, Dental Implants, Laser Dentistry, and Clear Aligners. Dr. Khawaja is dedicated to pioneering advanced dental techniques, ensuring patients receive cutting-edge, effective, and comfortable treatments. His commitment to excellence and continuous learning makes him a leading figure in modern dentistry, consistently delivering outstanding results and transforming smiles with precision and artistry.',['Orthodontics & Braces','Dental Implants & Bone Grafting','Advanced Laser Dentistry','Cosmetic Smile Design','Complex Restorative Procedures','Aesthetic Aligners'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR AYESHA -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center 20%; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center 20%;">
           <span class="doc-badge">General Dentist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR AYESHA</div>
           <div class="doc-spec">B.D.S — General Dentistry</div>
-          <div class="doc-exp">8+ Years · Specialist in General & Cosmetic Procedures</div>
-          <div class="doc-stars">★★★★★ Patient Favourite</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Ayesha', 'B.D.S — General Dentistry', '8+ Years', '★★★★★ Patient Favourite', 'https://images.unsplash.com/photo-1662837775283-16e2f4bdff85?w=800&auto=format&fit=crop&q=80', 'Dr. Ayesha is a highly compassionate and skilled General Dentist with over 8 years of experience. She specializes in a wide range of general and cosmetic procedures, from routine check-ups and cleanings to advanced fillings and teeth whitening. Patients consistently praise her gentle touch, thorough explanations, and ability to make every visit a comfortable and positive experience. Dr. Ayesha is dedicated to promoting optimal oral health and creating beautiful, confident smiles for all her patients.',['Routine Dental Check-ups & Cleanings','Cosmetic Fillings & Bonding','Teeth Whitening','Gum Disease Management','Preventive Dentistry','Minor Extractions'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR ZUNASH SOHAIL -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg'); background-size: cover; background-position: center top; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg'); background-size: cover; background-position: center top;">
           <span class="doc-badge">Restorative Dentist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR ZUNASH SOHAIL</div>
           <div class="doc-spec">B.D.S RDS — Restorative & Endodontics</div>
-          <div class="doc-exp">7+ Years · Expert in Fillings & Root Canal Treatments</div>
-          <div class="doc-stars">★★★★★ Highly Skilled</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Zunash Sohail', 'B.D.S RDS — Restorative & Endodontics', '7+ Years', '★★★★★ Highly Skilled', 'https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg', 'Dr Zunash Sohail is a highly skilled Restorative Dentist and Endodontic specialist with 7 years of dedicated practice. Her expertise lies in restoring damaged teeth to their optimal health and aesthetics, with a particular focus on pain-free root canal treatments and natural-looking dental fillings. Dr Zunash Sohail is committed to precision and patient comfort, ensuring long-lasting results and preserving the natural integrity of your teeth. She is known for her meticulous approach and compassionate care.',['Root Canal Therapy (RCT)','Dental Fillings (Composite & Amalgam)','Dental Crowns & Bridges','Inlays & Onlays','Post & Core Restorations','Diagnosis & Treatment of Dental Pain'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR MAHAM RAHAT -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/YBTWXhHy/Whats-App-Image-2026-03-11-at-2-54-17-PM.jpg'); background-size: cover; background-position: center top; height: 350px;">
-          <span class="doc-badge">Pediatric Dentist</span>
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/YBTWXhHy/Whats-App-Image-2026-03-11-at-2-54-17-PM.jpg'); background-size: cover; background-position: center top;">
+          <span class="doc-badge">BDS , RDS And endodontist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR. MAHAM RAHAT</div>
           <div class="doc-spec">B.D.S — University of Lahore</div>
-          <div class="doc-exp">Expert in General & Pediatric Dentistry</div>
-          <div class="doc-stars">★★★★★ Great with Kids</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Maham Rahat', 'B.D.S — University of Lahore', '5+ Years', '★★★★★ Great with Kids', 'https://i.ibb.co/YBTWXhHy/Whats-App-Image-2026-03-11-at-2-54-17-PM.jpg', 'Dr. Maham Rahat is a dedicated and highly skilled dentist holding a B.D.S degree from the prestigious University of Lahore. She excels in providing comprehensive dental care, focusing on both general and pediatric dentistry. Dr. Maham is known for her gentle approach, making dental visits comfortable and anxiety-free for patients of all ages.',['General Dentistry', 'Pediatric Dental Care', 'Routine Check-ups', 'Cosmetic Fillings', 'Teeth Whitening'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR RUSHNA -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/G3kh2sPh/Whats-App-Image-2026-03-12-at-1-30-02-PM.jpg '); background-size: cover; background-position: center top; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/G3kh2sPh/Whats-App-Image-2026-03-12-at-1-30-02-PM.jpg '); background-size: cover; background-position: center top;">
           <span class="doc-badge">Oral Surgeon</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR RUSHNA</div>
           <div class="doc-spec">B.D.S — Oral & Maxillofacial</div>
-          <div class="doc-exp">5+ Years · Specializing in Surgical Procedures & Extractions</div>
-          <div class="doc-stars">★★★★★ Precise & Efficient</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Rushna', 'B.D.S — Oral & Maxillofacial', '5+ Years', '★★★★★ Precise & Efficient', 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&auto=format&fit=crop&q=80', 'Dr. Rushna is an accomplished Oral and Maxillofacial Surgeon with over 5 years of specialized experience. She is highly proficient in performing a wide range of surgical procedures, including complex tooth extractions, wisdom tooth removal, and minor oral surgeries. Dr. Rushna is known for her meticulous technique, gentle approach, and commitment to ensuring patient comfort throughout surgical treatments. Her expertise guarantees precise and efficient outcomes for even the most challenging cases.',['Wisdom Tooth Removal','Complex Tooth Extractions','Dental Cyst Removal','Biopsies of Oral Lesions','Pre-Prosthetic Surgery','Emergency Oral Surgery'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- DR GHULAM FAREED -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/0ypVXn62/Whats-App-Image-2026-03-12-at-1-11-30-AM.jpg'); background-size: cover; background-position: center 15%; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/0ypVXn62/Whats-App-Image-2026-03-12-at-1-11-30-AM.jpg'); background-size: cover; background-position: center 15%;">
           <span class="doc-badge">Senior Dental Hygienist</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">DR. GHULAM FAREED</div>
           <div class="doc-spec">Dental Hygienist — Superior University, Lahore</div>
-          <div class="doc-exp">10+ Years · Expert in Scaling & Preventive Care</div>
-          <div class="doc-stars">★★★★★ Excellent Hygienist</div>
-          <button class="btn" onclick="openDoctorDetail('Dr. Ghulam Fareed', 'Dental Hygienist — Superior University, Lahore', '10+ Years', '★★★★★ Excellent Hygienist', 'https://i.ibb.co/0ypVXn62/Whats-App-Image-2026-03-12-at-1-11-30-AM.jpg', 'Dr. Ghulam Fareed is our Senior Dental Hygienist, having graduated from Superior University, Lahore. With extensive experience in preventive dental care, he specializes in professional scaling, root planing, and comprehensive oral hygiene education. He plays a vital role in preventing gum disease and ensuring patients maintain excellent oral health. His thorough yet gentle approach makes him highly sought after by our patients.',['Professional Scaling & Polishing', 'Deep Cleaning & Root Planing', 'Gum Disease Prevention', 'Fluoride Applications', 'Oral Hygiene Instructions'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- ZAKIA (Technician) -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://plus.unsplash.com/premium_photo-1681967006645-04fd88a1b82d?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center top; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://i.ibb.co/vxssfBQq/Whats-App-Image-2026-03-12-at-8-32-38-PM.jpg'); background-size: cover; background-position: center top;">
           <span class="doc-badge">Lab Technician</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">ZAKIA</div>
           <div class="doc-spec">B.D.T — Dental Technician</div>
-          <div class="doc-exp">12+ Years · Crafting High-Quality Crowns & Dentures</div>
-          <div class="doc-stars">★★★★★ Master Technician</div>
-          <button class="btn" onclick="openDoctorDetail('Zakia', 'B.D.T — Dental Technician', '12+ Years', '★★★★★ Master Technician', 'https://plus.unsplash.com/premium_photo-1681967006645-04fd88a1b82d?w=800&auto=format&fit=crop&q=80', 'Zakia is our dedicated and highly skilled Dental Technician, with over 12 years of experience in crafting bespoke dental prosthetics. Her artistry and precision are evident in every crown, bridge, and denture she creates, ensuring a perfect fit and natural aesthetic. Zakia works closely with our dentists to deliver high-quality, durable restorations that meet the highest standards of function and beauty, contributing significantly to our patients’ confident smiles.',['Custom Dental Crowns','Dental Bridges','Full & Partial Dentures','Veneers Fabrication','Ceramic Restorations','Prosthetic Repairs & Adjustments'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
       <!-- SHAWAIZ (Assistant) -->
       <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://plus.unsplash.com/premium_photo-1672922646096-dee26745509f?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center top; height: 350px;">
+        <div class="doc-img" style="background-image: url('https://plus.unsplash.com/premium_photo-1672922646096-dee26745509f?w=600&auto=format&fit=crop&q=60'); background-size: cover; background-position: center top;">
           <span class="doc-badge">Dental Assistant</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">SHAWAIZ</div>
           <div class="doc-spec">D.H — Dental Assistant</div>
-          <div class="doc-exp">5+ Years · Supporting Doctors for Smooth Procedures</div>
-          <div class="doc-stars">★★★★★ Supportive Assistant</div>
-          <button class="btn" onclick="openDoctorDetail('Shawaiz', 'D.H — Dental Assistant', '5+ Years', '★★★★★ Supportive Assistant', 'https://plus.unsplash.com/premium_photo-1672922646096-dee26745509f?w=800&auto=format&fit=crop&q=80', 'Shawaiz is an integral part of our dental team, serving as a highly competent and supportive Dental Assistant for over 5 years. He ensures that all procedures run smoothly by preparing treatment rooms, assisting doctors during treatments, and providing excellent patient care. Shawaiz’s calm demeanor and efficiency contribute significantly to a comfortable and stress-free environment for both patients and clinicians. He is dedicated to supporting our team in delivering the best possible dental experience.',['Chairside Assisting','Sterilization & Infection Control','Patient Preparation & Comfort','X-Ray Assistance','Equipment Maintenance','Appointment Scheduling Support'])" style="font-size:.82rem;padding:.6rem 1.2rem; width:100%; justify-content:center;">👤 View Profile</button>
         </div>
       </div>
 
@@ -2106,7 +2098,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
           <a href="tel:03214105096" class="c-item"><div class="c-ico"><i class="fas fa-phone-alt"></i></div><div><div class="c-lbl">Call Us</div><div class="c-val">0321-4105096</div></div></a>
           <a href="https://wa.me/923214105096" class="c-item"><div class="c-ico"><i class="fab fa-whatsapp"></i></div><div><div class="c-lbl">WhatsApp</div><div class="c-val">0321-4105096</div></div></a>
           <div class="c-item"><div class="c-ico"><i class="fas fa-map-marker-alt"></i></div><div><div class="c-lbl">Address</div><div class="c-val">BOR Main Rd, BOR Society, Johar Town, Lahore</div></div></div>
-          <div class="c-item"><div class="c-ico"><i class="fas fa-clock"></i></div><div><div class="c-lbl">Hours</div><div class="c-val">Daily 9:00 AM – 11:30 PM</div></div></div>
+          <div class="c-item"><div class="c-ico"><i class="fas fa-clock"></i></div><div><div class="c-val">Daily 11:30 AM – 11:30 PM</div></div></div>
         </div>
 
         <!-- Live Google Map for Johar Town -->
@@ -2125,7 +2117,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
           <select id="cf-treatment" class="cfi" required><option value="">Select Treatment</option><option>Teeth Cleaning</option><option>Whitening</option><option>Root Canal</option><option>Implants</option><option>Braces</option><option>Crowns</option><option>Dentures</option><option>Checkup</option><option>Other</option></select>
           <div class="cfrow">
             <div><label class="cfl" for="cf-date">Preferred Date</label><input type="date" id="cf-date" class="cfi" required></div>
-            <div><label class="cfl" for="cf-time">Preferred Time</label><select id="cf-time" class="cfi" required><option>Morning (9–12)</option><option>Afternoon (12–5)</option><option>Evening (5–11)</option></select></div>
+            <div><label class="cfl" for="cf-time">Preferred Time</label><select id="cf-time" class="cfi" required><option>Morning (11:30-2)</option><option>Afternoon (2-6)</option><option>Evening (6-11:30)</option></select></div>
           </div>
           <label class="cfl" for="cf-msg">Message</label>
           <textarea id="cf-msg" class="cfi" placeholder="Any specific concern or question..."></textarea>
@@ -2141,13 +2133,13 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
       <p style="color:rgba(255,255,255,0.8); font-size:0.9rem; margin-top:0.8rem;">We're open seven days a week to accommodate your schedule. Click on any day to head to our booking page!</p>
     </div>
     <div class="t7">
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Mon</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Tue</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Wed</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Thu</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Fri</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Sat</div><div class="tc-time">9 AM<br>11:30 PM</div></div>
-      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Sun</div><div class="tc-time tc-closed">Evening Only (4-11:30 PM)</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Mon</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Tue</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Wed</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Thu</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Fri</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Sat</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
+      <div class="tc" onclick="go('book')" style="cursor:pointer;" title="Click to Book"><div class="tc-day">Sun</div><div class="tc-time">11:30 AM<br>11:30 PM</div></div>
     </div>
   </div>
 </div>
@@ -2207,7 +2199,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
         </select>
         <div class="bkrow">
           <div><label class="bkl" for="bk-date">Preferred Date</label><input type="date" id="bk-date" class="bki" required></div>
-          <div><label class="bkl" for="bk-time">Time Slot</label><select id="bk-time" class="bki" required><option>Morning (9–12)</option><option>Afternoon (12–5)</option><option>Evening (5–11)</option></select></div>
+          <div><label class="bkl" for="bk-time">Time Slot</label><select id="bk-time" class="bki" required><option>Morning (11:30-2)</option><option>Afternoon (2-6)</option><option>Evening (6-11:30)</option></select></div>
         </div>
         <label class="bkl" for="bk-msg">Message (Optional)</label>
         <textarea id="bk-msg" class="bki" placeholder="Any specific concern or question..."></textarea>
@@ -2255,7 +2247,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
         <li><a href="tel:03214105096"><i class="fas fa-phone-alt"></i> 0321-4105096</a></li>
         <li><a href="https://wa.me/923214105096?text=Hello%20Al-Fazal%20Dental%2C%20I%20have%20a%20general%20query."><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
         <li><a onclick="go('contact')"><i class="fas fa-map-marker-alt"></i> Johar Town, Lahore</a></li>
-        <li><a onclick="go('contact')"><i class="fas fa-clock"></i> 9 AM – 11:30 PM Daily</a></li>
+        <li><a onclick="go('contact')"><i class="fas fa-clock"></i> 11:30 AM – 11:30 PM Daily</a></li>
       </ul>
     </div>
   </div>
@@ -2290,6 +2282,22 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 </div>
 
 <script>
+// Helper function to send data to WhatsApp
+function sendToWhatsApp(data) {
+    const whatsappNumber = '923214105096'; // Dr Yasir's WhatsApp number for bookings
+    let message = `*Al-Fazal Dental Appointment Request*%0A%0A`;
+
+    for (const key in data) {
+        if (data[key]) { // Only add to message if value exists
+            message += `*${key}:* ${encodeURIComponent(data[key])}%0A`;
+        }
+    }
+    message += `%0A_Sent via Al-Fazal Dental Website_`;
+    
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 // ===== WHY CARDS EXPAND =====
 function toggleWhy(card) {
   const isOpen = card.classList.contains('open');
@@ -2368,6 +2376,8 @@ function openTreat(name, iconHtmlOrEmoji, desc, imageUrl, benefits) {
   go('treatment-detail');
 }
 // ===== DOCTOR DETAIL (WITH FULL PINK ANIMATED FRAME) =====
+// Note: This function remains in the JS but is no longer called from doctor cards,
+// as per the user's request to remove "View Profile" buttons and simplify cards.
 function openDoctorDetail(name, spec, exp, stars, imageUrl, longDesc, expertiseList) {
     document.getElementById('dd-title').textContent = name;
     const ddImgElement = document.getElementById('dd-img');
@@ -2442,18 +2452,15 @@ function handleBookingSubmit(event) {
     return;
   }
 
-  const bookingDetails = `
-    --- NEW APPOINTMENT BOOKING (HOME PAGE) ---
-    Name: ${name}
-    Phone: ${phone}
-    Treatment: ${treatment}
-    Date: ${date}
-    Time: ${time}
-    -------------------------------------------
-    (This data would be sent to the admin panel.)
-  `;
-  console.log(bookingDetails); // Log to console for simulation
-  alert(`Thank you for booking, ${name}! Your appointment for ${treatment} on ${date} (${time}) has been submitted to our team. We will contact you shortly to confirm.`);
+  sendToWhatsApp({
+    'Name': name,
+    'Phone': phone,
+    'Treatment': treatment,
+    'Date': date,
+    'Time Slot': time,
+    'Source': 'Home Page Quick Booking'
+  });
+  alert(`Thank you for submitting your booking, ${name}! We have prepared your details for WhatsApp. Please send the message to confirm your appointment.`);
 
   // Optionally clear the form
   event.target.reset();
@@ -2474,19 +2481,16 @@ function handleContactSubmit(event) {
     return;
   }
 
-  const contactDetails = `
-    --- NEW CONTACT FORM SUBMISSION ---
-    Name: ${name}
-    Phone: ${phone}
-    Treatment: ${treatment}
-    Date: ${date}
-    Time: ${time}
-    Message: ${message || 'No additional message'}
-    -------------------------------------
-    (This data would be sent to the admin panel.)
-  `;
-  console.log(contactDetails); // Log to console for simulation
-  alert(`Thank you for your inquiry, ${name}! Your appointment request has been submitted to our team. We will contact you shortly.`);
+  sendToWhatsApp({
+    'Name': name,
+    'Phone': phone,
+    'Treatment': treatment,
+    'Date': date,
+    'Time Slot': time,
+    'Message': message,
+    'Source': 'Contact Page Form'
+  });
+  alert(`Thank you for your inquiry, ${name}! We have prepared your details for WhatsApp. Please send the message to get in touch.`);
 
   // Optionally clear the form
   event.target.reset();
@@ -2508,20 +2512,17 @@ function handleBookingPageSubmit(event) {
     return;
   }
 
-  const bookingPageDetails = `
-    --- NEW APPOINTMENT (FROM BOOKING PAGE) ---
-    Name: ${name}
-    Phone: ${phone}
-    Service: ${service}
-    Preferred Doctor: ${doctor || 'Any Doctor'}
-    Date: ${date}
-    Time: ${time}
-    Message: ${message || 'No additional message'}
-    ---------------------------------------------
-    (This data would be sent to the admin panel.)
-  `;
-  console.log(bookingPageDetails); // Log to console for simulation
-  alert(`Appointment confirmed! Thank you, ${name}. Your booking for ${service} on ${date} (${time}) has been received. We look forward to seeing you!`);
+  sendToWhatsApp({
+    'Name': name,
+    'Phone': phone,
+    'Service': service,
+    'Preferred Doctor': doctor,
+    'Date': date,
+    'Time Slot': time,
+    'Message': message,
+    'Source': 'Book Now Page Form'
+  });
+  alert(`Appointment details prepared for WhatsApp, ${name}! Please send the message to confirm your booking.`);
 
   // Optionally clear the form
   event.target.reset();
