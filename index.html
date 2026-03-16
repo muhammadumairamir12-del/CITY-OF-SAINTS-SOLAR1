@@ -5,7 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Al-Fazal Medical &amp; Dental Care | Johar Town Lahore</title>
+<!-- Google Fonts: Outfit (modern sans-serif), Playfair Display (elegant serif) for a modern, elegant look -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<!-- Font Awesome for icons, ensuring a consistent and modern iconography -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
 /* --- NEW MODERN & VIBRANT COLOR PALETTE (Medical Focus) --- */
@@ -20,45 +22,118 @@
   --text-muted: #6c757d; /* Medium Grey for paragraphs (Bootstrap muted) */
   --border-light: #dee2e6; /* Very light grey for borders */
   --error-red: #dc3545; /* Crimson for errors (Bootstrap danger) */
+
+  /* Specific colors for Medical and Dental identity */
+  --med-color: var(--primary-color); /* Blue for Medical */
+  --med-bg: rgba(0,123,255,0.1);
+  --den-color: var(--secondary-color); /* Green for Dental */
+  --den-bg: rgba(40,167,69,0.1);
+
+  /* Shadows for depth and modern feel */
+  --shadow-sm: 0 4px 15px rgba(0,0,0,0.08);
+  --shadow-md: 0 8px 25px rgba(0,0,0,0.12);
+  --shadow-lg: 0 15px 40px rgba(0,0,0,0.18);
+  --shadow-xl: 0 25px 60px rgba(0,0,0,0.25);
 }
 
 /* --- BASE STYLES --- */
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;color:var(--text-dark);overflow-x:hidden;}
+*{margin:0;padding:0;box-sizing:border-box;} /* Universal box-sizing for consistent layout */
+html{scroll-behavior:smooth;} /* Smooth scrolling on anchor links */
+body{font-family:'Outfit',sans-serif;color:var(--text-dark);overflow-x:hidden;} /* Default font, text color, and prevent horizontal scroll */
 ::-webkit-scrollbar{width:8px;} /* Slightly wider scrollbar */
-::-webkit-scrollbar-thumb{background:var(--secondary-color);border-radius:4px;} /* Rounded thumb */
-::-webkit-scrollbar-track{background:var(--light-bg-shade);}
+::-webkit-scrollbar-thumb{background:var(--secondary-color);border-radius:4px;} /* Rounded thumb, green color */
+::-webkit-scrollbar-track{background:var(--light-bg-shade);} /* Pale Turquoise track */
 
 /* --- GENERAL UTILITIES --- */
-.page{display:none;animation:fadeIn .6s ease-out;}
+.page{display:none;animation:fadeIn .6s ease-out;} /* Hidden by default, fades in when active */
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}} /* More pronounced fade-in */
 
 /* --- TOPBAR --- */
-.topbar{background:var(--dark-shade);padding:.7rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;color:rgba(255,255,255,.8);flex-wrap:wrap;gap:10px;box-shadow:0 1px 5px rgba(0,0,0,0.1);}
-.topbar a{color:var(--accent-color);text-decoration:none;margin-left:1.5rem;transition:color .3s ease;}
+.topbar{
+    background:var(--dark-shade);
+    padding:.7rem 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.88rem;
+    color:rgba(255,255,255,.8);
+    flex-wrap:wrap;
+    gap:10px;
+    box-shadow:0 1px 5px rgba(0,0,0,0.1); /* Soft shadow */
+}
+.topbar a{
+    color:var(--accent-color); /* Yellow accent for links */
+    text-decoration:none;
+    margin-left:1.5rem;
+    transition:color .3s ease;
+}
 .topbar a:hover{color:var(--white-color);}
 
 /* --- NAV --- */
-nav{position:sticky;top:0;z-index:1000;background:var(--white-color);box-shadow:0 4px 25px rgba(0,0,0,.08);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:82px;} /* Taller nav, more shadow */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:var(--white-color);
+    box-shadow:0 4px 25px rgba(0,0,0,.08); /* Stronger shadow for nav */
+    padding:0 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:82px; /* Taller nav */
+}
 .logo{display:flex;align-items:center;gap:.9rem;text-decoration:none;cursor:pointer;}
-.logo-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--secondary-color),var(--primary-color));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--white-color);box-shadow:0 5px 18px rgba(0,123,255,0.25);}
-.logo-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--dark-shade);}
+.logo-icon{
+    width:50px;height:50px;
+    background:linear-gradient(135deg,var(--secondary-color),var(--primary-color)); /* Green to Blue gradient */
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;
+    color:var(--white-color);
+    box-shadow:0 5px 18px rgba(0,123,255,0.25);
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--text-dark);}
 .logo-sub{font-size:.8rem;color:var(--primary-color);font-weight:600;}
 .nav-links{display:flex;list-style:none;align-items:center;gap:.7rem;}
-.nav-links a{color:var(--text-dark);text-decoration:none;font-size:.92rem;font-weight:600;padding:.7rem 1rem;border-radius:9px;transition:all .3s ease;cursor:pointer;display:block;white-space:nowrap;}
-.nav-links a:hover,.nav-links a.active-nav{color:var(--primary-color);background:var(--light-bg-shade);box-shadow:0 3px 12px rgba(0,123,255,0.15);}
-.nav-links .nav-cta{background:var(--primary-color);color:var(--white-color) !important;border-radius:50px;padding:.7rem 1.3rem;box-shadow:0 6px 18px rgba(0,123,255,0.35);}
-.nav-links .nav-cta:hover{background:var(--secondary-color);box-shadow:0 6px 22px rgba(40,167,69,0.4);transform:translateY(-2px);}
+.nav-links a{
+    color:var(--text-dark);
+    text-decoration:none;
+    font-size:.92rem;
+    font-weight:600;
+    padding:.7rem 1rem;
+    border-radius:9px;
+    transition:all .3s ease;
+    cursor:pointer;
+    display:block;
+    white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.active-nav{
+    color:var(--primary-color); /* Blue text on hover/active */
+    background:var(--light-bg-shade); /* Off-white background */
+    box-shadow:0 3px 12px rgba(0,123,255,0.15);
+}
+.nav-links .nav-cta{
+    background:var(--primary-color); /* Blue CTA button */
+    color:var(--white-color) !important;
+    border-radius:50px;
+    padding:.7rem 1.3rem;
+    box-shadow:0 6px 18px rgba(0,123,255,0.35);
+}
+.nav-links .nav-cta:hover{
+    background:var(--secondary-color); /* Green on hover */
+    box-shadow:0 6px 22px rgba(40,167,69,0.4);
+    transform:translateY(-2px);
+}
 .hamburger{display:none;font-size:2.2rem;cursor:pointer;color:var(--dark-shade);transition:transform .3s ease;}
 .hamburger:hover{transform:scale(1.1);}
+
 /* --- MOBILE OVERLAY --- */
 .mob-overlay{
-  position:fixed;top:0;bottom:0;right:0;width:180px;
-  background:var(--primary-color);
+  position:fixed;top:0;bottom:0;right:0;width:220px; /* Wider mobile menu */
+  background:var(--dark-shade); /* Dark Grey background */
   z-index:2000;display:flex;flex-direction:column;
-  align-items:flex-start;padding:1rem;
+  align-items:flex-start;padding:1.5rem; /* Increased padding */
   transform:translateX(100%);transition:transform .4s ease-out;
   box-shadow:-5px 0 20px rgba(0,0,0,0.2);
 }
@@ -69,111 +144,565 @@ nav{position:sticky;top:0;z-index:1000;background:var(--white-color);box-shadow:
 }
 .mob-close:hover{transform:rotate(90deg);}
 .mob-nav-list{
-  list-style:none;width:100%;margin-top:3rem;
+  list-style:none;width:100%;margin-top:3.5rem; /* Increased margin */
 }
-.mob-nav-list li{margin-bottom:0.4rem;}
+.mob-nav-list li{margin-bottom:0.6rem;} /* More spacing between items */
 .mob-nav-list li a{
-  color:var(--white-color);font-size:0.82rem;font-weight:600;
+  color:var(--white-color);font-size:0.95rem; /* Larger font for readability */
+  font-weight:600;
   text-decoration:none;cursor:pointer;display:block;
-  padding:0.5rem 0.8rem;border-radius:7px;transition:all .2s ease;
+  padding:0.6rem 1rem;border-radius:8px; /* Slightly larger rounded corners */
+  transition:all .2s ease;
 }
 .mob-nav-list li a:hover{background:rgba(255,255,255,0.2);}
 .mob-nav-list li a.mob-cta{
-  background:var(--secondary-color);color:var(--white-color) !important;
-  border-radius:50px;padding:0.6rem 1rem;text-align:center;
-  margin-top:1.5rem;font-size:0.82rem;
+  background:var(--secondary-color); /* Green CTA button */
+  color:var(--white-color) !important;
+  border-radius:50px;padding:0.7rem 1.2rem;text-align:center;
+  margin-top:2rem;font-size:0.95rem; /* Larger font */
 }
 .mob-nav-list li a.mob-cta:hover{
-  background:var(--dark-shade);transform:translateY(-2px);
+  background:var(--primary-color); /* Blue on hover */
+  transform:translateY(-2px);
 }
+
 /* --- EMERGENCY BAR --- */
-.emergency{background:var(--error-red);padding:1.2rem 5%;display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+.emergency{
+    background:var(--error-red); /* Crimson red for emergencies */
+    padding:1.2rem 5%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2rem;
+    flex-wrap:wrap;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
 .emergency p{color:var(--white-color);font-weight:600;font-size:1rem;}
-.emergency a{background:var(--white-color);color:var(--error-red);padding:.6rem 1.5rem;border-radius:50px;font-weight:700;text-decoration:none;font-size:.95rem;transition:transform .3s ease, box-shadow .3s ease;}
+.emergency a{
+    background:var(--white-color);
+    color:var(--error-red);
+    padding:.6rem 1.5rem;
+    border-radius:50px;
+    font-weight:700;
+    text-decoration:none;
+    font-size:.95rem;
+    transition:transform .3s ease, box-shadow .3s ease;
+}
 .emergency a:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.2);}
 
 /* --- PAGE HEADER --- */
-.page-hdr{background:linear-gradient(135deg,var(--dark-shade),var(--primary-color));padding:70px 5%;text-align:center;position:relative;overflow:hidden;}
-.page-hdr::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23FFFFFF" opacity="0.05"/></svg>') repeat;opacity:0.3;z-index:0;}
-.page-hdr h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:var(--white-color);margin-bottom:.9rem;line-height:1.2;position:relative;z-index:1;}
-.page-hdr h1 span{color:var(--accent-color);}
-.page-hdr p{color:rgba(255,255,255,.85);font-size:1.05rem;position:relative;z-index:1;}
+.page-hdr{
+    background:linear-gradient(135deg,var(--dark-shade),var(--primary-color)); /* Dark Grey to Blue gradient */
+    padding:90px 5%; /* Increased padding */
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+.page-hdr::before{ /* Subtle background pattern */
+    content:'';
+    position:absolute;
+    inset:0;
+    background:url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23FFFFFF" opacity="0.05"/></svg>') repeat;
+    opacity:0.3;
+    z-index:0;
+}
+.page-hdr h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.5rem,4.5vw,3.8rem); /* Larger and more responsive heading */
+    font-weight:800;
+    color:var(--white-color);
+    margin-bottom:1rem;
+    line-height:1.2;
+    position:relative;
+    z-index:1;
+}
+.page-hdr h1 span{color:var(--accent-color);} /* Yellow accent for keywords */
+.page-hdr p{color:rgba(255,255,255,.85);font-size:1.1rem;position:relative;z-index:1;} /* Slightly larger paragraph */
 
 /* --- SECTION HELPERS (Updated with new colors and shadows) --- */
-.sec{padding:90px 5%;} /* Increased padding for more "rush" feel */
-.sec-gray{background:var(--light-bg-shade);padding:90px 5%;}
-.sec-dark{background:var(--dark-shade);padding:90px 5%;}
-.tag{display:inline-flex;align-items:center;gap:.7rem;color:var(--secondary-color);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:3.5px;margin-bottom:1rem;}
+.sec{padding:100px 5%;} /* Increased padding for more spacious feel */
+.sec-gray{background:var(--light-bg-shade);padding:100px 5%;}
+.sec-dark{background:var(--dark-shade);padding:100px 5%;}
+.tag{
+    display:inline-flex;
+    align-items:center;
+    gap:.7rem;
+    color:var(--secondary-color); /* Green tag text */
+    font-size:.85rem; /* Slightly larger tag font */
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:3.5px;
+    margin-bottom:1.2rem; /* Increased margin */
+}
 .tag::before{content:'';width:28px;height:2px;background:var(--secondary-color);}
-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:var(--text-dark);margin-bottom:1.4rem;line-height:1.2;}
-h2 span{color:var(--primary-color);}
-.sub{font-size:.98rem;color:var(--text-muted);line-height:1.9;margin-bottom:3.5rem;max-width:850px;margin-left:auto;margin-right:auto;}
-.btn{background:var(--primary-color);color:var(--white-color);padding:1rem 2.2rem;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.7rem;transition:all .3s ease;border:none;cursor:pointer;box-shadow:0 8px 25px rgba(0,123,255,0.35);}
-.btn:hover{background:var(--secondary-color);transform:translateY(-4px);box-shadow:0 12px 35px rgba(40,167,69,0.45);}
-.btn-outline{background:transparent;color:var(--primary-color);border:2px solid var(--primary-color);padding:.95rem 2.2rem;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.7rem;transition:all .3s ease;cursor:pointer;}
-.btn-outline:hover{background:var(--primary-color);color:var(--white-color);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,123,255,0.25);}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.95);border:2px solid rgba(255,255,255,.45);padding:.95rem 2.2rem;border-radius:50px;font-size:1rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.7rem;transition:all .3s ease;cursor:pointer;}
-.btn-ghost:hover{border-color:var(--accent-color);color:var(--accent-color);transform:translateY(-3px);box-shadow:0 6px 18px rgba(255,193,7,0.25);}
+h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.2rem,4vw,3.5rem); /* Larger and more responsive heading */
+    font-weight:800;
+    color:var(--text-dark);
+    margin-bottom:1.6rem; /* Increased margin */
+    line-height:1.2;
+}
+h2 span{color:var(--primary-color);} /* Blue accent for keywords */
+.sub{
+    font-size:1.05rem; /* Larger sub-paragraph */
+    color:var(--text-muted);
+    line-height:1.9;
+    margin-bottom:4rem; /* Increased margin */
+    max-width:900px; /* Wider max-width */
+    margin-left:auto;
+    margin-right:auto;
+}
+.btn{
+    background:var(--primary-color); /* Blue button */
+    color:var(--white-color);
+    padding:1.1rem 2.5rem; /* Larger padding */
+    border-radius:50px;
+    font-size:1.05rem; /* Larger font */
+    font-weight:600;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.8rem;
+    transition:all .3s ease;
+    border:none;
+    cursor:pointer;
+    box-shadow:var(--shadow-md); /* Medium shadow */
+}
+.btn:hover{
+    background:var(--secondary-color); /* Green on hover */
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg); /* Larger shadow on hover */
+}
+.btn-outline{
+    background:transparent;
+    color:var(--primary-color);
+    border:2px solid var(--primary-color); /* Blue outline */
+    padding:1.05rem 2.5rem; /* Matching padding with filled button */
+    border-radius:50px;
+    font-size:1.05rem;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.8rem;
+    transition:all .3s ease;
+    cursor:pointer;
+}
+.btn-outline:hover{
+    background:var(--primary-color);
+    color:var(--white-color);
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-sm); /* Soft shadow on hover */
+}
+.btn-ghost{
+    background:transparent;
+    color:rgba(255,255,255,.95);
+    border:2px solid rgba(255,255,255,.45);
+    padding:1.05rem 2.5rem;
+    border-radius:50px;
+    font-size:1.05rem;
+    font-weight:500;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.8rem;
+    transition:all .3s ease;
+    cursor:pointer;
+}
+.btn-ghost:hover{
+    border-color:var(--accent-color); /* Yellow outline on hover */
+    color:var(--accent-color);
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-sm);
+}
 
-/* --- HERO SECTION (Updated for "rush" and full-screen effect) --- */
-.hero{
-  min-height:100vh;background:none;display:flex;flex-direction: column;align-items:center;
-  justify-content: center;padding:0; /* Removed padding to let carousel be truly full screen */
-  position:relative;overflow:hidden;
+/* --- HERO SECTION (New structure for a bold opening) --- */
+.hero {
+    position: relative; /* For background image and overlay */
+    padding: 120px 5%; /* Generous padding */
+    min-height: 85vh; /* Minimum height for impact */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to right, rgba(10,25,47,0.9), rgba(10,25,47,0.8)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop') center/cover no-repeat; /* Dark background with medical image */
+    color: var(--white-color);
+    overflow: hidden; /* Ensure nothing overflows */
 }
-.hero::before{
-  content:''; /* Removed emoji content */
-  position:absolute;inset:0; /* Cover entire hero area */
-  background:none; /* Ensure no background for the pseudo element */
-  z-index:2; /* Keep it above the carousel */
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensures content is above background and overlay */
+    max-width: 900px;
+}
+.badge-top {
+    display: inline-block;
+    background: rgba(255,255,255,0.15); /* Slightly more prominent badge background */
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 8px 20px; /* Increased padding for badge */
+    border-radius: 50px;
+    color: var(--accent-color); /* Yellow accent for badge text */
+    font-size: 0.9rem; /* Larger font */
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 25px; /* Increased margin */
+    backdrop-filter: blur(8px); /* More blur for frosted glass effect */
+}
+.hero h1 {
+    font-family:'Playfair Display',serif;
+    font-size: clamp(3rem, 6vw, 5rem); /* Very large and responsive heading */
+    color: var(--white-color);
+    line-height: 1.1;
+    margin-bottom: 25px; /* Increased margin */
+    letter-spacing: -1px; /* Tighter letter spacing for impact */
+}
+.hero h1 span {
+    color: var(--primary-color); /* Blue accent for keywords in heading */
+}
+.hero p {
+    font-size: 1.15rem; /* Larger paragraph */
+    color: rgba(255,255,255,0.85); /* Lighter white for readability */
+    margin-bottom: 40px;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* New Global Overlay for Hero Text Readability */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0); /* Set to fully transparent, no darkening overlay */
-  z-index: 1;
+/* --- DUAL DEPARTMENT SHOWCASE (New Section) --- */
+.dual-depts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* Space between cards */
+    margin-top: -80px; /* Overlap with hero for dynamic layout */
+    position: relative;
+    z-index: 10; /* Ensure it's above other sections */
+    padding: 0 5%; /* Match page padding */
+}
+.dept-card {
+    background: var(--white-color);
+    border-radius: 20px; /* Larger radius */
+    padding: 40px; /* Generous padding */
+    box-shadow: var(--shadow-lg); /* Strong shadow */
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column; /* Stack icon and info vertically */
+    align-items: center;
+    text-align: center;
+    gap: 20px; /* Space between icon and text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.dept-card:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: var(--shadow-xl); /* Deeper shadow on hover */
+}
+.dept-card.medical { border-top: 6px solid var(--med-color); } /* Blue top border for medical */
+.dept-card.dental { border-top: 6px solid var(--den-color); } /* Green top border for dental */
+
+.dept-icon {
+    width: 90px; /* Larger icon container */
+    height: 90px;
+    border-radius: 50%; /* Circular icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem; /* Larger icon size */
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+.medical .dept-icon { background: var(--med-bg); color: var(--med-color); }
+.dental .dept-icon { background: var(--den-bg); color: var(--den-color); }
+.dept-card:hover .dept-icon { transform: scale(1.1); } /* Icon scales on hover */
+
+.dept-info h3 { font-size: 2rem; margin-bottom: 12px; font-family:'Playfair Display',serif; color: var(--text-dark);} /* Larger heading for info */
+.dept-info p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
+.dept-link {
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space for arrow */
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.medical .dept-link { color: var(--med-color); }
+.dental .dept-link { color: var(--den-color); }
+.dept-card:hover .dept-link { transform: translateX(8px); } /* Arrow moves on hover */
+
+
+/* --- CUSTOM VISIONARIES / LEADERSHIP SECTION (New Section) --- */
+.visionaries-sec {
+    padding: 100px 5%; /* Generous padding */
+    background: var(--light-bg-shade); /* Off-white background */
+}
+.visionaries-sec .sec-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.visionaries-sec .sec-title h2 {
+    font-size: clamp(2.5rem, 5vw, 3.8rem); /* Larger and more responsive heading */
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+.visionaries-sec .sec-title p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
 }
 
-/* Ensure other hero content is above the new overlay */
-.hero > *:not(.hero-image-carousel) { /* Only carousel is meant to be at z-index 0 */
-  position: relative;z-index: 2; /* Ensure other content (if any added back) is above overlay */
+.leader-card {
+    display: flex; /* Horizontal layout for image and content */
+    align-items: center;
+    gap: 50px; /* More space between elements */
+    background: var(--white-color);
+    border-radius: 20px; /* Larger radius */
+    padding: 40px; /* Generous padding */
+    margin-bottom: 50px; /* Space between leader cards */
+    border: 2px solid var(--border-light); /* Slightly thicker border */
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+.leader-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color); /* Highlight border on hover */
+    transform: translateY(-5px);
+}
+.leader-card:nth-child(even) { /* Alternate layout for even cards */
+    flex-direction: row-reverse;
 }
 
-/* New Hero Elements (Removed as requested by user) */
-.hero-top-elements, .hero-content-wrapper {
-  display: none;
+.leader-img-box {
+    flex-shrink: 0; /* Prevent image from shrinking */
+    width: 250px; /* Larger circular image */
+    height: 250px;
+    position: relative;
+}
+.leader-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Make image circular */
+    border: 8px solid var(--white-color); /* White border around image */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    position: relative;
+    z-index: 2;
+}
+/* Abstract decoration behind image */
+.leader-img-box::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); /* Yellow to Green gradient */
+    top: 15px; /* Offset for layered effect */
+    left: -15px; /* Offset for layered effect */
+    z-index: 1;
+    opacity: 0.7; /* Slightly transparent */
+    transition: all 0.3s ease;
+}
+.leader-card:hover .leader-img-box::before {
+    transform: scale(1.05); /* Grow on hover */
+    opacity: 0.9;
+}
+.leader-card:nth-child(even) .leader-img-box::before {
+    left: 15px; /* Adjust offset for reversed cards */
 }
 
+.leader-content {
+    position: relative;
+    flex: 1; /* Allow content to take remaining space */
+    padding-left: 20px; /* Padding for quote border */
+}
+.leader-content::before {
+    content: '\201C'; /* Stylish opening quote */
+    font-family:'Playfair Display',serif;
+    font-size: 10rem; /* Very large quote */
+    position: absolute;
+    top: -50px; /* Position above text */
+    left: -30px;
+    color: var(--primary-color); /* Blue for quote */
+    opacity: 0.1; /* Very subtle */
+    line-height: 1;
+    z-index: 0; /* Behind text */
+}
+.leader-name {
+    font-family:'Playfair Display',serif;
+    font-size: 2.2rem; /* Larger name */
+    color: var(--text-dark);
+    margin-bottom: 8px; /* Space below name */
+    position: relative;
+    z-index: 1;
+}
+.leader-role {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem; /* Clearer role text */
+    color: var(--secondary-color); /* Green for role */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px; /* Space below role */
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+.leader-quote {
+    font-size: 1.05rem; /* Standard quote text size */
+    line-height: 1.8;
+    color: var(--text-muted); /* Muted text for quote */
+    font-style: italic;
+    border-left: 4px solid var(--primary-color); /* Blue border for quote */
+    padding-left: 20px; /* Padding for quote border */
+    position: relative;
+    z-index: 1;
+}
 
-.hero-image-carousel {
-  position: absolute;inset: 0;width: 100%;height: 100%;max-width: none;
-  border-radius: 0;overflow: hidden;box-shadow: none;z-index: 0;
+/* --- CLINIC TOUR VIDEO SECTION (New Section) --- */
+.tour-sec {
+    padding: 100px 5%;
+    background: var(--dark-shade); /* Dark Grey background */
+    color: var(--white-color);
+    text-align: center;
 }
-.hero-carousel-item {
-  position: absolute;top: 0;left: 0;width: 100%;height: 100%;
-  background-size: cover;background-position: center;opacity: 0;
-  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out; /* Slower and added transform */
-  display: flex;align-items: flex-end;justify-content: flex-start;padding: 1rem;
-  transform: scale(1.08); /* Slight zoom-in effect */
+.tour-sec .sec-title { margin-bottom: 60px; }
+.tour-sec .sec-title h2 { color: var(--white-color); }
+.tour-sec .sec-title p { color: rgba(255,255,255,0.8); }
+
+.video-wrapper {
+    max-width: 900px;
+    margin: 50px auto; /* Centered with more top margin */
+    position: relative;
+    border-radius: 20px; /* Larger radius */
+    overflow: hidden;
+    box-shadow: var(--shadow-xl); /* Deep shadow */
+    border: 4px solid rgba(255,255,255,0.1);
+    aspect-ratio: 16/9; /* Standard video aspect ratio */
+    background: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.hero-carousel-item.active-slide {
-  opacity: 1;transform: scale(1);
+.video-wrapper:hover {
+    transform: translateY(-8px) scale(1.005);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    border-color: var(--primary-color);
 }
-.hero-carousel-item-overlay {
-  display: none; /* Completely hide overlay for image-only display */
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    background: url('https://media.istockphoto.com/id/1173444793/vector/dental-clinic-tour-thumbnail.jpg?s=612x612&w=0&k=20&c=X7b-m0k8q8_p8V5Q5R3_6o_5G2y2f6r9t2j0u4s7_9A=') center/cover no-repeat; /* Placeholder image for video */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: opacity 0.4s;
 }
-.hero-carousel-doctor-info {
-  display: none; /* Completely hide doctor info text for image-only display */
+.video-placeholder::after { /* Dark overlay for play button visibility */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10,25,47,0.6);
+}
+.play-btn {
+    position: relative;
+    z-index: 3;
+    width: 100px; /* Larger play button */
+    height: 100px;
+    border-radius: 50%;
+    background: var(--secondary-color); /* Green play button */
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem; /* Larger icon */
+    padding-left: 5px; /* Optical adjustment for triangle */
+    box-shadow: 0 0 30px rgba(40,167,69,0.6);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.video-placeholder:hover .play-btn {
+    transform: scale(1.1);
+    background: var(--primary-color); /* Blue on hover */
+}
+.video-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: relative;
+    z-index: 1;
+    display: none; /* Hidden by default, shown by JS */
 }
 
-/* Removed specific hero text styling as per user request */
+.tour-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between badges */
+    margin-top: 50px; /* More margin */
+    flex-wrap: wrap;
+}
+.tour-badge {
+    background: rgba(255,255,255,0.15); /* Slightly more prominent badge background */
+    padding: 12px 25px; /* Increased padding */
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 0.95rem; /* Larger font */
+}
+.tour-badge i { color: var(--accent-color); font-size: 1.3rem; } /* Yellow icon */
 
+/* --- GLOBAL CALL TO ACTION BANNER (New Section) --- */
+.cta-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Blue to Green gradient */
+    border-radius: 20px; /* Larger radius */
+    padding: 60px 40px; /* Generous padding */
+    text-align: center;
+    color: var(--white-color);
+    box-shadow: var(--shadow-xl); /* Deep shadow */
+    margin: 80px 5%; /* Margin from sides and other sections */
+    position: relative;
+    overflow: hidden;
+}
+.cta-banner h2 {
+    color: var(--white-color);
+    font-size: clamp(2.2rem, 5vw, 3.5rem); /* Larger and responsive heading */
+    margin-bottom: 20px;
+}
+.cta-banner p {
+    font-size: 1.15rem; /* Larger paragraph */
+    opacity: 0.9;
+    margin-bottom: 35px; /* More space before button */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+.btn-primary { /* Primary CTA button style */
+    background: var(--accent-color); /* Yellow background */
+    color: var(--dark-shade); /* Dark Grey text */
+    padding: 18px 45px; /* Larger padding */
+    border-radius: 50px;
+    font-size: 1.15rem; /* Larger font */
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255,193,7,0.4); /* Yellow shadow */
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background: var(--white-color); /* White on hover */
+    transform: translateY(-5px); /* Lift higher on hover */
+    box-shadow: 0 15px 35px rgba(255,255,255,0.3);
+}
 
 /* --- APPOINTMENT CARD (Styling adjusted for forms to be generic) --- */
-.appt-card{background:var(--white-color);border-radius:20px;padding:2.8rem;box-shadow:0 12px 40px rgba(0,0,0,.15);z-index:2;border:1.5px solid var(--border-light);}
+.appt-card{background:var(--white-color);border-radius:20px;padding:2.8rem;box-shadow:var(--shadow-lg);z-index:2;border:1.5px solid var(--border-light);}
 .appt-ttl{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--text-dark);margin-bottom:2rem;text-align:center;}
 .fg{margin-bottom:1.3rem;}
 .fg label{display:block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);margin-bottom:.6rem;}
@@ -182,13 +711,27 @@ h2 span{color:var(--primary-color);}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
 
 /* --- TICKER --- */
-.ticker{background:var(--primary-color);padding:.9rem 0;overflow:hidden;box-shadow:inset 0 3px 12px rgba(0,0,0,0.15);}
+/* Re-integrating the ticker but making it subtle and dynamic */
+.ticker{
+    background: var(--dark-shade); /* Darker background for more contrast */
+    padding: .9rem 0;
+    overflow: hidden;
+    box-shadow: inset 0 3px 12px rgba(0,0,0,0.2); /* Deeper inner shadow */
+    color: rgba(255,255,255,0.9); /* Lighter text */
+}
 .tick-in{display:inline-flex;animation:tickAnim 35s linear infinite;gap:4rem;white-space:nowrap;}
 .tick-item{font-size:.9rem;font-weight:700;color:var(--white-color);text-transform:uppercase;letter-spacing:3px;}
 @keyframes tickAnim{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
+
 /* --- STATS --- */
-.stats-bar{background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));padding:4rem 5%;box-shadow:0 -6px 25px rgba(0,0,0,0.18);}
+/* Re-integrating the stats bar as a separate section */
+.stats-bar{
+    background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));
+    padding:4rem 5%;
+    box-shadow:var(--shadow-lg); /* More prominent shadow */
+    color: var(--white-color); /* White text for contrast */
+}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;max-width:1000px;margin:0 auto;text-align:center;}
 .snum{font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:var(--accent-color);}
 .slbl{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:.5rem;text-transform:uppercase;letter-spacing:2px;}
@@ -200,8 +743,8 @@ h2 span{color:var(--primary-color);}
 .g6{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3.5rem;}
 
 /* --- SERVICE CARD --- */
-.svc-card{background:var(--white-color);border-radius:18px;padding:2.2rem;border:1.5px solid var(--border-light);transition:all .3s ease;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
-.svc-card:hover{border-color:var(--secondary-color);transform:translateY(-8px);box-shadow:0 20px 45px rgba(40,167,69,0.2);}
+.svc-card{background:var(--white-color);border-radius:18px;padding:2.2rem;border:1.5px solid var(--border-light);transition:all .3s ease;cursor:pointer;box-shadow:var(--shadow-sm);}
+.svc-card:hover{border-color:var(--secondary-color);transform:translateY(-8px);box-shadow:var(--shadow-md);}
 .svc-icon{width:64px;height:64px;background:var(--light-bg-shade);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:1.3rem;transition:all .3s ease;color:var(--primary-color);}
 .svc-card:hover .svc-icon{background:var(--secondary-color);color:var(--white-color);transform:rotate(8deg);}
 .svc-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text-dark);margin-bottom:.7rem;}
@@ -211,9 +754,9 @@ h2 span{color:var(--primary-color);}
 .svc-card .more:hover{color:var(--primary-color);transform:translateX(5px);}
 
 /* --- WHY CARD (New expanded why-card style) --- */
-.why-exp-card{background:var(--white-color);border-radius:18px;border:1.5px solid var(--border-light);transition:all .3s ease;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
-.why-exp-card:hover{border-color:var(--primary-color);box-shadow:0 10px 30px rgba(0,123,255,0.15);}
-.why-exp-card.open{border-color:var(--secondary-color);box-shadow:0 12px 35px rgba(40,167,69,0.25);}
+.why-exp-card{background:var(--white-color);border-radius:18px;border:1.5px solid var(--border-light);transition:all .3s ease;overflow:hidden;box-shadow:var(--shadow-sm);}
+.why-exp-card:hover{border-color:var(--primary-color);box-shadow:var(--shadow-md);}
+.why-exp-card.open{border-color:var(--secondary-color);box-shadow:var(--shadow-lg);}
 .why-exp-header{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.8rem;cursor:pointer;gap:1.5rem;transition:background-color .3s ease;}
 .why-exp-card.open .why-exp-header{background:var(--light-bg-shade);}
 .why-exp-left{display:flex;align-items:center;gap:1.1rem;}
@@ -232,8 +775,8 @@ h2 span{color:var(--primary-color);}
 @keyframes slideDown{from{opacity:0;transform:translateY(-15px);}to{opacity:1;transform:translateY(0);}}
 
 /* --- DOCTOR CARD --- */
-.doc-card{background:var(--white-color);border-radius:18px;overflow:hidden;border:1.5px solid var(--border-light);transition:all .3s ease;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
-.doc-card:hover{border-color:var(--primary-color);transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,123,255,0.15);}
+.doc-card{background:var(--white-color);border-radius:18px;overflow:hidden;border:1.5px solid var(--border-light);transition:all .3s ease;box-shadow:var(--shadow-sm);}
+.doc-card:hover{border-color:var(--primary-color);transform:translateY(-6px);box-shadow:var(--shadow-lg);}
 /* Updated doc-img for circular shape */
 .doc-img{
   width: 150px; /* Make it square for perfect circle */
@@ -249,7 +792,7 @@ h2 span{color:var(--primary-color);}
   background-size: cover; /* Cover the circle */
   background-repeat: no-repeat; /* Ensure no repetition */
   border: 4px solid var(--primary-color); /* Added border to make it distinct */
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Add subtle shadow */
+  box-shadow: var(--shadow-sm); /* Add subtle shadow */
   overflow: hidden; /* Ensure image doesn't spill out of circle */
 }
 /* Specific styling for the content *inside* doc-img if it's an emoji fallback */
@@ -263,14 +806,13 @@ h2 span{color:var(--primary-color);}
 .doc-body{padding:1rem; text-align: center;} /* Reduced padding and centered text */
 .doc-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);margin-bottom:.5rem; text-align: center;} /* Center name */
 .doc-spec{font-size:.9rem;color:var(--primary-color);font-weight:600;margin-bottom:.8rem; text-align: center;} /* Center spec */
-/* Removed doc-exp and doc-stars styles as they are removed from HTML */
 
-/* New card for messages (CEO, MD, MS) */
+/* --- Message Card (Used for Visionaries Section) --- */
 .message-card {
     background: var(--white-color);
     border-radius: 18px;
     border: 1.5px solid var(--border-light);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-sm);
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -281,7 +823,7 @@ h2 span{color:var(--primary-color);}
 }
 .message-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
 }
 .message-card-img {
@@ -291,7 +833,7 @@ h2 span{color:var(--primary-color);}
     object-fit: cover;
     object-position: center;
     margin-bottom: 1.5rem;
-    border: 5px solid var(--secondary-color);
+    border: 5px solid var(--secondary-color); /* Green border for leadership images */
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 .message-card h3 {
@@ -399,7 +941,7 @@ textarea.cfi{resize:vertical;height:120px;}
 /* --- ABOUT --- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .about-img{height:480px;background:linear-gradient(135deg,var(--light-bg-shade),#e0f2f4);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:10rem;position:relative;border:1.5px solid var(--border-light); background-size: cover; background-position: center;box-shadow:0 12px 35px rgba(0,0,0,0.15);}
-.about-badge{position:absolute;bottom:-1.8rem;right:-1.8rem;background:var(--primary-color);color:var(--white-color);width:140px;height:140px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 15px 40px rgba(0,123,255,.5);text-align:center;border:4px solid var(--white-color);}
+.about-badge{position:absolute;bottom:-1.8rem;right:-1.8rem;background:var(--primary-blue);color:var(--white-color);width:140px;height:140px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 15px 40px rgba(0,123,255,.5);text-align:center;border:4px solid var(--white-color);}
 .ab-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800;line-height:1;}
 .ab-txt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:.95;}
 .about-pts{display:flex;flex-direction:column;gap:.9rem;margin:2rem 0;}
@@ -410,22 +952,22 @@ textarea.cfi{resize:vertical;height:120px;}
 .detail-wrap{max-width:960px;margin:0 auto;padding:50px 5%;}
 .detail-img{width:100%;height:320px;background:var(--light-bg-shade);border-radius:16px;margin-bottom:2.8rem;display:flex;align-items:center;justify-content:center;font-size:7rem;border:1.5px solid var(--border-light); background-size: cover; background-position: center; transition: background-image .5s ease, font-size .5s ease;}
 .detail-desc{font-size:1.05rem;color:var(--text-dark);line-height:2;margin-bottom:2.8rem;}
-.detail-h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--primary-color);margin:2.5rem 0 1.6rem;padding-bottom:.9rem;border-bottom:1.5px solid var(--border-light);}
+.detail-h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--primary-blue);margin:2.5rem 0 1.6rem;padding-bottom:.9rem;border-bottom:1.5px solid var(--border-light);}
 .detail-ul{list-style:none;padding-left:28px;margin-bottom:2rem;}
 .detail-ul li{position:relative;margin-bottom:1rem;font-size:1rem;color:var(--text-dark);}
-.detail-ul li::before{content:'✓';position:absolute;left:-28px;color:var(--secondary-color);font-weight:700;font-size:1.2rem;}
+.detail-ul li::before{content:'✓';position:absolute;left:-28px;color:var(--secondary-green);font-weight:700;font-size:1.2rem;}
 .detail-book{text-align:center;margin-top:4rem;padding:3.2rem;background:var(--light-bg-shade);border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,0.15);}
-.detail-book h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text-dark);margin-bottom:1.1rem;}
+.detail-book h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--dark-shade);margin-bottom:1.1rem;}
 .detail-book p{color:var(--text-muted);margin-bottom:2rem;font-size:1rem;}
-.back-btn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2.8rem;color:var(--primary-color);text-decoration:none;font-weight:600;font-size:1.05rem;cursor:pointer;transition:color .3s ease, transform .3s ease;}
-.back-btn:hover{color:var(--secondary-color);transform:translateX(-6px);}
+.back-btn{display:inline-flex;align-items:center;gap:.7rem;margin-top:2.8rem;color:var(--primary-blue);text-decoration:none;font-weight:600;font-size:1.05rem;cursor:pointer;transition:color .3s ease, transform .3s ease;}
+.back-btn:hover{color:var(--secondary-green);transform:translateX(-6px);}
 
 /* --- BOOK PAGE --- */
 .book-card{background:var(--white-color);border-radius:20px;padding:3rem;max-width:700px;margin:50px auto;box-shadow:0 12px 35px rgba(0,0,0,.15);border:1.5px solid var(--border-light);}
 .bk-ttl{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text-dark);margin-bottom:2rem;text-align:center;}
 .bkl{display:block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);margin-bottom:.6rem;}
 .bki{width:100%;padding:.9rem 1.3rem;border:1.5px solid var(--border-light);border-radius:12px;font-family:'Outfit',sans-serif;font-size:.95rem;color:var(--text-dark);background:var(--light-bg-shade);outline:none;transition:border-color .3s ease, box-shadow .3s ease;margin-bottom:1.3rem;}
-.bki:focus{border-color:var(--primary-color);box-shadow:0 0 0 4px rgba(0,123,255,0.25);}
+.bki:focus{border-color:var(--primary-blue);box-shadow:0 0 0 4px rgba(0,123,255,0.25);}
 .bkrow{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
 textarea.bki{resize:vertical;height:130px;}
 
@@ -433,15 +975,15 @@ textarea.bki{resize:vertical;height:130px;}
 footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,255,.7);box-shadow:0 -6px 25px rgba(0,0,0,0.25);}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem;}
 .f-logo{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--white-color);margin-bottom:1.3rem;}
-.f-logo span{color:var(--accent-color);}
+.f-logo span{color:var(--accent-yellow);}
 .f-desc{font-size:.9rem;line-height:1.9;margin-bottom:2rem;}
 .f-socials{display:flex;gap:.9rem;}
 .fsoc{width:44px;height:44px;background:rgba(255,255,255,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;text-decoration:none;color:var(--white-color);transition:all .3s ease;}
-.fsoc:hover{background:var(--secondary-color);transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,0.25);}
+.fsoc:hover{background:var(--secondary-green);transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,0.25);}
 .f-hdr{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--white-color);margin-bottom:1.3rem;}
 .f-links{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
 .f-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:color .3s ease, transform .3s ease;display:flex;align-items:center;gap:.6rem;cursor:pointer;}
-.f-links a:hover{color:var(--accent-color);transform:translateX(6px);}
+.f-links a:hover{color:var(--accent-yellow);transform:translateX(6px);}
 .f-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.85rem;flex-wrap:wrap;gap:15px;}
 
 /* --- WA - WhatsApp float button (REPOSITIONED) --- */
@@ -514,10 +1056,10 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   animation: slideInFromLeft 0.9s ease-out 0.8s forwards;
 }
 .sp-name span:nth-child(2) { /* Fazal */
-  color: var(--accent-color); /* Gold */
+  color: var(--accent-color); /* Yellow */
   animation: slideInFromTop 0.9s ease-out 1.3s forwards;
 }
-.sp-name span:nth-child(3) { /* Dental */
+.sp-name span:nth-child(3) { /* Care (Adjusted from Dental) */
   color: var(--primary-color); /* Blue */
   animation: slideInFromRight 0.9s ease-out 1.8s forwards;
 }
@@ -846,11 +1388,56 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   .g6{grid-template-columns:repeat(3,1fr);}
   .t7{grid-template-columns:repeat(4,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;}
-  /* Removed hero-content-wrapper */
   .cgrid{grid-template-columns:1fr;} /* Stack contact sections */
   .about-grid{gap:3rem;}
-  .page-hdr h1{font-size:clamp(1.8rem,3.5vw,2.6rem);}
+  .page-hdr h1{font-size:clamp(2.2rem,4vw,3.2rem);}
+  .page-hdr p{font-size:1rem;}
   .sec, .sec-gray, .sec-dark {padding: 70px 5%;} /* Reduced section padding */
+
+  /* Homepage specific responsiveness */
+  .hero { padding: 90px 5%; min-height: 75vh; }
+  .hero h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+  .hero p { font-size: 1rem; }
+  .badge-top { font-size: 0.8rem; padding: 7px 18px; }
+
+  .dual-depts {
+      grid-template-columns: 1fr; /* Stack cards vertically */
+      margin-top: -60px; /* Adjust overlap */
+      gap: 25px;
+  }
+  .dept-card { padding: 30px; gap: 15px; }
+  .dept-icon { width: 70px; height: 70px; font-size: 2.5rem; }
+  .dept-info h3 { font-size: 1.8rem; }
+  .dept-info p { font-size: 0.9rem; }
+  .dept-link { font-size: 0.95rem; }
+
+  .visionaries-sec .sec-title h2 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
+  .visionaries-sec .sec-title p { font-size: 1rem; }
+  .leader-card {
+      flex-direction: column; /* Stack image and content vertically */
+      gap: 30px;
+      padding: 30px;
+  }
+  .leader-card:nth-child(even) { flex-direction: column; } /* Keep stacked for even cards */
+  .leader-img-box { width: 200px; height: 200px; }
+  .leader-img-box::before { top: 10px; left: -10px; }
+  .leader-card:nth-child(even) .leader-img-box::before { left: 10px; }
+  .leader-content { padding-left: 0; } /* Remove padding for stacked layout */
+  .leader-content::before { font-size: 8rem; top: -30px; left: -20px; }
+  .leader-name { font-size: 1.8rem; text-align: center; }
+  .leader-role { text-align: center; font-size: 0.95rem; }
+  .leader-quote { font-size: 0.95rem; padding-left: 15px; border-left: 3px solid var(--primary-color); }
+
+  .tour-sec .sec-title { margin-bottom: 40px; }
+  .video-wrapper { margin: 40px auto; }
+  .play-btn { width: 80px; height: 80px; font-size: 2rem; }
+  .tour-info { margin-top: 40px; gap: 15px; }
+  .tour-badge { padding: 10px 20px; font-size: 0.9rem; }
+
+  .cta-banner { padding: 50px 30px; margin: 60px 4%; }
+  .cta-banner h2 { font-size: clamp(2rem, 6vw, 3rem); }
+  .cta-banner p { font-size: 1rem; margin-bottom: 30px; }
+  .btn-primary { padding: 15px 35px; font-size: 1rem; }
 }
 @media(max-width:768px){
   nav .nav-links{display:none;}
@@ -861,14 +1448,8 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   .gal-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;}
   .gal-item:first-child{grid-column:span 2;font-size:5rem;}
   .frow,.cfrow,.bkrow{grid-template-columns:1fr;}
-  .g6{grid-template-columns:repeat(2,1fr);}
+  .g6{grid-template-columns:1fr;} /* Single column for treatments (override to 1) */
   .t7{grid-template-columns:repeat(3,1fr);}
-  /* Hero section content is removed, so these are unnecessary */
-  /* .hero-top-elements {display: none;} */
-  /* .hero-content-wrapper {display: none;} */
-  .hero-carousel-doctor-info h3 {font-size: 1.4rem;}
-  .hero-carousel-doctor-info p {font-size: .95rem;}
-  /* More specific overrides removed as base elements are gone */
   .topbar {font-size: .8rem; justify-content: center;}
   .topbar a {margin-left: .9rem;}
   .logo-name {font-size: 1.1rem;}
@@ -876,18 +1457,46 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   .logo-icon {width: 44px; height: 44px; font-size: 1.3rem;}
   .wa {width: 56px; height: 56px; font-size: 1.6rem; right: 1.2rem;}
   .wa::after {width: 22px; height: 22px; font-size: .8rem; top: -4px; right: -4px;}
+  
+  /* Homepage specific responsiveness */
+  .hero { padding: 70px 5%; min-height: 60vh; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 15px; }
+  .hero p { font-size: 0.9rem; margin-bottom: 25px; }
+  .badge-top { font-size: 0.75rem; padding: 5px 12px; margin-bottom: 15px; }
+
+  .dual-depts { margin-top: -40px; gap: 20px; padding: 0 4%; }
+  .dept-card { padding: 25px; gap: 15px; }
+  .dept-icon { width: 60px; height: 60px; font-size: 2rem; }
+  .dept-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
+  .dept-info p { font-size: 0.85rem; margin-bottom: 15px; }
+  .dept-link { font-size: 0.9rem; }
+
+  .visionaries-sec .sec-title h2 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  .visionaries-sec .sec-title p { font-size: 0.95rem; margin-bottom: 30px; }
+  .leader-card { gap: 20px; padding: 25px; margin-bottom: 30px; }
+  .leader-img-box { width: 150px; height: 150px; }
+  .leader-img-box::before { top: 8px; left: -8px; }
+  .leader-card:nth-child(even) .leader-img-box::before { left: 8px; }
+  .leader-content::before { font-size: 7rem; top: -20px; left: -10px; }
+  .leader-name { font-size: 1.6rem; }
+  .leader-role { font-size: 0.85rem; margin-bottom: 15px; }
+  .leader-quote { font-size: 0.95rem; padding-left: 10px; border-left: 3px solid var(--primary-color); }
+
+  .tour-sec .sec-title { margin-bottom: 30px; }
+  .video-wrapper { margin: 30px auto; }
+  .play-btn { width: 80px; height: 80px; font-size: 2rem; }
+  .tour-info { margin-top: 30px; gap: 10px; }
+  .tour-badge { padding: 8px 18px; font-size: 0.85rem; }
+
+  .cta-banner { padding: 40px 30px; margin: 60px 4%; }
+  .cta-banner h2 { font-size: clamp(1.6rem, 7vw, 2.5rem); margin-bottom: 15px; }
+  .cta-banner p { font-size: 0.95rem; margin-bottom: 25px; }
+  .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
 }
 @media(max-width:480px){
   .footer-grid{grid-template-columns:1fr;}
-  .hero-nums{gap:1.2rem;}
   .g6{grid-template-columns:1fr;} /* Single column for treatments */
   .t7{grid-template-columns:repeat(2,1fr);}
-  /* Hero section content is removed, so these are unnecessary */
-  /* .hero-top-elements {display: none;} */
-  /* .hero-content-wrapper {display: none;} */
-  .hero-carousel-doctor-info h3 {font-size: 1.3rem; margin-bottom: .2rem;}
-  .hero-carousel-doctor-info p {font-size: .9rem;}
-  /* More specific overrides removed as base elements are gone */
   .page-hdr {padding: 50px 5%;}
   .sec, .sec-gray, .sec-dark {padding: 50px 5%;}
   h2 {font-size: clamp(1.8rem, 6.5vw, 2.5rem);}
@@ -895,6 +1504,42 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
   .appt-ttl, .bk-ttl, .cf-ttl {font-size: 1.2rem; margin-bottom: 1.5rem;}
   .c-item {flex-direction: column; align-items: flex-start; gap: .6rem; padding: 1.1rem;}
   .c-ico {margin-bottom: .6rem;}
+
+  /* Homepage specific responsiveness */
+  .hero { padding: 50px 5%; min-height: 50vh; }
+  .hero h1 { font-size: clamp(1.8rem, 9vw, 2.8rem); margin-bottom: 10px; }
+  .hero p { font-size: 0.85rem; margin-bottom: 20px; }
+  .badge-top { font-size: 0.7rem; padding: 4px 10px; margin-bottom: 10px; }
+
+  .dual-depts { margin-top: -30px; gap: 15px; padding: 0 3%; }
+  .dept-card { padding: 18px; gap: 10px; }
+  .dept-icon { width: 50px; height: 50px; font-size: 1.8rem; }
+  .dept-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
+  .dept-info p { font-size: 0.75rem; margin-bottom: 10px; }
+  .dept-link { font-size: 0.8rem; }
+
+  .visionaries-sec .sec-title h2 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+  .visionaries-sec .sec-title p { font-size: 0.85rem; margin-bottom: 25px; }
+  .leader-card { gap: 15px; padding: 20px; margin-bottom: 25px; }
+  .leader-img-box { width: 120px; height: 120px; }
+  .leader-img-box img { border-width: 4px; }
+  .leader-img-box::before { top: 5px; left: -5px; }
+  .leader-card:nth-child(even) .leader-img-box::before { left: 5px; }
+  .leader-content::before { font-size: 5rem; top: -10px; left: -5px; }
+  .leader-name { font-size: 1.2rem; }
+  .leader-role { font-size: 0.75rem; margin-bottom: 10px; }
+  .leader-quote { font-size: 0.8rem; padding-left: 8px; border-left: 2px solid var(--primary-color); }
+
+  .tour-sec .sec-title { margin-bottom: 25px; }
+  .video-wrapper { margin: 20px auto; }
+  .play-btn { width: 50px; height: 50px; font-size: 1.5rem; }
+  .tour-info { margin-top: 20px; gap: 5px; }
+  .tour-badge { padding: 6px 12px; font-size: 0.75rem; }
+
+  .cta-banner { padding: 25px 15px; margin: 40px 2%; }
+  .cta-banner h2 { font-size: clamp(1.4rem, 8vw, 2.2rem); margin-bottom: 10px; }
+  .cta-banner p { font-size: 0.85rem; margin-bottom: 15px; }
+  .btn-primary { padding: 10px 20px; font-size: 0.85rem; }
 }
 </style>
 </head>
@@ -902,8 +1547,8 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="sp-icon">🦷</div>
-  <div class="sp-name"><span>Al-</span><span>Fazal </span><span>Dental</span></div>
+  <div class="sp-icon">🏥</div> <!-- Changed to Medical icon for overall hospital -->
+  <div class="sp-name"><span>Al-</span><span>Fazal </span><span>Care</span></div> <!-- Simplified name for splash -->
   <div class="sp-sub">JOHAR TOWN · LAHORE</div>
 </div>
 
@@ -919,7 +1564,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 <!-- NAV -->
 <nav>
   <div class="logo" onclick="go('home')">
-    <div class="logo-icon"><i class="fas fa-tooth"></i></div>
+    <div class="logo-icon"><i class="fas fa-plus-square"></i></div> <!-- Changed to medical cross icon -->
     <div>
       <div class="logo-name">Al-Fazal Medical &amp; Dental</div>
       <div class="logo-sub">Johar Town, Lahore — Est. 2005</div>
@@ -968,28 +1613,47 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
 </div>
 
 <!-- ==================== HOME PAGE ==================== -->
-<div class="page" id="pg-home">
-  <div class="hero">
-    <!-- HERO IMAGE CAROUSEL (Now acts as full-screen background) -->
-    <div class="hero-image-carousel" id="heroImageCarousel">
-        <div class="hero-carousel-item" style="background-image: url('https://media.istockphoto.com/id/1141189040/photo/female-dentist.webp?a=1&b=1&s=612x612&w=0&k=20&c=fwLgtYtUaq5Vaz80kflktQGm6pA9UspPRBqQIqealhE=')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1758205307876-334bb810a63a?w=1200&auto=format&fit=crop&q=80')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1702599064457-8553c542292f?w=1200&auto=format&fit=crop&q=80')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1740205643572-c4e280e3974a?w=1200&auto=format&fit=crop&q=80')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1661632237873-3d50504ffaee?w=1200&auto=format&fit=crop&q=80')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1626736903650-2289a3b32ed8?w=1200&auto=format&fit=crop&q=80')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1681967039743-37dc3a27f4ce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGVudGlzdHxlbnwwfHwwfHx8MA%3D%3D')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGVudGlzdHxlbnwwfHwwfHx8MA%3D%3D')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1675686363507-22a8d0e11b4c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGRlbnRpc3R8ZW58MHx8MHx8fDA%3D')"></div>
-        <div class="hero-carousel-item" style="background-image: url('https://media.istockphoto.com/id/1058720048/photo/two-happy-latin-doctors-smiling-at-the-camera.webp?a=1&b=1&s=612x612&w=0&k=20&c=LPw2w9PgScVhT-pJwHdujXwDmgOkPWhpViTySJ7KPvE=')"></div>
+<div class="page active" id="pg-home">
+  <!-- New Hero Section: Bold headline, clear message, engaging design -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge-top">Excellence in Healthcare Since 2005</div>
+      <h1>Two Specialties.<br><span>One Standard of Excellence.</span></h1>
+      <p>Al-Fazal provides world-class Medical and Dental care under one roof in Johar Town, Lahore. Experience pain-free treatments, certified specialists, and state-of-the-art facilities tailored for your family's health.</p>
     </div>
-  </div>
+  </section>
 
+  <!-- Dual Department Showcase: Visually separates Medical and Dental entry points -->
+  <section class="dual-depts">
+    <!-- Medical Card -->
+    <div class="dept-card medical" onclick="go('medical-services')">
+      <div class="dept-icon"><i class="fas fa-stethoscope"></i></div>
+      <div class="dept-info">
+        <h3>Medical Care</h3>
+        <p>Comprehensive general medicine, specialized diagnostics, minor surgeries, and an in-house pharmacy to keep you and your family healthy.</p>
+        <span class="dept-link">Explore Medical Services <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+    <!-- Dental Card -->
+    <div class="dept-card dental" onclick="go('services')">
+      <div class="dept-icon"><i class="fas fa-tooth"></i></div>
+      <div class="dept-info">
+        <h3>Dental Care</h3>
+        <p>Advanced restorative and cosmetic dentistry including pain-free root canals, implants, braces, and veneers by expert specialists.</p>
+        <span class="dept-link">Explore Dental Services <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker (Re-integrated from previous version) -->
   <div class="ticker"><div class="tick-in">
-    <span class="tick-item">🦷 Teeth Whitening</span><span class="tick-item">🦷 Root Canal Therapy</span><span class="tick-item">🦷 Dental Implants</span><span class="tick-item">🦷 Braces & Aligners</span><span class="tick-item">🦷 Scaling & Polishing</span><span class="tick-item">🦷 Porcelain Crowns</span><span class="tick-item">🦷 Complete Dentures</span><span class="tick-item">🦷 Kids Dentistry</span>
-    <span class="tick-item">🦷 Teeth Whitening</span><span class="tick-item">🦷 Root Canal Therapy</span><span class="tick-item">🦷 Dental Implants</span><span class="tick-item">🦷 Braces & Aligners</span><span class="tick-item">🦷 Scaling & Polishing</span><span class="tick-item">🦷 Porcelain Crowns</span><span class="tick-item">🦷 Complete Dentures</span><span class="tick-item">🦷 Kids Dentistry</span>
+    <span class="tick-item">🏥 General Physician</span><span class="tick-item">🔬 Diagnostics & Lab</span><span class="tick-item">💊 Pharmacy</span><span class="tick-item">🩹 Minor Surgery</span><span class="tick-item">💉 Vaccination</span><span class="tick-item">🦷 Teeth Whitening</span><span class="tick-item">🦷 Root Canal Therapy</span><span class="tick-item">🦷 Dental Implants</span>
+    <span class="tick-item">😁 Braces & Aligners</span><span class="tick-item">🧼 Scaling & Polishing</span><span class="tick-item">👑 Porcelain Crowns</span><span class="tick-item">🫦 Complete Dentures</span><span class="tick-item">🧒 Kids Dentistry</span>
+    <span class="tick-item">🏥 General Physician</span><span class="tick-item">🔬 Diagnostics & Lab</span><span class="tick-item">💊 Pharmacy</span><span class="tick-item">🩹 Minor Surgery</span><span class="tick-item">💉 Vaccination</span><span class="tick-item">🦷 Teeth Whitening</span><span class="tick-item">🦷 Root Canal Therapy</span><span class="tick-item">🦷 Dental Implants</span>
+    <span class="tick-item">😁 Braces & Aligners</span><span class="tick-item">🧼 Scaling & Polishing</span><span class="tick-item">👑 Porcelain Crowns</span><span class="tick-item">🫦 Complete Dentures</span><span class="tick-item">🧒 Kids Dentistry</span>
   </div></div>
 
+  <!-- Stats Bar (Re-integrated from previous version) -->
   <div class="stats-bar"><div class="stats-grid">
     <div><div class="snum">5000+</div><div class="slbl">Patients Treated</div></div>
     <div><div class="snum">15+</div><div class="slbl">Years Excellence</div></div>
@@ -997,267 +1661,81 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
     <div><div class="snum">100+</div><div class="slbl">Google Reviews</div></div>
   </div></div>
 
-  <div class="sec-gray">
-    <div class="tag">Why Choose Us</div><h2>The Al-Fazal <span>Difference</span></h2>
-    <p class="sub">Discover what sets Al-Fazal Medical & Dental Care apart. We blend advanced technology, compassionate care, and personalized treatment plans to ensure every patient receives the best possible dental experience.</p>
-    <div class="g4" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">😌</div>
-            <div><div class="why-exp-title">Pain-Free Treatment</div><div class="why-exp-short">Zero discomfort guaranteed</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>We prioritize your comfort above all else. Utilizing the latest local anesthesia techniques and a gentle approach, we ensure that every dental procedure, from a simple filling to a complex root canal, is completely pain-free. Our team is trained in anxiety management to make your visit as relaxing as possible.</p>
-          <ul>
-            <li>Latest anesthesia technology for deep numbing</li>
-            <li>Gentle &amp; caring approach by experienced dentists</li>
-            <li>Comprehensive anxiety management options available</li>
-            <li>Guaranteed zero pain during extractions &amp; RCT</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">🏥</div>
-            <div><div class="why-exp-title">Modern Equipment</div><div class="why-exp-short">Digital X-rays &amp; laser tech</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>Our clinic is equipped with state-of-the-art dental technology to ensure precise diagnosis, efficient treatment, and superior results. From low-radiation digital X-rays to advanced laser equipment, we invest in the best tools for your oral health.</p>
-          <ul>
-            <li>Advanced Digital X-ray for minimal radiation exposure</li>
-            <li>State-of-the-art Laser Dentistry equipment for precise treatments</li>
-            <li>All instruments are meticulously sterilized to international standards</li>
-            <li>Modern dental chairs designed for maximum patient comfort</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">👨‍⚕️</div>
-            <div><div class="why-exp-title">Expert Doctors</div><div class="why-exp-short">BDS &amp; FCPS specialists</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>Our highly qualified team of BDS and FCPS certified specialists brings decades of combined experience across all dental disciplines. Each doctor is dedicated to continuous learning, staying updated with the latest advancements in dentistry to provide you with the best care.</p>
-          <ul>
-            <li>Team comprises highly qualified BDS &amp; FCPS specialists</li>
-            <li>Each doctor boasts 8–15 years of rich clinical experience</li>
-            <li>Collectively, we have successfully treated over 5,000 patients</li>
-            <li>We have dedicated specialists for every field, from orthodontics to oral surgery</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">💰</div>
-            <div><div class="why-exp-title">Affordable Packages</div><div class="why-exp-short">Family &amp; installment plans</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>Quality dental care should be accessible to everyone. We offer transparent pricing, special family discount packages, and easy monthly installment plans to ensure you get the necessary treatment without financial stress. Your first consultation is always free!</p>
-          <ul>
-            <li>Exclusive special family discount packages</li>
-            <li>Flexible and easy monthly installment options</li>
-            <li>Enjoy a complimentary first consultation for all new patients</li>
-            <li>Committed to transparent pricing with absolutely no hidden fees</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">🕐</div>
-            <div><div class="why-exp-title">Open Till 11:30 PM</div><div class="why-exp-short">7 days a week convenience</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>We understand your busy lifestyle. That's why Al-Fazal Dental is open late every single day, including weekends and public holidays. You can easily schedule your dental appointments without interrupting your work or school commitments.</p>
-          <ul>
-            <li>Conveniently open daily from 9 AM to 11:30 PM</li>
-            <li>Available on all weekends &amp; public holidays</li>
-            <li>Emergency appointments are always welcome &amp; accommodated</li>
-            <li>Walk-ins are accepted at any time during clinic hours</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-exp-card" onclick="toggleWhy(this)">
-        <div class="why-exp-header">
-          <div class="why-exp-left">
-            <div class="why-exp-ico">📍</div>
-            <div><div class="why-exp-title">Prime Location</div><div class="why-exp-short">BOR Society, Johar Town</div></div>
-          </div>
-          <div class="why-exp-tog">+</div>
-        </div>
-        <div class="why-exp-body">
-          <p>Our clinic is strategically located in BOR Society, Johar Town – one of Lahore's most central and easily accessible areas. You'll find ample parking and convenient public transport options, making your visit hassle-free.</p>
-          <ul>
-            <li>Situated in the central &amp; prime location of Johar Town</li>
-            <li>Ample and easy parking facilities are readily available</li>
-            <li>Highly accessible via all major routes &amp; public transport</li>
-            <li>Conveniently located near major landmarks &amp; reputable hospitals</li>
-          </ul>
-        </div>
-      </div>
-
+  <!-- New Custom Visionaries Section: Dedicated space for leadership messages with circular images -->
+  <section class="visionaries-sec">
+    <div class="sec-title">
+      <div class="tag">Our Leaders</div>
+      <h2>Meet Our <span>Visionaries</span></h2>
+      <p class="sub">The dedicated individuals steering Al-Fazal Medical & Dental Care towards a future of excellence and patient satisfaction.</p>
     </div>
-    <div style="text-align:center;margin-top:4rem"><a class="btn" onclick="go('about')">Learn More <i class="fas fa-arrow-right"></i></a></div>
-  </div>
 
-  <div class="sec-gray">
-    <div class="tag">Our Leaders</div>
-    <h2 style="text-align:center">Meet Our <span>Visionaries</span></h2>
-    <p class="sub" style="text-align:center">The dedicated individuals steering Al-Fazal Medical & Dental Care towards a future of excellence and patient satisfaction.</p>
-
-    <div class="g3" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 3rem;">
-        <!-- CEO Al-Fazal Group -->
-        <div class="message-card">
-            <img src="https://i.ibb.co/LdT5k2q9/Whats-App-Image-2026-03-15-at-2-23-28-AM.jpg" alt="CEO Al-Fazal Group" class="message-card-img">
-            <h3>Khawaja Ishfaq Ahmed</h3>
-            <p class="role">CEO, Al-Fazal Group</p>
-            <p class="message">"Our journey began with a vision to provide accessible, high-quality dental care. Every patient who walks through our doors becomes part of the Al-Fazal family, receiving care rooted in compassion and excellence. We are dedicated to creating a legacy of healthy smiles and community well-being."</p>
-        </div>
-
-        <!-- MD Al-Fazal Hospital - Dr. Yasir Khawaja -->
-        <div class="message-card">
-            <img src="https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg" alt="Dr. Yasir Khawaja" class="message-card-img">
-            <h3>Dr. Yasir Khawaja</h3>
-            <p class="role">Medical Director & Gold Medalist</p>
-            <p class="message">"As Medical Director, I ensure our clinic remains at the forefront of dental innovation. We continuously update our techniques and equipment, dedicated to offering advanced, pain-free treatments and maintaining your trust through exceptional, ethical care. Your oral health is our commitment."</p>
-        </div>
-
-        <!-- MS Al-Fazal Hospital - Dr. Junaid -->
-        <div class="message-card">
-            <img src="https://i.ibb.co/5WS5L55J/Whats-App-Image-2026-03-15-at-7-54-02-PM.jpg" " alt="Dr. Junaid" class="message-card-img">
-            <h3>Dr. Junaid</h3>
-            <p class="role">Chief Surgeon, Al-Fazal Hospital</p>
-            <p class="message">"Our team's commitment to precision and patient well-being is unwavering. We believe in empowering our patients with knowledge and delivering treatments that not only heal but also enhance their quality of life, using the most modern surgical approaches. We value your trust in us."</p>
-        </div>
-    </div>
-  </div>
-
-
-  <div class="video-section">
-    <div class="tag">Explore Our Clinic</div>
-    <h2>Watch Our <span>Clinic Tour</span> Video</h2>
-    <p class="sub">Take a virtual tour of Al-Fazal Medical & Dental Care. See our modern facilities, state-of-the-art equipment, and the welcoming environment designed for your comfort and care.</p>
-    <div class="video-card" onclick="playVideo(this, '1173444793')">
-        <div class="video-placeholder" style="background-image:url('');">
-            <div class="video-card-overlay"></div>
-            <div class="video-card-info">
-                <h3>Al-Fazal Dental Clinic Overview</h3>
-                <p>A comprehensive look at our advanced facilities</p>
-            </div>
-        </div>
-        <iframe class="video-iframe" src="https://player.vimeo.com/video/1173444793?autoplay=0&loop=0&title=0&byline=0&portrait=0&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="tag">Services</div><h2>Our Comprehensive Dental <span>Services</span></h2>
-    <p class="sub">From routine check-ups to advanced cosmetic and restorative procedures, Al-Fazal Dental offers a full spectrum of dental services to meet all your family's oral health needs.</p>
-    <p class="sub" style="margin-top: -2rem;">Every service at Al-Fazal Medical & Dental Care is performed with utmost care and precision, reflecting our unwavering commitment to your oral health.</p>
-    <div class="g4">
-      <div class="svc-card" onclick="openSvc('Scaling &amp; Cleaning','🦷','Professional teeth cleaning to remove plaque, tartar, and stains for healthier gums and a brighter, fresher smile. This preventive treatment helps in averting gum disease, reducing bad breath, and maintaining overall oral hygiene. Recommended every 6 months for optimal results.','Consult for Price',['Removes stubborn plaque & tartar buildup','Effectively prevents gum disease & cavities','Significantly reduces chronic bad breath','Restores your natural tooth brightness & polish'])"><div class="svc-icon">🦷</div><div class="svc-name">Scaling &amp; Cleaning</div><div class="svc-desc">Removes plaque, tartar and stains professionally.</div><div class="svc-price">Consult for Price</div><span class="more">Learn More →</span></div>
-      <div class="svc-card" onclick="openSvc('Teeth Whitening','✨','Advanced teeth whitening treatments that can brighten your smile by 5–10 shades in just one visit. Our safe and supervised procedure effectively removes years of stains caused by coffee, tea, and tobacco, giving you a long-lasting, dazzling smile.','Consult for Price',['Brightens your smile by an impressive 5–10 shades','Effectively removes coffee, tea, and tobacco stains','Safe and professionally supervised procedure','Results typically last between 1–3 years with proper care']))"><div class="svc-icon">✨</div><div class="svc-name">Teeth Whitening</div><div class="svc-desc">Brighten smile by several shades in one visit.</div><div class="svc-price">Consult for Price</div><span class="more">Learn More →</span></div>
-      <div class="svc-card" onclick="openSvc('Dental Implants','🔩','Permanent titanium tooth replacements that look, feel, and function like natural teeth. Dental implants are the gold standard for missing tooth replacement, preventing jawbone loss and providing a stable foundation for a lifelong smile. This includes implant-supported crowns and dentures.','Consult for Price',['Provides a permanent & incredibly long-lasting solution','Offers a natural look and comfortable feel, just like your own teeth','Actively prevents jawbone loss and maintains facial structure','Does not damage adjacent healthy teeth, unlike bridges']))"><div class="svc-icon">🔩</div><div class="svc-name">Dental Implants</div><div class="svc-desc">Permanent titanium tooth replacements.</div><div class="svc-price">Consult for Price</div><span class="more">Learn More →</span></div>
-      <div class="svc-card" onclick="openSvc('Braces &amp; Aligners','😁','Modern orthodontic solutions including traditional metal braces, discreet ceramic braces, and clear aligners to straighten teeth and correct bite issues for all ages. We offer personalized orthodontic plans for all ages, ensuring a confident and properly aligned smile.','Consult for Price',['Effectively corrects misaligned teeth and crowded smiles','Significantly improves overall bite function and chewing','Offers various discreet options including clear aligners','Suitable for patients of all ages, children and adults alike']))"><div class="svc-icon">😁</div><div class="svc-name">Braces &amp; Aligners</div><div class="svc-desc">Straighten teeth with metal or clear aligners.</div><div class="svc-price">Consult for Price</div><span class="more">Learn More →</span></div>
-    </div>
-    <div style="text-align:center;margin-top:4rem"><a class="btn" onclick="go('services')">All Services <i class="fas fa-arrow-right"></i></a></div>
-  </div>
-
-  <div class="sec-gray">
-    <div class="tag">Doctors</div><h2>Meet Our <span>Expert Doctors</span></h2>
-    <p class="sub">Our team of highly qualified and compassionate dental professionals is dedicated to providing personalized care using their extensive experience and the latest dental techniques.</p>
-    <div class="g3">
-      
-      <!-- DR YASIR KHAWAJA -->
-      <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg'); background-size: cover; background-position: center 20%;">
-         
-        </div>
-        <div class="doc-body">
-          <div class="doc-name">DR YASIR KHAWAJA</div>
-          <div class="doc-spec">B.D.S RDS C.ORTHO C.IMPLANTS C.LASER C.ALIGNER</div>
-        </div>
+    <!-- CEO/Founder Card -->
+    <div class="leader-card">
+      <div class="leader-img-box">
+        <img src="https://i.ibb.co/LdT5k2q9/Whats-App-Image-2026-03-15-at-2-23-28-AM.jpg" alt="Khawaja Ishfaq Ahmed">
       </div>
-
-      <!-- DR MAHAM RAHAT -->
-      <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/YBTWXhHy/Whats-App-Image-2026-03-11-at-2-54-17-PM.jpg'); background-size: cover; background-position: center top;">
-          
-        </div>
-        <div class="doc-body">
-          <div class="doc-name">DR. MAHAM RAHAT</div>
-          <div class="doc-spec">B.D.S — University of Lahore</div>
-        </div>
-      </div>
-
-      <!-- DR ZUNASH SOHAIL -->
-      <div class="doc-card">
-        <div class="doc-img" style="background-image: url('https://i.ibb.co/847QjhLD/Whats-App-Image-2026-03-11-at-2-56-01-PM.jpg'); background-size: cover; background-position: center top;">
-          
-        </div>
-        <div class="doc-body">
-          <div class="doc-name">DR ZUNASH SOHAIL</div>
-          <div class="doc-spec">B.D.S RDS — Restorative & Endodontics</div>
-        </div>
+      <div class="leader-content">
+        <h3 class="leader-name">Khawaja Ishfaq Ahmed</h3>
+        <span class="leader-role">Founder & CEO, Al-Fazal Group</span>
+        <p class="leader-quote">"“Our journey began with a vision to build trusted and high-quality services for the community. Everyone who connects with Al-Fazal becomes part of the Al-Fazal family, where we focus on professionalism, trust, and excellence. We are committed to building a strong legacy of quality services, positive impact, and long-term value for our community"</p>
       </div>
     </div>
-    <div style="text-align:center;margin-top:4rem"><a class="btn" onclick="go('doctors')">All Doctors <i class="fas fa-arrow-right"></i></a></div>
-  </div>
 
-  <div class="sec">
-    <div class="tag">Reviews</div><h2>What Our Patients <span>Say</span></h2>
-    <p class="sub">Read genuine testimonials from our satisfied patients who have experienced the exceptional care and outstanding results at Al-Fazal Medical & Dental Care.</p>
-    <div class="g3">
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><div class="rev-txt">"Had a truly great experience at Al-Fazal Dental. The staff is incredibly polite, the clinic is impeccably clean, and the dentist demonstrated exceptional care. I am very satisfied with the results!"</div><div class="rev-auth"><div class="rev-av">ME</div><div><div class="rev-name">Muhammad Elahi</div><div class="rev-src">Google Review</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><div class="rev-txt">"Dr. Ayesha is outstanding! She explained every single step of my root canal treatment perfectly, ensuring I understood everything. Her guidance made the entire process very comforting and helpful."</div><div class="rev-auth"><div class="rev-av">NK</div><div><div class="rev-name">Nadir Khan</div><div class="rev-src">Google Review</div></div></div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><div class="rev-txt">"Dr. Fareed is genuinely the best! There's a true healing touch in his hands. I experienced absolutely no pain during my entire treatment, which was a huge relief. Highly recommend him!"</div><div class="rev-auth"><div class="rev-av">RH</div><div><div class="rev-name">Rana M. Haris</div><div class="rev-src">Google Review</div></div></div></div>
+    <!-- Medical Director (MD) Card -->
+    <div class="leader-card">
+      <div class="leader-img-box">
+        <img src="https://i.ibb.co/PG4Zv8Xm/Whats-App-Image-2026-03-11-at-10-33-02-PM.jpg" alt="Dr. Yasir Khawaja">
+      </div>
+      <div class="leader-content">
+        <h3 class="leader-name">Dr. Yasir Khawaja</h3>
+        <span class="leader-role">Medical Director & Gold Medalist</span>
+        <p class="leader-quote">" As Managing Director of Al-Fazal Hospital, I lead and oversee both our medical and dental departments to ensure the highest standards of care. We continuously improve our techniques, technology, and services to provide advanced, safe, and patient-focused treatments. Our mission is to deliver professional care while maintaining trust, quality, and excellence in every service we provide."</p>
+      </div>
     </div>
-    <div style="text-align:center;margin-top:4rem"><a class="btn" onclick="go('reviews')">All Reviews <i class="fas fa-arrow-right"></i></a></div>
-  </div>
 
-  <!-- Moved Appt Card here -->
-  <div class="sec-gray" style="text-align: center;">
-    <div class="tag" style="justify-content:center">Book Now</div>
-    <h2>Schedule Your <span>Visit</span></h2>
-    <p class="sub">Take the first step towards a healthier, brighter smile. Fill out our simple booking form for a free consultation.</p>
-    <div class="appt-card" style="max-width: 580px; margin: 2.8rem auto;">
-      <div class="appt-ttl">📅 Book Your Free Consultation</div>
-      <form onsubmit="handleBookingSubmit(event)">
-        <div class="frow">
-          <div class="fg"><label for="appt-name">Name</label><input type="text" id="appt-name" placeholder="Full name" required></div>
-          <div class="fg"><label for="appt-phone">Phone</label><input type="tel" id="appt-phone" placeholder="0300-0000000" required></div>
-        </div>
-        <div class="fg"><label for="appt-treatment">Treatment</label>
-          <select id="appt-treatment" required><option value="">Select Treatment</option><option>Teeth Cleaning</option><option>Whitening</option><option>Root Canal</option><option>Implants</option><option>Braces</option><option>Crowns</option><option>Checkup</option><option>Other</option></select>
-        </div>
-        <div class="frow">
-          <div class="fg"><label for="appt-date">Date</label><input type="date" id="appt-date" required></div>
-          <div class="fg"><label for="appt-time">Time</label><select id="appt-time" required><option>Morning (11:30-2)</option><option>Afternoon (2-6)</option><option>Evening (6-11:30)</option></select></div>
-        </div>
-        <button type="submit" class="btn" style="width:100%;justify-content:center"><i class="far fa-calendar-alt"></i> Submit Booking</button>
-      </form>
+    <!-- Medical Superintendent (MS) Card -->
+    <div class="leader-card">
+      <div class="leader-img-box">
+        <img src="https://i.ibb.co/5WS5L55J/Whats-App-Image-2026-03-15-at-7-54-02-PM.jpg" alt="Dr. Junaid Ishfaq Khawaja">
+      </div>
+      <div class="leader-content">
+        <h3 class="leader-name">Dr. Junaid Ishfaq Khawaja</h3>
+        <span class="leader-role">Medical Superintendent (MS) | Senior Urologist & Sexologist</span>
+        <p class="leader-quote">"As Medical Superintendent of Al-Fazal Hospital, I oversee and ensure the highest standards across all medical and dental services. With years of experience, our focus is to deliver advanced treatment, professional care, and complete patient trust in every department of the hospital."</p>
+      </div>
     </div>
+  </section>
+
+  <!-- Clinic Tour Video Section: Engaging video content for virtual tour -->
+  <section class="tour-sec">
+    <div class="sec-title">
+      <div class="tag">Explore Our Clinic</div>
+      <h2>Watch Our <span>Clinic Tour</span> Video</h2>
+      <p class="sub">Take a virtual tour of Al-Fazal Medical & Dental Care. See our modern facilities, state-of-the-art equipment, and the welcoming environment designed for your comfort and care.</p>
+    </div>
+    
+    <div class="video-wrapper">
+      <div class="video-placeholder" onclick="playTourVideo()">
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+      </div>
+      <iframe class="video-iframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+
+    <div class="tour-info">
+      <div class="tour-badge"><i class="fas fa-shield-alt"></i> ISO Sterilization Standards</div>
+      <div class="tour-badge"><i class="fas fa-microscope"></i> Digital X-Ray & CBCT</div>
+      <div class="tour-badge"><i class="fas fa-bed"></i> Premium Patient Comfort</div>
+    </div>
+  </section>
+
+  <!-- Global CTA: Prominent call to action for booking an appointment -->
+  <div class="cta-banner">
+    <h2>Ready to prioritize your health?</h2>
+    <p>Whether you need a routine medical checkup or a complete dental smile makeover, our specialists are here 7 days a week.</p>
+    <button class="btn-primary" onclick="go('book')"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
   </div>
-</div>
+</div><!-- End Home Page -->
+
 
 <!-- ==================== ABOUT PAGE ==================== -->
 <div class="page" id="pg-about">
@@ -1282,8 +1760,6 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
     </div>
   </div>
 
-  <!-- The "Our Leaders" section was moved to the home page -->
-
   <div class="video-section-left-aligned">
     <div class="video-section-text-content">
         <div class="tag">Our Vision</div>
@@ -1293,14 +1769,14 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
     </div>
     <div class="video-wrapper">
         <div class="video-card" onclick="playVideo(this, '1173444822')">
-            <div class="video-placeholder" style="background-image:url('');">
+            <div class="video-placeholder" style="background-image:url('https://media.istockphoto.com/id/1173444822/vector/hospital-tour-thumbnail.jpg?s=612x612&w=0&k=20&c=X7b-m0k8q8_p8V5Q5R3_6o_5G2y2f6r9t2j0u4s7_9A=');">
                 <div class="video-card-overlay"></div>
                 <div class="video-card-info">
                     <h3>Our Clinic Philosophy & Care</h3>
                     <p>Dedicated to your health and comfort</p>
                 </div>
             </div>
-            <iframe class="video-iframe" src="https://player.vimeo.com/video/1173444822?autoplay=0&loop=0&title=0&byline=0&portrait=0&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
 </div>
@@ -1463,7 +1939,7 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
       <!-- Other Services -->
       <div class="svc-card" onclick="openSvc('Pediatric Dentistry','🧒','Gentle, child-friendly dental care provided in a fun and comfortable environment. We focus on making dental visits a positive experience for your little ones, preventing childhood cavities and establishing healthy oral habits early on.','Consult for Price',['Creates a fun, child-friendly environment for young patients','Actively prevents childhood cavities and dental issues','Establishes healthy oral hygiene habits from an early age','Utilizes gentle techniques specifically designed for kids']))"><div class="svc-icon">🧒</div><div class="svc-name">Pediatric Dentistry</div><div class="svc-desc">Gentle dental care for children of all ages.</div><div class="svc-price">Consult for Price</div></div>
       <div class="svc-card" onclick="openSvc('Gum Treatment','💉','Effective treatments for gingivitis and periodontal disease to restore healthy gums and prevent tooth loss. Our comprehensive approach addresses inflammation, bleeding, and deep infections.','Consult for Price',['Effectively stops the progression of gum disease','Significantly reduces gum inflammation & bleeding','Plays a crucial role in preventing tooth loss','Contributes to fresher breath and healthier oral flora'])"><div class="svc-icon">💉</div><div class="svc-name">Gum Treatment</div><div class="svc-desc">Effective treatment for gum disease.</div><div class="svc-price">Consult for Price</div></div>
-      <div class="svc-card" onclick="openSvc('Laser Dentistry','⚡','Advanced laser procedures for gum treatment, cavity preparation, and teeth whitening with minimal pain, reduced bleeding, and faster recovery times. Experience precision and comfort.','Consult for Price',['Ensures minimal pain & discomfort during procedures','Promotes faster healing and recovery times','Offers highly precise and targeted treatment','Often reduces or eliminates the need for anesthesia']))"><div class="svc-icon">⚡</div><div class="svc-name">Laser Dentistry</div><div class="svc-desc">Precise laser procedures with minimal pain.</div><div class="svc-price">Consult for Price</div></div>
+      <div class="svc-card" onclick="openSvc('Laser Dentistry','⚡','Advanced laser procedures for gum treatment, cavity preparation, and teeth whitening with minimal pain, reduced bleeding, and faster recovery times. Experience precision and comfort.','Consult for Price',['Ensures minimal pain & discomfort during procedures','Promotes significantly faster healing and recovery','Offers highly precise and targeted treatment','Often reduces or eliminates the need for anesthesia']))"><div class="svc-icon">⚡</div><div class="svc-name">Laser Dentistry</div><div class="svc-desc">Precise laser procedures with minimal pain.</div><div class="svc-price">Consult for Price</div></div>
       <div class="svc-card" onclick="openSvc('Sedation Dentistry','😴','Comfortable and stress-free treatment options for patients with dental anxiety or phobia. Nitrous oxide (laughing gas) and oral sedatives are available to ensure a relaxed experience.','Consult for Price',['Completely eliminates dental anxiety and fear','Ensures a relaxed and comfortable treatment experience','Allows for more work to be done in fewer visits','Safe and constantly monitored by our expert team']))"><div class="svc-icon">😴</div><div class="svc-name">Sedation Dentistry</div><div class="svc-desc">Stress-free treatment for anxious patients.</div><div class="svc-price">Consult for Price</div></div>
       <div class="svc-card" onclick="openSvc('Oral Cancer Screening','🔍','Quick and painless oral cancer screening during your regular checkup. Early detection dramatically improves treatment success rates and is a vital part of preventive care.','Consult for Price',['Essential for early cancer detection','A quick and completely painless 5-minute exam','Dramatically improves treatment success rates','Annual screening highly recommended for all adults']))"><div class="svc-icon">🔍</div><div class="svc-name">Cancer Screening</div><div class="svc-desc">Early detection of oral cancer signs.</div><div class="svc-price">Consult for Price</div></div>
     </div>
@@ -1641,14 +2117,14 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
     </div>
     <div class="video-wrapper">
         <div class="video-card" onclick="playVideo(this, '1173448302')">
-            <div class="video-placeholder" style="background-image:url('');">
+            <div class="video-placeholder" style="background-image:url('https://media.istockphoto.com/id/1173448302/vector/meet-the-team-thumbnail.jpg?s=612x612&w=0&k=20&c=X7b-m0k8q8_p8V5Q5R3_6o_5G2y2f6r9t2j0u4s7_9A=');">
                 <div class="video-card-overlay"></div>
                 <div class="video-card-info">
                     <h3>Our Clinic Philosophy & Care</h3>
                     <p>Compassionate care, exceptional results</p>
                 </div>
             </div>
-            <iframe class="video-iframe" src="https://player.vimeo.com/video/1173448302?autoplay=0&loop=0&title=0&byline=0&portrait=0&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
   </div>
@@ -1760,14 +2236,14 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
     <p class="sub">Delve deeper into some of our most popular dental treatments. This video provides a clear and concise overview of various procedures, helping you understand each step.</p>
     <div style="max-width: 900px; margin: 3.5rem auto 0;"> <!-- Centering container for single video -->
         <div class="video-card" onclick="playVideo(this, '1173448655')">
-            <div class="video-placeholder" style="background-image:url('');">
+            <div class="video-placeholder" style="background-image:url('https://media.istockphoto.com/id/1173448655/vector/dental-treatment-showcase-thumbnail.jpg?s=612x612&w=0&k=20&c=X7b-m0k8q8_p8V5Q5R3_6o_5G2y2f6r9t2j0u4s7_9A=');">
                 <div class="video-card-overlay"></div>
                 <div class="video-card-info">
                     <h3>Treatment Showcase</h3>
                     <p>Overview of popular dental procedures</p>
                 </div>
             </div>
-            <iframe class="video-iframe" src="https://player.vimeo.com/video/1173448655?autoplay=0&loop=0&title=0&byline=0&portrait=0&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
   </div>
@@ -2179,7 +2655,6 @@ footer{background:var(--dark-shade);padding:5rem 5% 2.8rem;color:rgba(255,255,25
           <option>Dr. Maham Rahat</option>
           <option>Dr. Rushna</option>
           <option>Dr. Ghulam Fareed (Hygienist)</option>
-          <option>Shawaiz (Dental Assistant)</option>
           <optgroup label="Medical Team">
             <option>General Physician</option>
             <option>Surgeon (for minor procedures)</option>
@@ -2330,11 +2805,12 @@ function go(page) {
   
   // Stop all playing videos on page navigation
   document.querySelectorAll('.video-iframe').forEach(iframe => {
-      iframe.src = '';
-      const parentCard = iframe.closest('.video-card');
-      if (parentCard) {
-          parentCard.querySelector('.video-placeholder').style.display = 'flex';
-          iframe.style.display = 'none';
+      iframe.src = ''; // Stop video playback
+      // Find the parent .video-wrapper for the iframe to show its placeholder
+      const parentWrapper = iframe.closest('.video-wrapper'); 
+      if (parentWrapper) {
+          parentWrapper.querySelector('.video-placeholder').style.display = 'flex'; // Show placeholder
+          iframe.style.display = 'none'; // Hide iframe
       }
   });
 
@@ -2501,29 +2977,27 @@ function handleBookingPageSubmit(event) {
 }
 
 
-// ===== HERO IMAGE CAROUSEL =====
-let currentSlideIndex = 0;
-const heroSlides = document.querySelectorAll('#heroImageCarousel .hero-carousel-item');
+// ===== HERO IMAGE CAROUSEL (Removed from HTML, this JS is no longer active) =====
+// No carousel logic needed for the current static hero background.
 
-function rotateHeroSlides() {
-  if (heroSlides.length === 0) return;
+// ===== INLINE VIDEO PLAYBACK (FOR CLINIC TOUR) =====
+function playTourVideo() {
+    const videoWrapper = document.querySelector('.tour-sec .video-wrapper');
+    const placeholder = videoWrapper.querySelector('.video-placeholder');
+    const iframe = videoWrapper.querySelector('.video-iframe');
+    const vimeoVideoId = '1173444793'; // Hardcoded Vimeo ID for the main tour video
 
-  // Remove active-slide from all slides
-  heroSlides.forEach((slide, index) => {
-    slide.classList.remove('active-slide');
-  });
-
-  // Increment index, loop back to 0 if at end
-  currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
-
-  // Add active-slide to the new current slide
-  heroSlides[currentSlideIndex].classList.add('active-slide');
-}
-
-// ===== INLINE VIDEO PLAYBACK =====
-function playVideo(cardElement, vimeoVideoId) {
-    const placeholder = cardElement.querySelector('.video-placeholder');
-    const iframe = cardElement.querySelector('.video-iframe');
+    // Stop all other videos first
+    document.querySelectorAll('.video-iframe').forEach(otherIframe => {
+        if (otherIframe !== iframe && otherIframe.style.display === 'block') {
+            otherIframe.src = '';
+            const otherParent = otherIframe.closest('.video-wrapper, .video-card'); // Check both parents
+            if (otherParent) {
+                otherParent.querySelector('.video-placeholder').style.display = 'flex';
+                otherIframe.style.display = 'none';
+            }
+        }
+    });
 
     if (iframe.style.display === 'none' || iframe.src === '') {
         // Play video
@@ -2537,23 +3011,50 @@ function playVideo(cardElement, vimeoVideoId) {
         iframe.style.display = 'none';
     }
 }
-// ===== SPLASH FIX =====
-// Initial setup for hero carousel
-if(heroSlides.length > 0) heroSlides[0].classList.add('active-slide');
-setInterval(rotateHeroSlides, 6000); // Rotate every 6 seconds
 
-// Splash screen logic
+// ===== INLINE VIDEO PLAYBACK (GENERAL FUNCTION FOR ALL OTHER VIDEO CARDS) =====
+function playVideo(cardElement, vimeoVideoId) {
+    const placeholder = cardElement.querySelector('.video-placeholder');
+    const iframe = cardElement.querySelector('.video-iframe');
+
+    // Stop all other videos first
+    document.querySelectorAll('.video-iframe').forEach(otherIframe => {
+        if (otherIframe !== iframe && otherIframe.style.display === 'block') {
+            otherIframe.src = '';
+            const otherParent = otherIframe.closest('.video-wrapper, .video-card'); // Check both parents
+            if (otherParent) {
+                otherParent.querySelector('.video-placeholder').style.display = 'flex';
+                otherIframe.style.display = 'none';
+            }
+        }
+    });
+
+    if (iframe.style.display === 'none' || iframe.src === '') {
+        // Play video
+        iframe.src = `https://player.vimeo.com/video/${vimeoVideoId}?autoplay=1&loop=0&title=0&byline=0&portrait=0&controls=1`;
+        placeholder.style.display = 'none';
+        iframe.style.display = 'block';
+    } else {
+        // Pause/Stop video
+        iframe.src = ''; // Stop playback
+        placeholder.style.display = 'flex';
+        iframe.style.display = 'none';
+    }
+}
+
+// ===== SPLASH SCREEN LOGIC =====
+// The splash screen text animations are handled by CSS.
+// The home page is set to 'active' in HTML by default, and the splash screen hides itself with a timeout.
 setTimeout(function(){
   var splash = document.getElementById('splash');
-  if(splash){ splash.style.opacity='0'; splash.style.transition='opacity 1.2s'; }
+  if(splash){ splash.style.opacity='0'; splash.style.transition='opacity 1.2s ease-out, visibility 1.2s ease-out'; } // Ensure proper transition
   setTimeout(function(){
     if(splash) splash.style.display='none';
-    var home = document.getElementById('pg-home');
-    if(home){ home.style.display='block'; home.classList.add('active'); }
-  }, 1200);
-}, 4000); // Splash screen visible for 4 seconds
+    // No explicit 'go('home')' needed here as 'pg-home' is active by default.
+  }, 1200); // This timeout should match the CSS transition duration
+}, 4000); // Splash screen visible for 4 seconds before starting fade out
 
-// ===== PRIVACY =====
+// ===== PRIVACY MODAL LOGIC =====
 function acceptPriv() { localStorage.setItem('alfazal_priv','1'); closePriv(); }
 function closePriv() { 
   document.getElementById('privModal').classList.remove('show'); 
@@ -2574,11 +3075,11 @@ function togglePrivacyDetails() {
     }
 }
 
+// Show privacy modal after 60 seconds if not already accepted
 if(!localStorage.getItem('alfazal_priv')) {
-  setTimeout(() => { document.getElementById('privModal').classList.add('show'); document.body.style.overflow='hidden'; }, 60000); // Show after 60 seconds
+  setTimeout(() => { document.getElementById('privModal').classList.add('show'); document.body.style.overflow='hidden'; }, 60000); 
 }
 </script>
-
 
 </body>
 </html>
