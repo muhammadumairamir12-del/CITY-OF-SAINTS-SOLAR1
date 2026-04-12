@@ -127,14 +127,32 @@ input,select,textarea{font-family:var(--font);}
 .nav-btn-book:hover{transform:translateY(-2px);box-shadow:var(--sh-rose);}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:5px;}
 .hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s;display:block;}
-.mob-nav{position:fixed;top:72px;left:0;right:0;background:#fff;z-index:999;padding:20px 5% 28px;border-bottom:1px solid var(--border);transform:translateY(-110%);transition:transform .4s var(--ease);box-shadow:var(--sh3);}
-.mob-nav.open{transform:translateY(0);}
+
+/* CHANGE: Updated Mobile Menu Styles for Right-Side Slide */
+.mob-nav {
+  position: fixed;
+  top: 72px;
+  right: -300px; /* Start off-screen to the right */
+  bottom: 0;
+  width: 240px; /* Smaller width */
+  height: calc(100vh - 72px);
+  background: #fff;
+  z-index: 999;
+  padding: 20px;
+  border-left: 1px solid var(--border);
+  transition: right 0.4s var(--ease); /* Animate the 'right' property */
+  box-shadow: -5px 0 25px rgba(11, 31, 58, 0.1);
+  overflow-y: auto;
+}
+.mob-nav.open {
+  right: 0; /* Slide into view */
+}
 .mob-nav a{display:block;padding:12px 0;font-size:.93rem;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border);cursor:pointer;}
 .mob-nav a:hover{color:var(--rose);}
 .mob-nav .mob-book{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;}
 
 /* ── EMERGENCY BAR ── */
-.emergency{background:var(--rose);padding:12px 5%;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
+.emergency{background:var(--rose);padding:12px 5%;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;z-index:900;} /* Added z-index */
 .emergency p{color:#fff;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:8px;}
 .emergency a{background:#fff;color:var(--rose);padding:7px 18px;border-radius:50px;font-weight:800;font-size:.85rem;transition:all .2s;}
 .emergency a:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(0,0,0,.2);}
@@ -208,6 +226,14 @@ p.sub.center{margin:12px auto 50px;}
 .shdr-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:50px;flex-wrap:wrap;}
 .view-more{display:inline-flex;align-items:center;gap:6px;color:var(--rose);font-weight:700;font-size:.85rem;border:1.5px solid var(--rose-soft);padding:9px 20px;border-radius:8px;transition:all .3s;white-space:nowrap;}
 .view-more:hover{background:var(--rose);color:#fff;border-color:var(--rose);transform:translateY(-2px);}
+
+/* NEW: Added for responsive video sections on About, Services, Doctors pages */
+.content-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.9rem;border:none;transition:all .3s var(--ease);cursor:pointer;}
@@ -602,6 +628,12 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .dept-grid{margin-top:-40px;}
   .contact-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr 1fr;}
+  
+  /* CHANGE: Added responsive style for video sections */
+  .content-video-grid {
+    grid-template-columns: 1fr; /* Switch to single column */
+    gap: 30px;
+  }
 }
 @media(max-width:768px){
   .nav-links{display:none;}
@@ -668,7 +700,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="nav-logo" onclick="goPage('home')">
+  <div class="nav-logo" onclick="navigate('home')">
     <div class="logo-ico">
       <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwE7b5YK&_nc_oc=AdqCi1hx4epJvuZuJpRF7CoBBPO1zxHuP-DS0k4IKPu5zorRa2RAn1j9IECfAdWDe-g&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=d797lZ06ggoaY4wtoCBWKg&_nc_ss=7a3a8&oh=00_Af1rOK5UA9t9_xnz7CnfIkQxjgIlEeLnf6l6RwnurIxQmQ&oe=69DEC605" alt="Al-Fazal Hospital Logo" style="width:100%; height:100%; object-fit:contain;">
     </div>
@@ -679,24 +711,24 @@ footer{background:#04111e;padding:65px 5% 26px;}
   </div>
 
   <div class="nav-links">
-    <a onclick="goPage('home')" data-p="home" class="anav">Home</a>
-    <a onclick="goPage('about')" data-p="about">About</a>
+    <a onclick="navigate('home')" data-p="home" class="anav">Home</a>
+    <a onclick="navigate('about')" data-p="about">About</a>
 
     <!-- Services Dropdown -->
     <div class="nav-dd">
       <a style="cursor:pointer">Services <i class="fas fa-chevron-down" style="font-size:.6rem;margin-left:3px"></i></a>
       <div class="nav-dd-menu">
-        <a onclick="goPage('dental-services')"><i class="fas fa-tooth" style="color:var(--rose);width:16px"></i> Dental Services</a>
-        <a onclick="goPage('medical-services')"><i class="fas fa-stethoscope" style="color:var(--navy3);width:16px"></i> Medical Services</a>
+        <a onclick="navigate('dental-services')"><i class="fas fa-tooth" style="color:var(--rose);width:16px"></i> Dental Services</a>
+        <a onclick="navigate('medical-services')"><i class="fas fa-stethoscope" style="color:var(--navy3);width:16px"></i> Medical Services</a>
       </div>
     </div>
 
-    <a onclick="goPage('doctors')" data-p="doctors">Doctors</a>
-    <a onclick="goPage('treatments')" data-p="treatments">Treatments</a>
-    <a onclick="goPage('patients')" data-p="patients">Patients</a>
-    <a onclick="goPage('reviews')" data-p="reviews">Reviews</a>
-    <a onclick="goPage('gallery')" data-p="gallery">Gallery</a>
-    <a onclick="goPage('contact')" data-p="contact">Contact</a>
+    <a onclick="navigate('doctors')" data-p="doctors">Doctors</a>
+    <a onclick="navigate('treatments')" data-p="treatments">Treatments</a>
+    <a onclick="navigate('patients')" data-p="patients">Patients</a>
+    <a onclick="navigate('reviews')" data-p="reviews">Reviews</a>
+    <a onclick="navigate('gallery')" data-p="gallery">Gallery</a>
+    <a onclick="navigate('contact')" data-p="contact">Contact</a>
   </div>
 
   <div class="nav-actions">
@@ -710,14 +742,14 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserDD()">U</button>
       <div class="user-dd-menu" id="user-dd-menu">
         <div class="user-dd-name" id="user-dd-name">Welcome!</div>
-        <a onclick="goPage('my-bookings')"><i class="fas fa-calendar"></i> My Bookings</a>
-        <a onclick="goPage('consultation')"><i class="fas fa-comments"></i> Free Consultation</a>
+        <a onclick="navigate('my-bookings')"><i class="fas fa-calendar"></i> My Bookings</a>
+        <a onclick="navigate('consultation')"><i class="fas fa-comments"></i> Free Consultation</a>
         <!-- Admin Link Removed -->
         <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
       </div>
     </div>
 
-    <button class="nav-btn-book" onclick="goPage('book')">
+    <button class="nav-btn-book" onclick="navigate('book')">
       <i class="fas fa-calendar-check"></i> Book Now
     </button>
     <button class="hamburger" id="hamburger" onclick="toggleMob()">
@@ -728,18 +760,18 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <!-- MOBILE NAV -->
 <div class="mob-nav" id="mob-nav">
-  <a onclick="goPage('home');toggleMob()">Home</a>
-  <a onclick="goPage('about');toggleMob()">About</a>
-  <a onclick="goPage('dental-services');toggleMob()">Dental Services</a>
-  <a onclick="goPage('medical-services');toggleMob()">Medical Services</a>
-  <a onclick="goPage('doctors');toggleMob()">Doctors</a>
-  <a onclick="goPage('treatments');toggleMob()">Treatments</a>
-  <a onclick="goPage('patients');toggleMob()">Patients</a>
-  <a onclick="goPage('reviews');toggleMob()">Reviews</a>
-  <a onclick="goPage('gallery');toggleMob()">Gallery</a>
-  <a onclick="goPage('contact');toggleMob()">Contact</a>
-  <a href="#" onclick="openAuthModal('login');toggleMob()" style="color:var(--navy3)"><i class="fas fa-user"></i> Login / Sign Up</a>
-  <a class="mob-book" onclick="goPage('book');toggleMob()"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+  <a onclick="navigate('home')">Home</a>
+  <a onclick="navigate('about')">About</a>
+  <a onclick="navigate('dental-services')">Dental Services</a>
+  <a onclick="navigate('medical-services')">Medical Services</a>
+  <a onclick="navigate('doctors')">Doctors</a>
+  <a onclick="navigate('treatments')">Treatments</a>
+  <a onclick="navigate('patients')">Patients</a>
+  <a onclick="navigate('reviews')">Reviews</a>
+  <a onclick="navigate('gallery')">Gallery</a>
+  <a onclick="navigate('contact')">Contact</a>
+  <a href="#" onclick="openAuthModal('login')" style="color:var(--navy3)"><i class="fas fa-user"></i> Login / Sign Up</a>
+  <a class="mob-book" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Appointment</a>
 </div>
 
 <!-- EMERGENCY BAR -->
@@ -772,8 +804,8 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <h1 class="hero-title">Your Health, Our<em>Sacred Priority</em></h1>
         <p class="hero-sub">Al-Fazal Medical &amp; Dental Hospital — expert doctors, pain-free treatments, and world-class facilities in BOR Society, Johar Town, Lahore. Open daily 11:30AM–11:30PM.</p>
         <div class="hero-btns">
-          <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Appointment</button>
-          <button class="btn btn-ghost" onclick="goPage('consultation')"><i class="fas fa-comments"></i> Free Consultation</button>
+          <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+          <button class="btn btn-ghost" onclick="navigate('consultation')"><i class="fas fa-comments"></i> Free Consultation</button>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-item"><i class="fas fa-shield-alt"></i> ISO Sterilization</div>
@@ -810,7 +842,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
   <!-- DEPT CARDS -->
   <div class="dept-grid">
-    <div class="dept-card dental aos-l" onclick="goPage('dental-services')">
+    <div class="dept-card dental aos-l" onclick="navigate('dental-services')">
       <div class="dept-ico"><i class="fas fa-tooth"></i></div>
       <div>
         <h3 class="dept-ttl">Dental Care</h3>
@@ -818,7 +850,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <span class="dept-link">Explore Dental <i class="fas fa-arrow-right"></i></span>
       </div>
     </div>
-    <div class="dept-card medical aos-r" onclick="goPage('medical-services')">
+    <div class="dept-card medical aos-r" onclick="navigate('medical-services')">
       <div class="dept-ico"><i class="fas fa-stethoscope"></i></div>
       <div>
         <h3 class="dept-ttl">Medical Care</h3>
@@ -883,7 +915,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <div class="leader-content">
         <h3 class="leader-nm">Khawaja Ishfaq Ahmed</h3>
         <span class="leader-role">Founder &amp; CEO, Al-Fazal Group</span>
-        <p class="leader-quote">"Our journey began with a vision to build trusted and high-quality services for the community. Everyone who connects with Al-Fazal becomes part of the Al-Fazal family, where we focus on professionalism, trust, and excellence. We are committed to building a strong legacy of quality services and positive impact for our community."</p>
+        <p class="leader-quote">"Our journey began with a vision to build trusted and high-quality services for the community. Everyone who connects with Al-Fazal becomes part of the Al-Fazal family, where we focus on professionalism, trust, and excellence. We are committed to building a strong legacy of quality services and to positive impact for our community."</p>
       </div>
     </div>
     <div class="leader-card aos">
@@ -967,7 +999,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <div class="lbl">Patient Stories</div>
         <h2 class="st">What Patients <em>Say</em></h2>
       </div>
-      <button class="view-more" onclick="goPage('reviews')">All Reviews <i class="fas fa-arrow-right"></i></button>
+      <button class="view-more" onclick="navigate('reviews')">All Reviews <i class="fas fa-arrow-right"></i></button>
     </div>
     <div class="rev-grid" id="home-reviews-container">
       <!-- Static reviews + Firebase reviews loaded here -->
@@ -997,7 +1029,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <h2>Don't Wait — Your Health Deserves <em>The Best</em></h2>
       <p>Book a free consultation today. Our expert doctors will create a personalized treatment plan just for you — no obligation, just honest care.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
+        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
         <a href="tel:03184195665" class="btn btn-outline-white"><i class="fas fa-phone"></i> Call Now</a>
       </div>
     </div>
@@ -1007,7 +1039,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
   <div class="cta-banner">
     <h2>Ready to Prioritize Your Health?</h2>
     <p>Our specialists are here 7 days a week — whether you need a routine medical checkup or a complete dental smile makeover.</p>
-    <button class="btn-cta-white" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
+    <button class="btn-cta-white" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
   </div>
 
 </div><!-- /home -->
@@ -1015,7 +1047,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── ABOUT PAGE ── -->
 <div id="pg-about" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>About</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>About</span></div>
     <h1>About <span>Al-Fazal Hospital</span></h1>
     <p>Our journey of excellence in medical &amp; dental care since 2005</p>
   </div>
@@ -1036,19 +1068,20 @@ footer{background:#04111e;padding:65px 5% 26px;}
           <div style="background:var(--light);border-radius:var(--radius);padding:16px;border-left:3px solid var(--navy3)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--navy3);font-weight:900">15+</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">EXPERT DOCTORS</div></div>
           <div style="background:var(--light);border-radius:var(--radius);padding:16px;border-left:3px solid var(--navy3)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--navy3);font-weight:900">4.9★</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">PATIENT RATING</div></div>
         </div>
-        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Appointment</button>
+        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Appointment</button>
       </div>
     </div>
   </section>
 
   <!-- About Video (Admin Controlled) -->
   <section class="section section-light">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center">
+    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
+    <div class="content-video-grid">
       <div class="aos-l">
         <div class="lbl">Our Mission</div>
         <h2 class="st">Committed to <em>Your Wellbeing</em></h2>
         <p class="sub" style="margin:14px 0 24px">Discover the heart and soul behind Al-Fazal Hospital — our commitment to excellence, patient-first philosophy, and creating lasting health for Lahore's community.</p>
-        <button class="btn btn-navy" onclick="goPage('about')">Learn More <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-navy" onclick="navigate('about')">Learn More <i class="fas fa-arrow-right"></i></button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap aos-r" data-video-key="about_video" onclick="playVideo(this)" style="border-radius:var(--radius2)">
@@ -1089,7 +1122,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── DENTAL SERVICES PAGE ── -->
 <div id="pg-dental-services" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Dental Services</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Dental Services</span></div>
     <h1>Dental <span>Services</span></h1>
     <p>Complete dental care — from routine checkups to advanced cosmetic procedures</p>
   </div>
@@ -1099,12 +1132,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
     </div>
   </section>
   <section class="section section-light">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
+    <div class="content-video-grid">
       <div>
         <div class="lbl">Dental Video</div>
         <h2 class="st">Our <em>Dental Procedures</em></h2>
         <p class="sub" style="margin:14px 0 22px">Watch how our expert team performs various dental treatments with precision, care, and state-of-the-art equipment.</p>
-        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Dental Appointment</button>
+        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Dental Appointment</button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="dental_video" onclick="playVideo(this)">
@@ -1125,7 +1159,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div class="parallax-content">
       <h2>Ready to Start Your <em>Treatment?</em></h2>
       <p>Book a free consultation and get a personalized treatment plan with transparent pricing — no hidden costs.</p>
-      <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
+      <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
     </div>
   </div>
 </div><!-- /dental-services -->
@@ -1133,7 +1167,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── MEDICAL SERVICES PAGE ── -->
 <div id="pg-medical-services" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Medical Services</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Medical Services</span></div>
     <h1>Medical <span>Services</span></h1>
     <p>Comprehensive medical care — from general physician to specialist consultations</p>
   </div>
@@ -1143,12 +1177,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
     </div>
   </section>
   <section class="section section-navy">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
+    <div class="content-video-grid">
       <div>
         <div class="lbl" style="color:var(--rose2)">Medical Services Video</div>
         <h2 class="st white">Our <em>Medical Expertise</em></h2>
         <p class="sub white" style="margin:14px 0 22px">See our comprehensive medical services and how our expert team provides personalized, compassionate healthcare for all ages.</p>
-        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Medical Appointment</button>
+        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Medical Appointment</button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="medical_video" onclick="playVideo(this)">
@@ -1168,7 +1203,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── DOCTORS PAGE ── -->
 <div id="pg-doctors" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Doctors</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Doctors</span></div>
     <h1>Our Expert <span>Doctors</span></h1>
     <p>PMDC registered specialists with postgraduate qualifications — your health in safe hands</p>
   </div>
@@ -1179,8 +1214,16 @@ footer{background:#04111e;padding:65px 5% 26px;}
   </section>
   <!-- Doctors Video -->
   <section class="section section-light">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
-      <!-- NEW: data-video-key used to retrieve URL from DB -->
+    <!-- CHANGE: Replaced inline style with a class and swapped order for mobile view -->
+    <div class="content-video-grid">
+      <!-- Text content is now FIRST -->
+      <div>
+        <div class="lbl">Meet Our Team</div>
+        <h2 class="st">Trusted <em>Specialists</em></h2>
+        <p class="sub" style="margin:14px 0 22px">Our doctors hold PMDC registration with BDS/FCPS/MBBS qualifications and years of clinical experience across all medical and dental specialties.</p>
+        <button class="btn btn-navy" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book with a Doctor</button>
+      </div>
+      <!-- Video is now SECOND, so it appears below the text on mobile -->
       <div class="video-card-wrap" data-video-key="doctors_video" onclick="playVideo(this)">
         <div class="video-thumb"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=700&q=80" alt="Doctors Video" class="video-poster"><div class="video-overlay"></div><div class="video-play-btn"><i class="fas fa-play"></i></div><div class="video-info"><div class="video-info-title">Meet Our Expert Team</div><div class="video-info-sub">Compassionate care, exceptional results</div></div></div>
         <!-- NEW: Unified video player container -->
@@ -1191,12 +1234,6 @@ footer{background:#04111e;padding:65px 5% 26px;}
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
       </div>
-      <div>
-        <div class="lbl">Meet Our Team</div>
-        <h2 class="st">Trusted <em>Specialists</em></h2>
-        <p class="sub" style="margin:14px 0 22px">Our doctors hold PMDC registration with BDS/FCPS/MBBS qualifications and years of clinical experience across all medical and dental specialties.</p>
-        <button class="btn btn-navy" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book with a Doctor</button>
-      </div>
     </div>
   </section>
 </div><!-- /doctors -->
@@ -1204,7 +1241,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── TREATMENTS PAGE ── -->
 <div id="pg-treatments" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Treatments</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Treatments</span></div>
     <h1>All <span>Treatments</span></h1>
     <p>A full spectrum of advanced dental &amp; medical treatments for all ages</p>
   </div>
@@ -1248,7 +1285,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── PATIENTS PAGE ── -->
 <div id="pg-patients" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Patients</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Patients</span></div>
     <h1>Patient <span>Information</span></h1>
     <p>Essential resources, FAQs, and guides for our valued patients</p>
   </div>
@@ -1256,10 +1293,10 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div class="shdr"><div class="lbl">Resources</div><h2 class="st">Everything You <em>Need to Know</em></h2></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:50px">
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
-        <div style="font-size:2rem;margin-bottom:14px">📋</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">New Patient Information</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">A guide for your first visit — registration details, what to bring, and what to expect during initial appointment.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="goPage('contact')">Learn More <i class="fas fa-arrow-right"></i></button>
+        <div style="font-size:2rem;margin-bottom:14px">📋</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">New Patient Information</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">A guide for your first visit — registration details, what to bring, and what to expect during initial appointment.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="navigate('contact')">Learn More <i class="fas fa-arrow-right"></i></button>
       </div>
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
-        <div style="font-size:2rem;margin-bottom:14px">💳</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Payment &amp; Insurance</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Flexible payment options, easy installment plans, and information about accepted insurance policies for all treatments.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="goPage('contact')">View Options <i class="fas fa-arrow-right"></i></button>
+        <div style="font-size:2rem;margin-bottom:14px">💳</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Payment &amp; Insurance</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Flexible payment options, easy installment plans, and information about accepted insurance policies for all treatments.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="navigate('contact')">View Options <i class="fas fa-arrow-right"></i></button>
       </div>
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
         <div style="font-size:2rem;margin-bottom:14px">📚</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Patient Education</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Articles and guides on oral health topics, prevention strategies, and hygiene tips for all ages.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem">Read More <i class="fas fa-arrow-right"></i></button>
@@ -1315,7 +1352,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── REVIEWS PAGE ── -->
 <div id="pg-reviews" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Reviews</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Reviews</span></div>
     <h1>Patient <span>Reviews</span></h1>
     <p>Real reviews from real patients — login to share your experience</p>
   </div>
@@ -1349,7 +1386,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── GALLERY PAGE ── -->
 <div id="pg-gallery" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Gallery</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Gallery</span></div>
     <h1>Our <span>Gallery</span></h1>
     <p>A visual tour of our modern facilities and state-of-the-art equipment</p>
   </div>
@@ -1400,7 +1437,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── CONTACT PAGE ── -->
 <div id="pg-contact" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span></div>
     <h1>Get In <span>Touch</span></h1>
     <p>Call, WhatsApp or visit us — our team is available 7 days a week</p>
   </div>
@@ -1449,13 +1486,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <p class="sub white" style="margin:10px auto">Open 7 days a week to accommodate your schedule</p>
     </div>
     <div class="timing-grid">
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Mon</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Tue</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Wed</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Thu</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Fri</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Sat</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="goPage('book')"><div class="time-day">Sun</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Mon</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Tue</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Wed</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Thu</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Fri</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Sat</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="navigate('book')"><div class="time-day">Sun</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
     </div>
   </section>
 </div><!-- /contact -->
@@ -1463,7 +1500,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── BOOK APPOINTMENT PAGE ── -->
 <div id="pg-book" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Book Appointment</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Book Appointment</span></div>
     <h1>Book Your <span>Appointment</span></h1>
     <p>Fill the form below and we'll confirm within 1 hour. Login required to submit.</p>
   </div>
@@ -1511,7 +1548,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── FREE CONSULTATION PAGE ── -->
 <div id="pg-consultation" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Free Consultation</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Free Consultation</span></div>
     <h1>Free <span>Consultation</span></h1>
     <p>Ask our expert doctors anything. Type your questions below, login to send for personalized advice.</p>
   </div>
@@ -1545,7 +1582,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── MY BOOKINGS PAGE ── -->
 <div id="pg-my-bookings" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>My Bookings</span></div>
+    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>My Bookings</span></div>
     <h1>My <span>Bookings</span></h1>
     <p>View and manage your appointments at Al-Fazal Hospital</p>
   </div>
@@ -1579,21 +1616,21 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div>
       <div class="ft-hdr">Services</div>
       <ul class="ft-links">
-        <li><a onclick="goPage('dental-services')"><i class="fas fa-chevron-right"></i>Dental Services</a></li>
-        <li><a onclick="goPage('medical-services')"><i class="fas fa-chevron-right"></i>Medical Services</a></li>
-        <li><a onclick="goPage('treatments')"><i class="fas fa-chevron-right"></i>All Treatments</a></li>
-        <li><a onclick="goPage('doctors')"><i class="fas fa-chevron-right"></i>Our Doctors</a></li>
+        <li><a onclick="navigate('dental-services')"><i class="fas fa-chevron-right"></i>Dental Services</a></li>
+        <li><a onclick="navigate('medical-services')"><i class="fas fa-chevron-right"></i>Medical Services</a></li>
+        <li><a onclick="navigate('treatments')"><i class="fas fa-chevron-right"></i>All Treatments</a></li>
+        <li><a onclick="navigate('doctors')"><i class="fas fa-chevron-right"></i>Our Doctors</a></li>
       </ul>
     </div>
     <div>
       <div class="ft-hdr">Quick Links</div>
       <ul class="ft-links">
-        <li><a onclick="goPage('home')"><i class="fas fa-chevron-right"></i>Home</a></li>
-        <li><a onclick="goPage('about')"><i class="fas fa-chevron-right"></i>About Us</a></li>
-        <li><a onclick="goPage('gallery')"><i class="fas fa-chevron-right"></i>Gallery</a></li>
-        <li><a onclick="goPage('reviews')"><i class="fas fa-chevron-right"></i>Reviews</a></li>
-        <li><a onclick="goPage('contact')"><i class="fas fa-chevron-right"></i>Contact</a></li>
-        <li><a onclick="goPage('book')"><i class="fas fa-chevron-right"></i>Book Appointment</a></li>
+        <li><a onclick="navigate('home')"><i class="fas fa-chevron-right"></i>Home</a></li>
+        <li><a onclick="navigate('about')"><i class="fas fa-chevron-right"></i>About Us</a></li>
+        <li><a onclick="navigate('gallery')"><i class="fas fa-chevron-right"></i>Gallery</a></li>
+        <li><a onclick="navigate('reviews')"><i class="fas fa-chevron-right"></i>Reviews</a></li>
+        <li><a onclick="navigate('contact')"><i class="fas fa-chevron-right"></i>Contact</a></li>
+        <li><a onclick="navigate('book')"><i class="fas fa-chevron-right"></i>Book Appointment</a></li>
       </ul>
     </div>
     <div>
@@ -1695,6 +1732,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
      FIREBASE + ALL JAVASCRIPT
      ============================================================ -->
 <script type="module">
+// ── FIREBASE SDK IMPORTS ──
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import {
@@ -1708,6 +1746,9 @@ import {
   getFirestore, doc, setDoc, getDoc 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"; // Added Firestore imports
 import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { 
+  getMessaging, getToken, onMessage 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js"; // FCM imports
 
 // ── FIREBASE CONFIG ──
 const firebaseConfig = {
@@ -1727,6 +1768,7 @@ const auth = getAuth(app);
 const db = getDatabase(app);
 const firestore = getFirestore(app); // Initialized Firestore
 const storage = getStorage(app);
+const messaging = getMessaging(app); // Initialize Firebase Messaging
 const googleProvider = new GoogleAuthProvider();
 
 const ADMIN_EMAIL = "infoskyeagle12@gmail.com";
@@ -1743,6 +1785,8 @@ const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp
 notificationSound.volume = 0.5;
 let prevChatMessagesCount = {};
 
+// Your VAPID Key
+const VAPID_KEY = "BD2rdpQnCIi0ubxBye6-aN2NuDCO4jweIcrsXN6e9dvKepbrfH0DEnrQUJzys4N40hPA2bA1NyVzMcv2kqO0uFA";
 
 // ── STATIC DATA (defaults, can be overridden by admin) ──
 const STATIC_DENTAL_SERVICES = [
@@ -1796,6 +1840,83 @@ const VIDEO_SECTIONS = [
   {key:'gallery_stories', label:'Gallery Page — Video 3',         selector:'[data-video-key="gallery_stories"]', defaultPoster:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80'},
 ];
 
+// ── FCM NOTIFICATION FUNCTIONS ──
+async function requestNotificationPermissionAndToken(serviceWorkerRegistration) {
+  if (!currentUser) {
+    console.log("FCM: No user logged in, cannot get token yet.");
+    return;
+  }
+
+  // Check if permission is already granted
+  if (Notification.permission === 'granted') {
+    console.log("FCM: Notification permission already granted.");
+    await getAndSaveToken(serviceWorkerRegistration);
+  } else if (Notification.permission === 'denied') {
+    console.log("FCM: Notification permission denied by user.");
+    showToast("❌ Notifications blocked. Please enable in browser settings if you wish to receive updates.", true);
+  } else { // 'default' state, prompt user
+    console.log("FCM: Requesting notification permission...");
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      console.log("FCM: Notification permission granted!");
+      await getAndSaveToken(serviceWorkerRegistration);
+    } else {
+      console.log("FCM: Notification permission denied. You won't receive updates.", true);
+    }
+  }
+}
+
+async function getAndSaveToken(serviceWorkerRegistration) {
+  try {
+    const currentToken = await getToken(messaging, {
+      vapidKey: VAPID_KEY,
+      serviceWorkerRegistration: serviceWorkerRegistration // Pass the SW registration
+    });
+    if (currentToken) {
+      console.log("FCM Token:", currentToken);
+      // Save the token to Firestore for the current user
+      // Structure: users -> userId -> fcmToken
+      await setDoc(doc(firestore, "users", currentUser.uid), { fcmToken: currentToken }, { merge: true });
+      console.log(`FCM Token saved for user ${currentUser.uid}.`);
+    } else {
+      console.warn("FCM: No registration token available. Request permission to generate one.");
+    }
+  } catch (err) {
+    console.error("FCM: An error occurred while retrieving or saving token:", err);
+    showToast("❌ Failed to get notification token. Please ensure notifications are enabled and try again.", true);
+  }
+}
+
+// Listen for messages when the app is in the foreground
+onMessage(messaging, (payload) => {
+  console.log('Foreground FCM message received:', payload);
+  const notificationTitle = payload.notification.title || 'New Update';
+  const notificationBody = payload.notification.body || 'You have a new notification.';
+  
+  // Display a toast for foreground notifications
+  showToast(`🔔 ${notificationTitle}: ${notificationBody}`);
+
+  // You can also show a custom in-app notification UI here if needed,
+  // or trigger a local browser notification.
+  // Example local notification (optional, handled by SW if app is in background)
+  if (Notification.permission === 'granted') {
+    new Notification(notificationTitle, {
+      body: notificationBody,
+      icon: '/favicon.ico', // Ensure this path is correct
+      data: payload.data.url || window.location.origin
+    }).onclick = (event) => {
+      event.preventDefault();
+      const url = event.target.data;
+      if (url && typeof url === 'string') {
+        window.focus(); // Focus the current window
+        window.navigate(url.replace(window.location.origin + '#', '').replace('#', ''), false); // Navigate if it's an internal hash link
+      } else {
+        window.focus();
+      }
+    };
+  }
+});
+
 // ── AUTH STATE ──
 onAuthStateChanged(auth, user => {
   currentUser = user;
@@ -1806,6 +1927,18 @@ onAuthStateChanged(auth, user => {
 
   // Handle My Bookings page (only load if logged in)
   if (user) {
+    // After successful login, attempt to get FCM token
+    // We need to ensure the service worker is registered before requesting the token
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      console.log("FCM: Service Worker already active for logged-in user. Requesting token.");
+      requestNotificationPermissionAndToken(navigator.serviceWorker.controller);
+    } else if ('serviceWorker' in navigator) {
+      // If SW is not yet active, it will be registered by DOMContentLoaded and call the function.
+      console.log("FCM: Service Worker not yet active, will register and get token on DOMContentLoaded.");
+    } else {
+      console.warn("FCM: Service Workers not supported in this browser.");
+    }
+    
     loadMyBookings(user.uid);
     // If floating chat is open, load it for the logged in user
     if (document.getElementById('chat-box')?.classList.contains('open')) {
@@ -1897,7 +2030,7 @@ window.handleRegister = async (e) => {
       uid: cred.user.uid,
       role: 'patient', // Default role for new users
       createdAt: Date.now()
-    });
+    }, {merge: true}); // Use merge:true to not overwrite existing fcmToken if it exists
 
     closeAuthModal();
     showToast('✅ Account created! Welcome to Al-Fazal!');
@@ -1949,7 +2082,7 @@ window.handleGoogleLogin = async () => {
             age: null,
             whatsapp: '',
             city: ''
-        });
+        }, {merge: true}); // Use merge:true here as well
     }
     // If user exists, we don't overwrite. The `onAuthStateChanged` listener will handle UI updates.
     
@@ -2001,7 +2134,7 @@ window.handleBookingSubmit = async (e) => {
     await push(ref(db, 'bookings'), { ...data, uid: currentUser.uid, email: currentUser.email });
     showToast('✅ Appointment booked! We will confirm within 1 hour.');
     e.target.reset();
-    goPage('home');
+    navigate('home');
   } catch (err) {
     showToast('❌ Failed to book. Please try again.', true);
   } finally {
@@ -2043,12 +2176,12 @@ function loadMyBookings(uid) {
   onValue(query(ref(db, 'bookings'), orderByChild('uid')), snap => {
     const data = snap.val();
     if (!data) {
-      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="goPage(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
+      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="navigate(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
       return;
     }
     const myBookings = Object.entries(data).filter(([k,v]) => v.uid === uid).map(([id,v]) => ({id,...v})).sort((a,b) => b.createdAt - a.createdAt);
     if (!myBookings.length) {
-      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="goPage(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
+      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="navigate(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
       return;
     }
     container.innerHTML = `<div style="overflow-x:auto"><table><thead><tr><th>Service</th><th>Doctor</th><th>Date &amp; Time</th><th>Status</th></tr></thead><tbody>${myBookings.map(b => `<tr><td style="font-weight:600">${esc(b.service)}</td><td>${esc(b.doctor||'Any')}</td><td>${b.date} · ${b.time}</td><td><span class="sbadge sb-${b.status}">${b.status}</span></td></tr>`).join('')}</tbody></table></div>`;
@@ -2328,7 +2461,7 @@ function processPendingActions() {
       }).then(() => {
         showToast('✅ Your pending appointment has been booked!');
         if (formEl) formEl.reset();
-        goPage('home');
+        navigate('home');
       }).catch(err => {
         showToast('❌ Failed to book pending appointment: ' + err.message, true);
       }).finally(() => {
@@ -2379,7 +2512,7 @@ function renderDoctors() {
         <div class="doc-nm">${esc(d.name)}</div>
         <div class="doc-sp">${esc(d.spec)}</div>
         ${d.exp ? `<div style="font-size:.76rem;color:var(--text3);margin-top:4px">${esc(d.exp)} Experience</div>` : ''}
-        <a class="doc-book-btn" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Appointment</a>
+        <a class="doc-book-btn" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Appointment</a>
       </div>
     </div>`).join('');
     window.initAOS();
@@ -2535,22 +2668,58 @@ if (statsEl) {
 if (!localStorage.getItem('af_priv')) setTimeout(() => { document.getElementById('priv-modal')?.classList.add('show'); }, 30000);
 </script>
 
+<!-- Firebase Messaging Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    // Register the service worker. It should be in the root directory.
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+      .then((registration) => {
+        console.log('Main: Service Worker registered with scope:', registration.scope);
+        // If user is already logged in at the time of SW registration, request token.
+        // If not logged in, onAuthStateChanged will handle it later.
+        if (window.currentUser) {
+          window.requestNotificationPermissionAndToken(registration);
+        }
+        
+        // Handle cases where a notification might open the page with a specific hash
+        if (window.location.hash) {
+          const pageId = window.location.hash.slice(1);
+          window.navigate(pageId, false); // false to avoid adding to history again
+        }
+      })
+      .catch((error) => {
+        console.error('Main: Service Worker registration failed:', error);
+      });
+  }
+</script>
+
 <script>
 // ── NON-MODULE JS (Navigation, UI) ──
-document.querySelectorAll('.pg').forEach(p => { p.style.cssText = 'display:none'; });
-document.getElementById('pg-home').style.display = 'block';
 
-window.goPage = function(pageId) {
+// Internal function to update the UI content based on pageId
+function updatePageContent(pageId) {
   document.querySelectorAll('.pg').forEach(p => p.style.display = 'none');
   const el = document.getElementById('pg-' + pageId);
-  if (el) { el.style.display = 'block'; window.scrollTo(0,0); }
-  // Update nav active
+  if (el) {
+    el.style.display = 'block';
+    window.scrollTo(0, 0);
+  } else {
+    // Fallback to home if pageId is invalid
+    console.warn(`Page ID '${pageId}' not found. Redirecting to home.`);
+    document.getElementById('pg-home').style.display = 'block';
+    pageId = 'home'; // Update pageId for nav highlighting
+    window.scrollTo(0, 0);
+  }
+
+  // Update nav active links
   document.querySelectorAll('.nav-links a[data-p]').forEach(a => {
     a.classList.toggle('anav', a.dataset.p === pageId);
   });
-  // Close mobile menu
+
+  // Close mobile menu if open
   document.getElementById('mob-nav')?.classList.remove('open');
-  // Stop all videos
+
+  // Stop all playing videos on page change
   document.querySelectorAll('.video-card-wrap').forEach(card => {
     const playerContainer = card.querySelector('.video-player-container');
     const thumb = card.querySelector('.video-thumb');
@@ -2561,9 +2730,59 @@ window.goPage = function(pageId) {
       if (thumb) thumb.style.display = 'block';
     }
   });
-  // Init AOS after page change
+
+  // Re-initialize AOS animations for the new page content
   setTimeout(() => window.initAOS(), 100);
+}
+
+// Global function for navigation that interacts with browser history
+window.navigate = function(pageId, pushToHistory = true) {
+  if (pushToHistory) {
+    history.pushState({ pageId: pageId }, '', `#${pageId}`);
+  }
+  updatePageContent(pageId);
 };
+
+// Initial Page Load Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const initialPageId = window.location.hash.slice(1) || 'home';
+  
+  // Set our first real state, replacing the default browser state
+  history.replaceState({ pageId: initialPageId }, '', `#${initialPageId}`);
+  updatePageContent(initialPageId);
+  
+  // Push a dummy state *after* the initial page state.
+  // This dummy state will be 'null'. When the user pops this null state,
+  // it means they are trying to navigate *out* of our controlled history,
+  // triggering the exit confirmation.
+  history.pushState(null, '', null);
+});
+
+// Browser History (Back/Forward buttons) Handler
+window.onpopstate = function(event) {
+  if (event.state === null) {
+    // This means the user popped our dummy state, indicating an attempt to exit.
+    if (confirm("Do you want to exit Al-Fazal Hospital?")) {
+      // If confirmed, allow the browser to proceed with its default navigation (which will exit the page).
+      // We don't need to do anything here, as the history.back() was already triggered by the popstate.
+    } else {
+      // If canceled, push the dummy state back onto the stack to prevent exit.
+      history.pushState(null, '', null);
+      // Ensure the 'home' page is displayed as they chose not to exit.
+      updatePageContent('home'); 
+    }
+  } else if (event.state && event.state.pageId) {
+    // User navigated within our controlled application history.
+    updatePageContent(event.state.pageId);
+  } else {
+    // Fallback for unexpected or malformed states (should not happen with our setup).
+    console.warn("Unexpected history state. Redirecting to home.");
+    updatePageContent('home');
+    history.replaceState({ pageId: 'home' }, '', '#home'); // Clean up history
+    history.pushState(null, '', null); // Re-add dummy state
+  }
+};
+
 
 window.initAOS = function() {
   const obs = new IntersectionObserver(entries => {
@@ -2587,18 +2806,11 @@ document.getElementById('stbtn').onclick = () => window.scrollTo({top:0,behavior
 // Loader
 window.addEventListener('load', () => setTimeout(() => document.getElementById('loader')?.classList.add('out'), 1800));
 
-// Mobile menu
+// CHANGE: Updated Mobile Menu Toggle
 window.toggleMob = function() {
   const m = document.getElementById('mob-nav');
-  const b = document.getElementById('hamburger');
   if (!m) return;
   m.classList.toggle('open');
-  const spans = b.querySelectorAll('span');
-  if (m.classList.contains('open')) {
-    spans[0].style.transform = 'rotate(45deg) translateY(7px)';
-    spans[1].style.opacity = '0';
-    spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
-  } else spans.forEach(s => { s.style.transform=''; s.style.opacity=''; });
 };
 
 // User dropdown
@@ -2620,6 +2832,13 @@ document.addEventListener('click', (e) => {
   const faqQ = e.target.closest('.faq-q');
   if (faqQ) {
     faqQ.closest('.faq-item').classList.toggle('open');
+  }
+  
+  // Close Mobile Menu if clicked outside
+  const mobNav = document.getElementById('mob-nav');
+  const hamburger = document.getElementById('hamburger');
+  if (mobNav && mobNav.classList.contains('open') && !mobNav.contains(e.target) && !hamburger.contains(e.target)) {
+    mobNav.classList.remove('open');
   }
 });
 
@@ -2682,7 +2901,13 @@ window.closePrivacy = function() {
     modal.classList.remove('show');
   }
 };
-
+// --- AUTO CLOSE MOBILE MENU LOGIC ---
+document.querySelectorAll('.mob-nav a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    // Jaise hi kisi link par click hoga, sidebar se 'open' class hat jayegi
+    document.getElementById('mob-nav').classList.remove('open');
+  });
+});
 </script>
 </body>
 </html>
