@@ -135,7 +135,7 @@ input,select,textarea{font-family:var(--font);}
   right: -300px; /* Start off-screen to the right */
   bottom: 0;
   width: 240px; /* Smaller width */
-  height: calc(100vh - 72px);
+  height: calc(100dvh - 72px);
   background: #fff;
   z-index: 999;
   padding: 20px;
@@ -504,20 +504,20 @@ p.sub.center{margin:12px auto 50px;}
 .chat-btn{position:fixed;bottom:30px;right:28px;width:70px;height:70px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;border-radius:50%;display:flex !important;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;box-shadow:var(--sh-rose);border:none;z-index:900;animation:chatPulse 3s ease-in-out infinite;}
 @keyframes chatPulse{0%,100%{box-shadow:0 4px 20px rgba(232,49,90,.4)}50%{box-shadow:0 8px 35px rgba(232,49,90,.65)}}
 
-.chat-box{
-  position:fixed;
-  bottom:100px;
-  right:28px;
-  width:340px;
-  max-height:80vh; /* Make max height responsive for floating chat */
-  background:#fff;
-  border-radius:var(--radius2);
-  box-shadow:var(--sh4);
-  z-index:901;
-  display:none;
-  flex-direction:column;
-  border:1.5px solid var(--border);
-  overflow:hidden;
+.chat-box {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 340px;
+  max-height: 80dvh;
+  background: #fff;
+  border-radius: var(--radius2);
+  box-shadow: var(--sh4);
+  z-index: 901;
+  display: none;
+  flex-direction: column;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
 }
 .chat-box.open{display:flex;}
 .chat-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
@@ -537,7 +537,16 @@ p.sub.center{margin:12px auto 50px;}
 .chat-msg{max-width:80%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.55;}
 .chat-msg.user{background:var(--rose);color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
 .chat-msg.admin{background:#fff;color:var(--text);align-self:flex-start;border-bottom-left-radius:3px;box-shadow:var(--sh1);}
-.chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  z-index: 10;
+}
 .chat-input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.88rem;outline:none;transition:border-color .2s;}
 .chat-input:focus{border-color:var(--rose);}
 
@@ -561,7 +570,7 @@ p.sub.center{margin:12px auto 50px;}
 /* Consultation Page Chat Specific Styles (Larger) */
 #pg-consultation #consult-messages {
   min-height: 350px; /* Increased from 250px */
-  max-height: 60vh; /* Dynamic height for consultation chat */
+  max-height: 60dvh; /* Dynamic height for consultation chat */
   max-width: 100%; /* Ensure it uses available width */
   overflow-y: auto;
   padding: 16px;
@@ -654,10 +663,10 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .chat-box { /* Make chat box more mobile-friendly (keyboard) */
     left: 20px;
     bottom: 20px; /* Adjust if the chat button is too close */
-    max-height: calc(100vh - 40px - 70px); /* Adjust for chat button + margin */
+    max-height: calc(100dvh - 40px - 70px); /* Adjust for chat button + margin */
   }
   .chat-box .chat-messages {
-    max-height: calc(100vh - 40px - 70px - 90px); /* Recalculate max-height for messages */
+    max-height: calc(100dvh - 40px - 70px - 90px); /* Recalculate max-height for messages */
   }
 }
 @media(max-width:480px){
@@ -1561,7 +1570,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       </div>
       <!-- Consultation Chat -->
       <div id="consultation-chat">
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);overflow:hidden;box-shadow:var(--sh2); display: flex; flex-direction: column;">
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);overflow:hidden;box-shadow:var(--sh2);display:flex;flex-direction:column;height:min(600px, 80dvh);"></div>
           <div style="background:linear-gradient(135deg,var(--navy),var(--navy2));padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
             <div style="font-weight:800;color:#fff;display:flex;align-items:center;gap:8px"><i class="fas fa-comments"></i> Live Consultation</div>
             <div id="consult-status" style="font-size:.75rem;color:rgba(255,255,255,.6)"><i class="fas fa-circle" style="color:var(--green);font-size:.5rem"></i> Online</div>
@@ -1728,29 +1737,17 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <div id="stbtn"><i class="fas fa-chevron-up"></i></div>
 
-<!-- ============================================================
-     FIREBASE + ALL JAVASCRIPT
-     ============================================================ -->
 <script type="module">
-// ── FIREBASE SDK IMPORTS ──
+// ── 1. FIREBASE SDK IMPORTS ──
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import {
-  getDatabase, ref, push, set, get, onValue, update, remove, increment, query, orderByChild, limitToLast
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-import { 
-  getFirestore, doc, setDoc, getDoc 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"; // Added Firestore imports
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getDatabase, ref, push, set, get, onValue, update, remove, increment, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-import { 
-  getMessaging, getToken, onMessage 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js"; // FCM imports
+import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
 
-// ── FIREBASE CONFIG ──
+// ── 2. FIREBASE CONFIG ──
 const firebaseConfig = {
   apiKey: "AIzaSyDulYuUV4Km2e67SSzveNl9poq90-EhkU8",
   authDomain: "zigzoog-5708f.firebaseapp.com",
@@ -1763,32 +1760,125 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
-const firestore = getFirestore(app); // Initialized Firestore
-const storage = getStorage(app);
-const messaging = getMessaging(app); // Initialize Firebase Messaging
-const googleProvider = new GoogleAuthProvider();
+const firestore = getFirestore(app);
+const messaging = getMessaging(app);
 
-const ADMIN_EMAIL = "infoskyeagle12@gmail.com";
+// ── 3. SETTINGS & GLOBALS ──
+const VAPID_KEY = "BDCIX9UAIBDhv5LAGIaPMzgonv5eLr55dQdeEMlkO8Qqcgg_m2cvwn43L0cidvWoL28Ovhi7iUA9fqxpbdgRCbs";
 let currentUser = null;
-let currentRating = 5;
-let adminChatUID = null;
-
-// New global variables for pending actions
-let pendingConsultMessage = null;
-let pendingBookingData = null;
-
-// Audio for new message notification
 const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
-notificationSound.volume = 0.5;
-let prevChatMessagesCount = {};
 
-// Your VAPID Key
-const VAPID_KEY = "BD2rdpQnCIi0ubxBye6-aN2NuDCO4jweIcrsXN6e9dvKepbrfH0DEnrQUJzys4N40hPA2bA1NyVzMcv2kqO0uFA";
+// ── 4. NOTIFICATION LOGIC ──
 
-// ── STATIC DATA (defaults, can be overridden by admin) ──
+// Permission lena aur Token Firestore mein save karna
+async function setupNotifications(user) {
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      const token = await getToken(messaging, { vapidKey: VAPID_KEY });
+      if (token) {
+        // Token ko Firestore mein save kar rahe hain taake Backend ko pata ho kahan notification bhejni hai
+        await setDoc(doc(firestore, "users", user.uid), {
+          token: token,
+          uid: user.uid,
+          role: 'patient',
+          email: user.email,
+          lastActive: Date.now()
+        }, { merge: true });
+        console.log("Notification address (Token) saved!");
+      }
+    }
+  } catch (err) {
+    console.error("Token Error:", err);
+  }
+}
+
+// Jab website KHULI ho tab notification aana
+onMessage(messaging, (payload) => {
+  showToast(`🔔 ${payload.notification.title}: ${payload.notification.body}`);
+  notificationSound.play().catch(e => {});
+});
+
+// ── 5. AUTH STATE (Login Check) ──
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+  updateNavForUser(user); // Nav update karne ka function niche hai
+  
+  if (user) {
+    setupNotifications(user); // Login hotay hi token save karo
+    loadMyBookings(user.uid);
+    loadConsultChat(user.uid);
+  } else {
+    // Clear data if logged out
+    const container = document.getElementById('my-bookings-container');
+    if (container) container.innerHTML = '<p style="text-align:center">Please login to view bookings.</p>';
+  }
+});
+
+// ── 6. ALL OTHER FUNCTIONS (REQUIRED) ──
+
+window.handleLogin = async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const pass = document.getElementById('login-pass').value;
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    closeAuthModal();
+    showToast('✅ Welcome back!');
+  } catch (err) { showToast('❌ Login Failed', true); }
+};
+
+window.handleRegister = async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('reg-email').value;
+  const pass = document.getElementById('reg-pass').value;
+  const name = document.getElementById('reg-fname').value + " " + document.getElementById('reg-lname').value;
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    await setDoc(doc(firestore, "users", cred.user.uid), { name, email, uid: cred.user.uid, role: 'patient' });
+    closeAuthModal();
+    showToast('✅ Account Created!');
+  } catch (err) { showToast('❌ Error: ' + err.message, true); }
+};
+
+window.sendChatMsg = async () => {
+  const input = document.getElementById('chat-input');
+  if (!input.value.trim() || !currentUser) return;
+  await push(ref(db, `chats/${currentUser.uid}`), {
+    sender: 'user',
+    text: input.value,
+    timestamp: Date.now()
+  });
+  input.value = '';
+};
+
+// Help helper for Toast
+window.showToast = (msg, isError = false) => {
+  const toast = document.createElement('div');
+  toast.className = 'toast show';
+  toast.style.position = 'fixed';
+  toast.style.bottom = '20px';
+  toast.style.right = '20px';
+  toast.style.background = isError ? 'red' : '#0b1f3a';
+  toast.style.color = 'white';
+  toast.style.padding = '15px';
+  toast.style.borderRadius = '10px';
+  toast.style.zIndex = '9999';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+};
+
+// Service Worker Register (Background notifications ke liye)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
+    .then(reg => console.log('SW Registered'))
+    .catch(err => console.log('SW Failed', err));
+}
+
 const STATIC_DENTAL_SERVICES = [
   {name:'Teeth Whitening',icon:'✨',desc:'Advanced professional whitening — brighter smile by 5-10 shades in one visit.',price:'Consult for Price',cat:'dental'},
   {name:'Root Canal (RCT)',icon:'🩺',desc:'Pain-free root canal treatment to save your natural tooth permanently.',price:'Consult for Price',cat:'dental'},

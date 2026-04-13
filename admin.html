@@ -876,14 +876,7 @@ const ADMIN_EMAILS = [
 ];
 // =======================================================================
 
-const NOTIFICATION_ICON_URL = "https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwHghVlF&_nc_oc=AdqOJ-Ac1llHmmPRDxgBVF7J7gLG9P4mJhMZUh2J5-_-KlcgAxV4XexlaGhA6UkanPw&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=BL8LM-J3NYqKGiMOIqduPw&_nc_ss=7a3a8&oh=00_Af1nBC-TKukubOfGDW25DChFv9kr8WWaS3swFjQhYzAlaA&oe=69DD3C45";
-const VAPID_KEY = "BDCIX9UAIBDhv5LAGIaPMzgonv5eLr55dQdeEMlkO8Qqcgg_m2cvwn43L0cidvWoL28Ovhi7iUA9fqxpbdgRCbs"; // <<< IMPORTANT: REPLACE WITH YOUR ACTUAL VAPID KEY
-// 🚨🚨🚨 SECURITY WARNING 🚨🚨🚨
-// NEVER EXPOSE YOUR FCM SERVER KEY IN CLIENT-SIDE CODE IN PRODUCTION!
-// This is for demonstration purposes only, as per user's request for "all in one file".
-// In a real application, these calls should be made to a secure backend (e.g., Firebase Cloud Functions).
-const FCM_SERVER_KEY = "YOUR_FCM_SERVER_KEY_HERE"; // <<< IMPORTANT: REPLACE WITH YOUR FCM SERVER KEY
-
+const VAPID_KEY = "BDCIX9UAIBDhv5LAGIaPMzgonv5eLr55dQdeEMlkO8Qqcgg_m2cvwn43L0cidvWoL28Ovhi7iUA9fqxpbdgRCbs";
 
 let currentChatUID = null;
 let bookingsData = {};
@@ -891,152 +884,54 @@ let prevBookingCount = 0;
 let prevChatCount = {};
 let soundOn = true;
 
-// Register Service Worker for FCM
+// 1. Service Worker Register Karna
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/firebase-messaging-sw.js')
-    .then((registration) => {
-      console.log('Admin Service Worker registered with scope:', registration.scope);
-    }).catch((error) => {
-      console.error('Admin Service Worker registration failed:', error);
-    });
+  navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
+    console.log('Service Worker Registered');
+  });
 }
 
-// Function to request notification permission and get token for the admin
+// 2. Admin se Notification Permission Lena aur Token Save Karna
 async function initNotification(userId) {
   try {
     const permission = await Notification.requestPermission();
-
     if (permission === "granted") {
       const token = await getToken(messaging, { vapidKey: VAPID_KEY });
-      console.log("Admin FCM Device Token:", token);
-
-      // Save token to Firestore for the admin user
+      console.log("Admin FCM Token Ready");
+      // Admin ka token Firestore mein save kar rahe hain
       await setDoc(doc(firestoreDb, "users", userId), {
-        token: token // This token is for the admin user, useful if you want to send notifications *to* the admin
+        token: token,
+        role: 'admin' // Yeh batayega backend ko ke yeh ADMIN hai
       }, { merge: true });
-      console.log("Admin FCM token saved to Firestore for user:", userId);
-
-    } else if (permission === "denied") {
-      console.warn("Admin Notification permission denied.");
-      toast('Notifications blocked. Admin will not receive alerts.', true);
     } else {
-      console.log("Admin Notification permission dismissed.");
+      toast('Notifications blocked. Please enable them.', true);
     }
   } catch (error) {
-    console.error("Error getting Admin FCM token:", error);
-    toast('Failed to get admin notification token. ' + error.message, true);
+    console.error("Error getting Admin token:", error);
   }
 }
 
-// Handle foreground messages for the Admin Panel
+// 3. Foreground Messages (Jab website open ho tab alert dena)
 onMessage(messaging, (payload) => {
-  console.log("Admin Foreground message received:", payload);
-  const { title, body } = payload.notification;
-  // Use the admin panel's toast system for foreground notifications
-  toast(`${title}: ${body}`);
-  // Also play a sound for admin notifications
-  playSound('notification'); // Can add a specific sound type for general notifications
+  toast(`🔔 ${payload.notification.title}: ${payload.notification.body}`);
+  playSound('notification');
 });
 
-// 🔹 Simulated Backend Function: Send Notification to Single User
-// In a real app, this would be an HTTP Cloud Function callable from the client.
-async function sendNotificationToUserFromAdmin(userId, title, body, click_url = '/') {
-  console.log(`[Admin Panel] Attempting to send notification to user ${userId}: ${title} - ${body}`);
-  try {
-    const userRef = doc(firestoreDb, "users", userId);
-    const userSnap = await getDoc(userRef);
-    if (!userSnap.exists() || !userSnap.data().token) {
-      console.warn(`No FCM token found for user ${userId}. Notification not sent.`);
-      toast(`No notification token for user ${userId}.`, true);
-      return;
-    }
-
-    const token = userSnap.data().token;
-
-    // Simulate calling a backend function which would then call admin.messaging().send()
-    // For this demonstration, we're making the actual FCM call directly from here.
-    // In production, replace this fetch with a call to your Cloud Function endpoint.
-    const response = await fetch("https://fcm.googleapis.com/fcm/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `key=${FCM_SERVER_KEY}` // 🚨 EXPOSED SERVER KEY! Replace with a Cloud Function call.
-      },
-      body: JSON.stringify({
-        to: token,
-        notification: {
-          title: title,
-          body: body,
-          icon: NOTIFICATION_ICON_URL,
-          click_action: click_url
-        }
-      })
+// 4. Send Broadcast (Backend ko bolna ke sab ko message bhej do)
+window.promptAndSendBroadcast = async function() {
+  const title = prompt("Enter broadcast title:", "Important Update");
+  if (!title) return;
+  const body = prompt("Enter broadcast message:", "We have a new service available!");
+  if (body) {
+    // Database mein entry hogi, aur Firebase ka Backend (CMD wala) khud sab ko notifications bhej dega!
+    await push(ref(db, 'broadcasts'), {
+      title: title,
+      body: body,
+      timestamp: Date.now()
     });
-
-    if (response.ok) {
-      console.log(`Notification sent to user ${userId}: ${title}`);
-      toast(`Notification sent to ${userSnap.data().name || userId}!`);
-    } else {
-      const errorData = await response.json();
-      console.error(`Failed to send notification to user ${userId}:`, errorData);
-      toast(`Failed to send notification. ${errorData.message || 'Check console.'}`, true);
-    }
-  } catch (err) {
-    console.error("Error initiating notification send:", err);
-    toast('Error sending notification.', true);
+    toast('✅ Broadcast sending started!');
   }
-}
-
-// 🔹 Simulated Backend Function: Send Notification to ALL users
-// In a real app, this would be an HTTP Cloud Function callable from the client.
-async function sendBroadcastNotificationFromAdmin(title, body, click_url = '/') {
-  console.log(`[Admin Panel] Attempting to send broadcast: ${title} - ${body}`);
-  try {
-    const usersSnapshot = await getDocs(collection(firestoreDb, "users"));
-    const tokens = [];
-    usersSnapshot.forEach((userDoc) => {
-      const token = userDoc.data().token;
-      // Exclude admin's own token from broadcast if needed, or filter by user role
-      if (token && auth.currentUser && userDoc.id !== auth.currentUser.uid) { // Example: don't send broadcast to self
-        tokens.push(token);
-      }
-    });
-
-    if (tokens.length === 0) {
-      console.log("No registered non-admin users to send broadcast to.");
-      toast('No active users for broadcast.', true);
-      return;
-    }
-
-    // FCM allows sending to multiple tokens in one request (up to 500)
-    // For a large number of users, batching or topic messaging is more efficient.
-    // Here, for simplicity in a single file context, we'll send individual requests.
-    // In a real application, you'd use a Cloud Function that handles batch sending or topic messaging.
-    for (const token of tokens) {
-      await fetch("https://fcm.googleapis.com/fcm/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `key=${FCM_SERVER_KEY}` // 🚨 EXPOSED SERVER KEY! Replace with a Cloud Function call.
-        },
-        body: JSON.stringify({
-          to: token,
-          notification: {
-            title: title,
-            body: body,
-            icon: NOTIFICATION_ICON_URL,
-            click_action: click_url
-          }
-        })
-      });
-    }
-    console.log(`Broadcast notification sent to ${tokens.length} users.`);
-    toast(`✅ Broadcast sent to ${tokens.length} users!`);
-  } catch (err) {
-    console.error("Error initiating broadcast send:", err);
-    toast('Error sending broadcast notification.', true);
-  }
-}
+};
 
 // ── 12 VIDEO SECTIONS ──
 window.VIDEO_DEFS = [
