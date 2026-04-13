@@ -127,32 +127,14 @@ input,select,textarea{font-family:var(--font);}
 .nav-btn-book:hover{transform:translateY(-2px);box-shadow:var(--sh-rose);}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:5px;}
 .hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s;display:block;}
-
-/* CHANGE: Updated Mobile Menu Styles for Right-Side Slide */
-.mob-nav {
-  position: fixed;
-  top: 72px;
-  right: -300px; /* Start off-screen to the right */
-  bottom: 0;
-  width: 240px; /* Smaller width */
-  height: calc(100dvh - 72px);
-  background: #fff;
-  z-index: 999;
-  padding: 20px;
-  border-left: 1px solid var(--border);
-  transition: right 0.4s var(--ease); /* Animate the 'right' property */
-  box-shadow: -5px 0 25px rgba(11, 31, 58, 0.1);
-  overflow-y: auto;
-}
-.mob-nav.open {
-  right: 0; /* Slide into view */
-}
+.mob-nav{position:fixed;top:72px;left:0;right:0;background:#fff;z-index:999;padding:20px 5% 28px;border-bottom:1px solid var(--border);transform:translateY(-110%);transition:transform .4s var(--ease);box-shadow:var(--sh3);}
+.mob-nav.open{transform:translateY(0);}
 .mob-nav a{display:block;padding:12px 0;font-size:.93rem;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border);cursor:pointer;}
 .mob-nav a:hover{color:var(--rose);}
 .mob-nav .mob-book{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;}
 
 /* ── EMERGENCY BAR ── */
-.emergency{background:var(--rose);padding:12px 5%;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;z-index:900;} /* Added z-index */
+.emergency{background:var(--rose);padding:12px 5%;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
 .emergency p{color:#fff;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:8px;}
 .emergency a{background:#fff;color:var(--rose);padding:7px 18px;border-radius:50px;font-weight:800;font-size:.85rem;transition:all .2s;}
 .emergency a:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(0,0,0,.2);}
@@ -227,14 +209,6 @@ p.sub.center{margin:12px auto 50px;}
 .view-more{display:inline-flex;align-items:center;gap:6px;color:var(--rose);font-weight:700;font-size:.85rem;border:1.5px solid var(--rose-soft);padding:9px 20px;border-radius:8px;transition:all .3s;white-space:nowrap;}
 .view-more:hover{background:var(--rose);color:#fff;border-color:var(--rose);transform:translateY(-2px);}
 
-/* NEW: Added for responsive video sections on About, Services, Doctors pages */
-.content-video-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.9rem;border:none;transition:all .3s var(--ease);cursor:pointer;}
 .btn-rose{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;box-shadow:0 4px 15px rgba(232,49,90,.3);}
@@ -308,7 +282,6 @@ p.sub.center{margin:12px auto 50px;}
 .video-info-title{font-weight:800;font-size:1rem;color:#fff;margin-bottom:4px;}
 .video-info-sub{font-size:.78rem;color:rgba(255,255,255,.7);}
 /* Video Actions — Like/Share/Download */
-.video-actions{display:flex;gap:8px;padding:12px 16px;background:var(--light);border-top:1px solid var(--border);align-items:center;}
 .v-action-btn{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--text2);background:none;border:none;padding:5px 10px;border-radius:6px;transition:all .2s;cursor:pointer;}
 .v-action-btn:hover{background:var(--rose-pale);color:var(--rose);}
 .v-action-btn.liked{color:var(--rose);}
@@ -500,24 +473,43 @@ p.sub.center{margin:12px auto 50px;}
 .page-banner p{color:rgba(255,255,255,.6);margin-top:8px;font-size:.92rem;position:relative;z-index:1;}
 
 /* ── LIVE CHAT ── */
-/* chat-btn is always shown now, and its size increased */
-.chat-btn{position:fixed;bottom:30px;right:28px;width:70px;height:70px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;border-radius:50%;display:flex !important;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;box-shadow:var(--sh-rose);border:none;z-index:900;animation:chatPulse 3s ease-in-out infinite;}
+/* chat-btn is now a navigation button to consultation page */
+.chat-btn{
+  position:fixed;
+  bottom:30px;
+  right:28px;
+  width:70px;
+  height:70px;
+  background:linear-gradient(135deg,var(--rose),var(--rose2));
+  color:#fff;
+  border-radius:50%;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  cursor:pointer;
+  box-shadow:var(--sh-rose);
+  border:none;
+  z-index:900;
+  animation:chatPulse 3s ease-in-out infinite;
+}
 @keyframes chatPulse{0%,100%{box-shadow:0 4px 20px rgba(232,49,90,.4)}50%{box-shadow:0 8px 35px rgba(232,49,90,.65)}}
 
-.chat-box {
-  position: fixed;
-  bottom: 100px;
-  right: 28px;
-  width: 340px;
-  max-height: 80dvh;
-  background: #fff;
-  border-radius: var(--radius2);
-  box-shadow: var(--sh4);
-  z-index: 901;
-  display: none;
-  flex-direction: column;
-  border: 1.5px solid var(--border);
-  overflow: hidden;
+/* Floating Chat Box - Hidden by default, activated in JS if needed */
+.chat-box{
+  position:fixed;
+  bottom:100px;
+  right:28px;
+  width:340px;
+  max-height:80vh;
+  background:#fff;
+  border-radius:var(--radius2);
+  box-shadow:var(--sh4);
+  z-index:901;
+  display:none; /* Explicitly hidden in CSS as requested, button navigates to page now */
+  flex-direction:column;
+  border:1.5px solid var(--border);
+  overflow:hidden;
 }
 .chat-box.open{display:flex;}
 .chat-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
@@ -537,16 +529,7 @@ p.sub.center{margin:12px auto 50px;}
 .chat-msg{max-width:80%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.55;}
 .chat-msg.user{background:var(--rose);color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
 .chat-msg.admin{background:#fff;color:var(--text);align-self:flex-start;border-bottom-left-radius:3px;box-shadow:var(--sh1);}
-.chat-input-row {
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  border-top: 1px solid var(--border);
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  z-index: 10;
-}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);}
 .chat-input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.88rem;outline:none;transition:border-color .2s;}
 .chat-input:focus{border-color:var(--rose);}
 
@@ -569,9 +552,9 @@ p.sub.center{margin:12px auto 50px;}
 
 /* Consultation Page Chat Specific Styles (Larger) */
 #pg-consultation #consult-messages {
-  min-height: 350px; /* Increased from 250px */
-  max-height: 60dvh; /* Dynamic height for consultation chat */
-  max-width: 100%; /* Ensure it uses available width */
+  min-height: 350px;
+  max-height: 60vh; /* Dynamic height for consultation chat */
+  max-width: 100%;
   overflow-y: auto;
   padding: 16px;
   background: var(--off);
@@ -637,11 +620,25 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .dept-grid{margin-top:-40px;}
   .contact-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr 1fr;}
-  
-  /* CHANGE: Added responsive style for video sections */
-  .content-video-grid {
-    grid-template-columns: 1fr; /* Switch to single column */
-    gap: 30px;
+
+  /* About Page - Images below text on medium screens */
+  .about-grid-content,
+  .dental-video-grid, .medical-video-grid, .doctors-video-grid,
+  .patient-resources-grid {
+    grid-template-columns: 1fr; /* Stack into a single column */
+    gap: 30px; /* Adjust gap for stacking */
+  }
+  .about-grid-content { /* Specific order for About intro section */
+    flex-direction: column-reverse; /* Image content below text content */
+  }
+  /* For video sections, make sure text is first, then video */
+  .about-video-grid, .doctors-video-grid {
+    display: flex;
+    flex-direction: column-reverse; /* Text first, then video */
+  }
+  .dental-video-grid, .medical-video-grid {
+    display: flex;
+    flex-direction: column; /* Text first, then video (already naturally stacked but explicit) */
   }
 }
 @media(max-width:768px){
@@ -658,15 +655,43 @@ footer{background:#04111e;padding:65px 5% 26px;}
   section.section{padding:65px 5%;}
   .footer-grid{grid-template-columns:1fr;}
   .leader-card,.leader-card:nth-child(even){flex-direction:column;gap:24px;}
-  .video-section-grid,.video-section-grid3{grid-template-columns:1fr;}
-  .chat-box{width:calc(100vw - 40px);right:20px;}
-  .chat-box { /* Make chat box more mobile-friendly (keyboard) */
-    left: 20px;
-    bottom: 20px; /* Adjust if the chat button is too close */
-    max-height: calc(100dvh - 40px - 70px); /* Adjust for chat button + margin */
+  
+  /* All Videos now stack into one column */
+  .video-section-grid,.video-section-grid3{
+    grid-template-columns:1fr;
+    gap: 25px; /* Adjusted gap */
+  }
+  .video-card-wrap .video-thumb img {
+    height: 250px; /* Increase video poster height for mobile */
+  }
+  .video-card-wrap .video-player-container {
+      height: 250px; /* Ensure player container matches poster height */
+  }
+
+  /* Mobile Chat Box Adjustments (floating chat is hidden, but consulted page chat is adjusted) */
+  .chat-box{ /* This is the floating chat, now display:none */
+    width:calc(100vw - 40px);
+    right:20px;
+    left:20px; /* Center horizontally */
+    bottom:20px;
+    max-height: calc(100vh - 40px); /* Fill most of viewport height, minus some padding */
   }
   .chat-box .chat-messages {
-    max-height: calc(100dvh - 40px - 70px - 90px); /* Recalculate max-height for messages */
+    max-height: calc(100vh - 40px - 90px); /* Recalculate max-height for messages */
+  }
+  /* Consultation Page Chat Specific Mobile Adjustments */
+  #pg-consultation #consult-messages {
+    min-height: 250px; /* Maintain a good minimum height */
+    max-height: calc(100vh - 120px - 90px); /* Dynamic height for consultation chat, considering banner + input */
+  }
+  .toast-wrap{right:10px;bottom:10px;} /* Adjust toast for mobile */
+  #stbtn{left:10px;bottom:10px;} /* Adjust scroll to top for mobile */
+
+  /* About Page specific for very small screens */
+  .about-grid-content .aos-l,
+  .about-grid-content .aos-r {
+    display: flex;
+    flex-direction: column;
   }
 }
 @media(max-width:480px){
@@ -680,6 +705,15 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .hero-grid{text-align:left;}
   .hero-trust{justify-content:flex-start;}
   .hero-badge{margin-left:0;}
+  .topbar-left{flex-direction:column;align-items:flex-start;gap:5px;}
+  .topbar-right{width:100%;justify-content:center;}
+  .topbar{justify-content:center;}
+  .video-card-wrap .video-thumb img {
+    height: 180px; /* Further reduce video poster height for very small mobiles */
+  }
+  .video-card-wrap .video-player-container {
+      height: 180px; /* Match player container height */
+  }
 }
 </style>
 </head>
@@ -709,7 +743,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="nav-logo" onclick="navigate('home')">
+  <div class="nav-logo" onclick="goPage('home')">
     <div class="logo-ico">
       <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwE7b5YK&_nc_oc=AdqCi1hx4epJvuZuJpRF7CoBBPO1zxHuP-DS0k4IKPu5zorRa2RAn1j9IECfAdWDe-g&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=d797lZ06ggoaY4wtoCBWKg&_nc_ss=7a3a8&oh=00_Af1rOK5UA9t9_xnz7CnfIkQxjgIlEeLnf6l6RwnurIxQmQ&oe=69DEC605" alt="Al-Fazal Hospital Logo" style="width:100%; height:100%; object-fit:contain;">
     </div>
@@ -720,24 +754,24 @@ footer{background:#04111e;padding:65px 5% 26px;}
   </div>
 
   <div class="nav-links">
-    <a onclick="navigate('home')" data-p="home" class="anav">Home</a>
-    <a onclick="navigate('about')" data-p="about">About</a>
+    <a onclick="goPage('home')" data-p="home" class="anav">Home</a>
+    <a onclick="goPage('about')" data-p="about">About</a>
 
     <!-- Services Dropdown -->
     <div class="nav-dd">
       <a style="cursor:pointer">Services <i class="fas fa-chevron-down" style="font-size:.6rem;margin-left:3px"></i></a>
       <div class="nav-dd-menu">
-        <a onclick="navigate('dental-services')"><i class="fas fa-tooth" style="color:var(--rose);width:16px"></i> Dental Services</a>
-        <a onclick="navigate('medical-services')"><i class="fas fa-stethoscope" style="color:var(--navy3);width:16px"></i> Medical Services</a>
+        <a onclick="goPage('dental-services')"><i class="fas fa-tooth" style="color:var(--rose);width:16px"></i> Dental Services</a>
+        <a onclick="goPage('medical-services')"><i class="fas fa-stethoscope" style="color:var(--navy3);width:16px"></i> Medical Services</a>
       </div>
     </div>
 
-    <a onclick="navigate('doctors')" data-p="doctors">Doctors</a>
-    <a onclick="navigate('treatments')" data-p="treatments">Treatments</a>
-    <a onclick="navigate('patients')" data-p="patients">Patients</a>
-    <a onclick="navigate('reviews')" data-p="reviews">Reviews</a>
-    <a onclick="navigate('gallery')" data-p="gallery">Gallery</a>
-    <a onclick="navigate('contact')" data-p="contact">Contact</a>
+    <a onclick="goPage('doctors')" data-p="doctors">Doctors</a>
+    <a onclick="goPage('treatments')" data-p="treatments">Treatments</a>
+    <a onclick="goPage('patients')" data-p="patients">Patients</a>
+    <a onclick="goPage('reviews')" data-p="reviews">Reviews</a>
+    <a onclick="goPage('gallery')" data-p="gallery">Gallery</a>
+    <a onclick="goPage('contact')" data-p="contact">Contact</a>
   </div>
 
   <div class="nav-actions">
@@ -751,14 +785,14 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserDD()">U</button>
       <div class="user-dd-menu" id="user-dd-menu">
         <div class="user-dd-name" id="user-dd-name">Welcome!</div>
-        <a onclick="navigate('my-bookings')"><i class="fas fa-calendar"></i> My Bookings</a>
-        <a onclick="navigate('consultation')"><i class="fas fa-comments"></i> Free Consultation</a>
+        <a onclick="goPage('my-bookings')"><i class="fas fa-calendar"></i> My Bookings</a>
+        <a onclick="goPage('consultation')"><i class="fas fa-comments"></i> Free Consultation</a>
         <!-- Admin Link Removed -->
         <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
       </div>
     </div>
 
-    <button class="nav-btn-book" onclick="navigate('book')">
+    <button class="nav-btn-book" onclick="goPage('book')">
       <i class="fas fa-calendar-check"></i> Book Now
     </button>
     <button class="hamburger" id="hamburger" onclick="toggleMob()">
@@ -769,18 +803,18 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <!-- MOBILE NAV -->
 <div class="mob-nav" id="mob-nav">
-  <a onclick="navigate('home')">Home</a>
-  <a onclick="navigate('about')">About</a>
-  <a onclick="navigate('dental-services')">Dental Services</a>
-  <a onclick="navigate('medical-services')">Medical Services</a>
-  <a onclick="navigate('doctors')">Doctors</a>
-  <a onclick="navigate('treatments')">Treatments</a>
-  <a onclick="navigate('patients')">Patients</a>
-  <a onclick="navigate('reviews')">Reviews</a>
-  <a onclick="navigate('gallery')">Gallery</a>
-  <a onclick="navigate('contact')">Contact</a>
-  <a href="#" onclick="openAuthModal('login')" style="color:var(--navy3)"><i class="fas fa-user"></i> Login / Sign Up</a>
-  <a class="mob-book" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+  <a onclick="goPage('home');toggleMob(true)">Home</a>
+  <a onclick="goPage('about');toggleMob(true)">About</a>
+  <a onclick="goPage('dental-services');toggleMob(true)">Dental Services</a>
+  <a onclick="goPage('medical-services');toggleMob(true)">Medical Services</a>
+  <a onclick="goPage('doctors');toggleMob(true)">Doctors</a>
+  <a onclick="goPage('treatments');toggleMob(true)">Treatments</a>
+  <a onclick="goPage('patients');toggleMob(true)">Patients</a>
+  <a onclick="goPage('reviews');toggleMob(true)">Reviews</a>
+  <a onclick="goPage('gallery');toggleMob(true)">Gallery</a>
+  <a onclick="goPage('contact');toggleMob(true)">Contact</a>
+  <a href="#" onclick="openAuthModal('login');toggleMob(true)" style="color:var(--navy3)"><i class="fas fa-user"></i> Login / Sign Up</a>
+  <a class="mob-book" onclick="goPage('book');toggleMob(true)"><i class="fas fa-calendar-check"></i> Book Appointment</a>
 </div>
 
 <!-- EMERGENCY BAR -->
@@ -813,8 +847,8 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <h1 class="hero-title">Your Health, Our<em>Sacred Priority</em></h1>
         <p class="hero-sub">Al-Fazal Medical &amp; Dental Hospital — expert doctors, pain-free treatments, and world-class facilities in BOR Society, Johar Town, Lahore. Open daily 11:30AM–11:30PM.</p>
         <div class="hero-btns">
-          <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Appointment</button>
-          <button class="btn btn-ghost" onclick="navigate('consultation')"><i class="fas fa-comments"></i> Free Consultation</button>
+          <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+          <button class="btn btn-ghost" onclick="goPage('consultation')"><i class="fas fa-comments"></i> Free Consultation</button>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-item"><i class="fas fa-shield-alt"></i> ISO Sterilization</div>
@@ -851,7 +885,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
   <!-- DEPT CARDS -->
   <div class="dept-grid">
-    <div class="dept-card dental aos-l" onclick="navigate('dental-services')">
+    <div class="dept-card dental aos-l" onclick="goPage('dental-services')">
       <div class="dept-ico"><i class="fas fa-tooth"></i></div>
       <div>
         <h3 class="dept-ttl">Dental Care</h3>
@@ -859,7 +893,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <span class="dept-link">Explore Dental <i class="fas fa-arrow-right"></i></span>
       </div>
     </div>
-    <div class="dept-card medical aos-r" onclick="navigate('medical-services')">
+    <div class="dept-card medical aos-r" onclick="goPage('medical-services')">
       <div class="dept-ico"><i class="fas fa-stethoscope"></i></div>
       <div>
         <h3 class="dept-ttl">Medical Care</h3>
@@ -924,7 +958,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <div class="leader-content">
         <h3 class="leader-nm">Khawaja Ishfaq Ahmed</h3>
         <span class="leader-role">Founder &amp; CEO, Al-Fazal Group</span>
-        <p class="leader-quote">"Our journey began with a vision to build trusted and high-quality services for the community. Everyone who connects with Al-Fazal becomes part of the Al-Fazal family, where we focus on professionalism, trust, and excellence. We are committed to building a strong legacy of quality services and to positive impact for our community."</p>
+        <p class="leader-quote">"Our journey began with a vision to build trusted and high-quality services for the community. Everyone who connects with Al-Fazal becomes part of the Al-Fazal family, where we focus on professionalism, trust, and excellence. We are committed to building a strong legacy of quality services and positive impact for our community."</p>
       </div>
     </div>
     <div class="leader-card aos">
@@ -971,7 +1005,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">124</span></button>
+          <button class="v-action-btn" data-video-key="main_tour" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">124</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Al-Fazal Hospital Clinic Tour')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1008,7 +1042,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <div class="lbl">Patient Stories</div>
         <h2 class="st">What Patients <em>Say</em></h2>
       </div>
-      <button class="view-more" onclick="navigate('reviews')">All Reviews <i class="fas fa-arrow-right"></i></button>
+      <button class="view-more" onclick="goPage('reviews')">All Reviews <i class="fas fa-arrow-right"></i></button>
     </div>
     <div class="rev-grid" id="home-reviews-container">
       <!-- Static reviews + Firebase reviews loaded here -->
@@ -1038,7 +1072,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <h2>Don't Wait — Your Health Deserves <em>The Best</em></h2>
       <p>Book a free consultation today. Our expert doctors will create a personalized treatment plan just for you — no obligation, just honest care.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
+        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
         <a href="tel:03184195665" class="btn btn-outline-white"><i class="fas fa-phone"></i> Call Now</a>
       </div>
     </div>
@@ -1048,7 +1082,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
   <div class="cta-banner">
     <h2>Ready to Prioritize Your Health?</h2>
     <p>Our specialists are here 7 days a week — whether you need a routine medical checkup or a complete dental smile makeover.</p>
-    <button class="btn-cta-white" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
+    <button class="btn-cta-white" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Your Free Consultation</button>
   </div>
 
 </div><!-- /home -->
@@ -1056,13 +1090,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── ABOUT PAGE ── -->
 <div id="pg-about" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>About</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>About</span></div>
     <h1>About <span>Al-Fazal Hospital</span></h1>
     <p>Our journey of excellence in medical &amp; dental care since 2005</p>
   </div>
 
   <section class="section">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center" class="about-grid-content">
       <div class="aos-l">
         <img src="https://images.unsplash.com/photo-1663755785915-ef1748dda404?w=700&q=80&auto=format&fit=crop" alt="Al-Fazal Hospital" style="width:100%;height:450px;object-fit:cover;border-radius:var(--radius2);border:2px solid var(--rose-soft);box-shadow:var(--sh3);">
       </div>
@@ -1071,26 +1105,25 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <h2 class="st">Welcome to the <em>Al-Fazal Family</em></h2>
         <p style="font-size:.92rem;color:var(--text2);line-height:1.85;margin:16px 0">Established in 2005, Al-Fazal Medical &amp; Dental Hospital has proudly served Johar Town as its most trusted healthcare institution for over 20 years. Our foundation is built on an unwavering commitment to providing advanced, patient-centric solutions within a comfortable, state-of-the-art environment.</p>
         <p style="font-size:.92rem;color:var(--text2);line-height:1.85;margin-bottom:22px">We believe that healthy and beautiful smiles — and healthy bodies — are about boosting confidence, ensuring comfort, and contributing to overall wellbeing. Our dedicated team leverages modern technology and evidence-based practices to deliver safe, effective, and affordable treatments tailored to each individual.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px" class="about-stats-grid">
           <div style="background:var(--rose-pale);border-radius:var(--radius);padding:16px;border-left:3px solid var(--rose)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--rose);font-weight:900">20K+</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">PATIENTS TREATED</div></div>
           <div style="background:var(--rose-pale);border-radius:var(--radius);padding:16px;border-left:3px solid var(--rose)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--rose);font-weight:900">20 Yrs</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">OF EXCELLENCE</div></div>
           <div style="background:var(--light);border-radius:var(--radius);padding:16px;border-left:3px solid var(--navy3)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--navy3);font-weight:900">15+</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">EXPERT DOCTORS</div></div>
           <div style="background:var(--light);border-radius:var(--radius);padding:16px;border-left:3px solid var(--navy3)"><div style="font-family:var(--serif);font-size:1.6rem;color:var(--navy3);font-weight:900">4.9★</div><div style="font-size:.75rem;color:var(--text3);letter-spacing:1px;margin-top:2px">PATIENT RATING</div></div>
         </div>
-        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Appointment</button>
+        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Appointment</button>
       </div>
     </div>
   </section>
 
   <!-- About Video (Admin Controlled) -->
   <section class="section section-light">
-    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
-    <div class="content-video-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center" class="about-video-grid">
       <div class="aos-l">
         <div class="lbl">Our Mission</div>
         <h2 class="st">Committed to <em>Your Wellbeing</em></h2>
         <p class="sub" style="margin:14px 0 24px">Discover the heart and soul behind Al-Fazal Hospital — our commitment to excellence, patient-first philosophy, and creating lasting health for Lahore's community.</p>
-        <button class="btn btn-navy" onclick="navigate('about')">Learn More <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-navy" onclick="goPage('about')">Learn More <i class="fas fa-arrow-right"></i></button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap aos-r" data-video-key="about_video" onclick="playVideo(this)" style="border-radius:var(--radius2)">
@@ -1103,7 +1136,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">89</span></button>
+          <button class="v-action-btn" data-video-key="about_video" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">89</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Al-Fazal Clinic Philosophy')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1131,7 +1164,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── DENTAL SERVICES PAGE ── -->
 <div id="pg-dental-services" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Dental Services</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Dental Services</span></div>
     <h1>Dental <span>Services</span></h1>
     <p>Complete dental care — from routine checkups to advanced cosmetic procedures</p>
   </div>
@@ -1141,13 +1174,12 @@ footer{background:#04111e;padding:65px 5% 26px;}
     </div>
   </section>
   <section class="section section-light">
-    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
-    <div class="content-video-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center" class="dental-video-grid">
       <div>
         <div class="lbl">Dental Video</div>
         <h2 class="st">Our <em>Dental Procedures</em></h2>
         <p class="sub" style="margin:14px 0 22px">Watch how our expert team performs various dental treatments with precision, care, and state-of-the-art equipment.</p>
-        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Dental Appointment</button>
+        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Dental Appointment</button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="dental_video" onclick="playVideo(this)">
@@ -1155,7 +1187,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">67</span></button>
+          <button class="v-action-btn" data-video-key="dental_video" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">67</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Al-Fazal Dental Treatment Showcase')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1168,7 +1200,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div class="parallax-content">
       <h2>Ready to Start Your <em>Treatment?</em></h2>
       <p>Book a free consultation and get a personalized treatment plan with transparent pricing — no hidden costs.</p>
-      <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
+      <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
     </div>
   </div>
 </div><!-- /dental-services -->
@@ -1176,7 +1208,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── MEDICAL SERVICES PAGE ── -->
 <div id="pg-medical-services" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Medical Services</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Medical Services</span></div>
     <h1>Medical <span>Services</span></h1>
     <p>Comprehensive medical care — from general physician to specialist consultations</p>
   </div>
@@ -1186,13 +1218,12 @@ footer{background:#04111e;padding:65px 5% 26px;}
     </div>
   </section>
   <section class="section section-navy">
-    <!-- CHANGE: Replaced inline style with a class for responsiveness -->
-    <div class="content-video-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center" class="medical-video-grid">
       <div>
         <div class="lbl" style="color:var(--rose2)">Medical Services Video</div>
         <h2 class="st white">Our <em>Medical Expertise</em></h2>
         <p class="sub white" style="margin:14px 0 22px">See our comprehensive medical services and how our expert team provides personalized, compassionate healthcare for all ages.</p>
-        <button class="btn btn-rose" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Medical Appointment</button>
+        <button class="btn btn-rose" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Medical Appointment</button>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="medical_video" onclick="playVideo(this)">
@@ -1200,7 +1231,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">54</span></button>
+          <button class="v-action-btn" data-video-key="medical_video" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">54</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Al-Fazal Medical Services')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1212,7 +1243,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── DOCTORS PAGE ── -->
 <div id="pg-doctors" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Doctors</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Doctors</span></div>
     <h1>Our Expert <span>Doctors</span></h1>
     <p>PMDC registered specialists with postgraduate qualifications — your health in safe hands</p>
   </div>
@@ -1223,22 +1254,20 @@ footer{background:#04111e;padding:65px 5% 26px;}
   </section>
   <!-- Doctors Video -->
   <section class="section section-light">
-    <!-- CHANGE: Replaced inline style with a class and swapped order for mobile view -->
-    <div class="content-video-grid">
-      <!-- Text content is now FIRST -->
-      <div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center" class="doctors-video-grid">
+      <div class="aos-l">
         <div class="lbl">Meet Our Team</div>
         <h2 class="st">Trusted <em>Specialists</em></h2>
         <p class="sub" style="margin:14px 0 22px">Our doctors hold PMDC registration with BDS/FCPS/MBBS qualifications and years of clinical experience across all medical and dental specialties.</p>
-        <button class="btn btn-navy" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book with a Doctor</button>
+        <button class="btn btn-navy" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book with a Doctor</button>
       </div>
-      <!-- Video is now SECOND, so it appears below the text on mobile -->
-      <div class="video-card-wrap" data-video-key="doctors_video" onclick="playVideo(this)">
+      <!-- NEW: data-video-key used to retrieve URL from DB -->
+      <div class="video-card-wrap aos-r" data-video-key="doctors_video" onclick="playVideo(this)">
         <div class="video-thumb"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=700&q=80" alt="Doctors Video" class="video-poster"><div class="video-overlay"></div><div class="video-play-btn"><i class="fas fa-play"></i></div><div class="video-info"><div class="video-info-title">Meet Our Expert Team</div><div class="video-info-sub">Compassionate care, exceptional results</div></div></div>
         <!-- NEW: Unified video player container -->
         <div class="video-player-container"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">112</span></button>
+          <button class="v-action-btn" data-video-key="doctors_video" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">112</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Al-Fazal Expert Team')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1250,7 +1279,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── TREATMENTS PAGE ── -->
 <div id="pg-treatments" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Treatments</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Treatments</span></div>
     <h1>All <span>Treatments</span></h1>
     <p>A full spectrum of advanced dental &amp; medical treatments for all ages</p>
   </div>
@@ -1271,7 +1300,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:220px"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">78</span></button>
+          <button class="v-action-btn" data-video-key="treatments_v1" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">78</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Dental Treatment Overview')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1282,7 +1311,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:220px"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">45</span></button>
+          <button class="v-action-btn" data-video-key="treatments_v2" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">45</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Medical Treatment Overview')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1294,18 +1323,18 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── PATIENTS PAGE ── -->
 <div id="pg-patients" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Patients</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Patients</span></div>
     <h1>Patient <span>Information</span></h1>
     <p>Essential resources, FAQs, and guides for our valued patients</p>
   </div>
   <section class="section">
     <div class="shdr"><div class="lbl">Resources</div><h2 class="st">Everything You <em>Need to Know</em></h2></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:50px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:50px" class="patient-resources-grid">
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
-        <div style="font-size:2rem;margin-bottom:14px">📋</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">New Patient Information</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">A guide for your first visit — registration details, what to bring, and what to expect during initial appointment.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="navigate('contact')">Learn More <i class="fas fa-arrow-right"></i></button>
+        <div style="font-size:2rem;margin-bottom:14px">📋</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">New Patient Information</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">A guide for your first visit — registration details, what to bring, and what to expect during initial appointment.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="goPage('contact')">Learn More <i class="fas fa-arrow-right"></i></button>
       </div>
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
-        <div style="font-size:2rem;margin-bottom:14px">💳</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Payment &amp; Insurance</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Flexible payment options, easy installment plans, and information about accepted insurance policies for all treatments.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="navigate('contact')">View Options <i class="fas fa-arrow-right"></i></button>
+        <div style="font-size:2rem;margin-bottom:14px">💳</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Payment &amp; Insurance</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Flexible payment options, easy installment plans, and information about accepted insurance policies for all treatments.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem" onclick="goPage('contact')">View Options <i class="fas fa-arrow-right"></i></button>
       </div>
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);padding:28px;box-shadow:var(--sh1);transition:all .3s" onmouseover="this.style.borderColor='var(--rose)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''">
         <div style="font-size:2rem;margin-bottom:14px">📚</div><h3 style="font-weight:800;margin-bottom:8px;color:var(--text)">Patient Education</h3><p style="font-size:.88rem;color:var(--text3);line-height:1.7">Articles and guides on oral health topics, prevention strategies, and hygiene tips for all ages.</p><button class="btn btn-outline-rose" style="margin-top:14px;padding:8px 18px;font-size:.82rem">Read More <i class="fas fa-arrow-right"></i></button>
@@ -1338,7 +1367,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:200px"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">92</span></button>
+          <button class="v-action-btn" data-video-key="patients_oral" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">92</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Oral Health Education')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1349,7 +1378,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:200px"></div>
         <div class="video-actions">
-          <button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">61</span></button>
+          <button class="v-action-btn" data-video-key="patients_impl" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i> <span class="like-count">61</span></button>
           <button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Dental Implants Explained')"><i class="fas fa-share-alt"></i> Share</button>
           <button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i> Save</button>
         </div>
@@ -1361,7 +1390,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── REVIEWS PAGE ── -->
 <div id="pg-reviews" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Reviews</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Reviews</span></div>
     <h1>Patient <span>Reviews</span></h1>
     <p>Real reviews from real patients — login to share your experience</p>
   </div>
@@ -1395,7 +1424,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── GALLERY PAGE ── -->
 <div id="pg-gallery" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Gallery</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Gallery</span></div>
     <h1>Our <span>Gallery</span></h1>
     <p>A visual tour of our modern facilities and state-of-the-art equipment</p>
   </div>
@@ -1423,21 +1452,21 @@ footer{background:#04111e;padding:65px 5% 26px;}
         <div class="video-thumb" style="height:180px"><img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?w=400&q=80" alt="v1" class="video-poster" style="height:100%;object-fit:cover"><div class="video-overlay"></div><div class="video-play-btn" style="width:46px;height:46px;font-size:1rem"><i class="fas fa-play"></i></div><div class="video-info"><div class="video-info-title" style="font-size:.85rem">Clinic Walkthrough</div></div></div>
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:180px"></div>
-        <div class="video-actions"><button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">38</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Clinic Walkthrough')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
+        <div class="video-actions"><button class="v-action-btn" data-video-key="gallery_walk" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">38</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Clinic Walkthrough')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="gallery_equip" onclick="playVideo(this)">
         <div class="video-thumb" style="height:180px"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80" alt="v2" class="video-poster" style="height:100%;object-fit:cover"><div class="video-overlay"></div><div class="video-play-btn" style="width:46px;height:46px;font-size:1rem"><i class="fas fa-play"></i></div><div class="video-info"><div class="video-info-title" style="font-size:.85rem">Equipment Tour</div></div></div>
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:180px"></div>
-        <div class="video-actions"><button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">25</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Equipment Tour')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
+        <div class="video-actions"><button class="v-action-btn" data-video-key="gallery_equip" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">25</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Equipment Tour')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
       </div>
       <!-- NEW: data-video-key used to retrieve URL from DB -->
       <div class="video-card-wrap" data-video-key="gallery_stories" onclick="playVideo(this)">
         <div class="video-thumb" style="height:180px"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="v3" class="video-poster" style="height:100%;object-fit:cover"><div class="video-overlay"></div><div class="video-play-btn" style="width:46px;height:46px;font-size:1rem"><i class="fas fa-play"></i></div><div class="video-info"><div class="video-info-title" style="font-size:.85rem">Patient Stories</div></div></div>
         <!-- NEW: Unified video player container -->
         <div class="video-player-container" style="height:180px"></div>
-        <div class="video-actions"><button class="v-action-btn" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">57</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Patient Stories')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
+        <div class="video-actions"><button class="v-action-btn" data-video-key="gallery_stories" onclick="event.stopPropagation();toggleLike(this)"><i class="fas fa-heart"></i><span class="like-count">57</span></button><button class="v-action-btn" onclick="event.stopPropagation();shareVideo('Patient Stories')"><i class="fas fa-share-alt"></i></button><button class="v-action-btn" onclick="event.stopPropagation();downloadVideo(this)"><i class="fas fa-download"></i></button></div>
         </div>
     </div>
   </section>
@@ -1446,7 +1475,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── CONTACT PAGE ── -->
 <div id="pg-contact" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span></div>
     <h1>Get In <span>Touch</span></h1>
     <p>Call, WhatsApp or visit us — our team is available 7 days a week</p>
   </div>
@@ -1495,13 +1524,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
       <p class="sub white" style="margin:10px auto">Open 7 days a week to accommodate your schedule</p>
     </div>
     <div class="timing-grid">
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Mon</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Tue</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Wed</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Thu</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Fri</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Sat</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
-      <div class="time-card" onclick="navigate('book')"><div class="time-day">Sun</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Mon</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Tue</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Wed</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Thu</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Fri</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Sat</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
+      <div class="time-card" onclick="goPage('book')"><div class="time-day">Sun</div><div class="time-hrs">11:30 AM<br>11:30 PM</div></div>
     </div>
   </section>
 </div><!-- /contact -->
@@ -1509,7 +1538,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── BOOK APPOINTMENT PAGE ── -->
 <div id="pg-book" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Book Appointment</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Book Appointment</span></div>
     <h1>Book Your <span>Appointment</span></h1>
     <p>Fill the form below and we'll confirm within 1 hour. Login required to submit.</p>
   </div>
@@ -1557,7 +1586,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── FREE CONSULTATION PAGE ── -->
 <div id="pg-consultation" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Free Consultation</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>Free Consultation</span></div>
     <h1>Free <span>Consultation</span></h1>
     <p>Ask our expert doctors anything. Type your questions below, login to send for personalized advice.</p>
   </div>
@@ -1570,7 +1599,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       </div>
       <!-- Consultation Chat -->
       <div id="consultation-chat">
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);overflow:hidden;box-shadow:var(--sh2);display:flex;flex-direction:column;height:min(600px, 80dvh);"></div>
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);overflow:hidden;box-shadow:var(--sh2); display: flex; flex-direction: column;">
           <div style="background:linear-gradient(135deg,var(--navy),var(--navy2));padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
             <div style="font-weight:800;color:#fff;display:flex;align-items:center;gap:8px"><i class="fas fa-comments"></i> Live Consultation</div>
             <div id="consult-status" style="font-size:.75rem;color:rgba(255,255,255,.6)"><i class="fas fa-circle" style="color:var(--green);font-size:.5rem"></i> Online</div>
@@ -1591,7 +1620,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- ── MY BOOKINGS PAGE ── -->
 <div id="pg-my-bookings" class="pg">
   <div class="page-banner">
-    <div class="bc"><a onclick="navigate('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>My Bookings</span></div>
+    <div class="bc"><a onclick="goPage('home')" style="cursor:pointer;color:rgba(255,255,255,.45)">Home</a><i class="fas fa-chevron-right"></i><span>My Bookings</span></div>
     <h1>My <span>Bookings</span></h1>
     <p>View and manage your appointments at Al-Fazal Hospital</p>
   </div>
@@ -1625,21 +1654,21 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div>
       <div class="ft-hdr">Services</div>
       <ul class="ft-links">
-        <li><a onclick="navigate('dental-services')"><i class="fas fa-chevron-right"></i>Dental Services</a></li>
-        <li><a onclick="navigate('medical-services')"><i class="fas fa-chevron-right"></i>Medical Services</a></li>
-        <li><a onclick="navigate('treatments')"><i class="fas fa-chevron-right"></i>All Treatments</a></li>
-        <li><a onclick="navigate('doctors')"><i class="fas fa-chevron-right"></i>Our Doctors</a></li>
+        <li><a onclick="goPage('dental-services')"><i class="fas fa-chevron-right"></i>Dental Services</a></li>
+        <li><a onclick="goPage('medical-services')"><i class="fas fa-chevron-right"></i>Medical Services</a></li>
+        <li><a onclick="goPage('treatments')"><i class="fas fa-chevron-right"></i>All Treatments</a></li>
+        <li><a onclick="goPage('doctors')"><i class="fas fa-chevron-right"></i>Our Doctors</a></li>
       </ul>
     </div>
     <div>
       <div class="ft-hdr">Quick Links</div>
       <ul class="ft-links">
-        <li><a onclick="navigate('home')"><i class="fas fa-chevron-right"></i>Home</a></li>
-        <li><a onclick="navigate('about')"><i class="fas fa-chevron-right"></i>About Us</a></li>
-        <li><a onclick="navigate('gallery')"><i class="fas fa-chevron-right"></i>Gallery</a></li>
-        <li><a onclick="navigate('reviews')"><i class="fas fa-chevron-right"></i>Reviews</a></li>
-        <li><a onclick="navigate('contact')"><i class="fas fa-chevron-right"></i>Contact</a></li>
-        <li><a onclick="navigate('book')"><i class="fas fa-chevron-right"></i>Book Appointment</a></li>
+        <li><a onclick="goPage('home')"><i class="fas fa-chevron-right"></i>Home</a></li>
+        <li><a onclick="goPage('about')"><i class="fas fa-chevron-right"></i>About Us</a></li>
+        <li><a onclick="goPage('gallery')"><i class="fas fa-chevron-right"></i>Gallery</a></li>
+        <li><a onclick="goPage('reviews')"><i class="fas fa-chevron-right"></i>Reviews</a></li>
+        <li><a onclick="goPage('contact')"><i class="fas fa-chevron-right"></i>Contact</a></li>
+        <li><a onclick="goPage('book')"><i class="fas fa-chevron-right"></i>Book Appointment</a></li>
       </ul>
     </div>
     <div>
@@ -1711,8 +1740,9 @@ footer{background:#04111e;padding:65px 5% 26px;}
   </div>
 </div>
 
-<!-- LIVE CHAT BUTTON -->
-<button class="chat-btn" id="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
+<!-- LIVE CHAT BUTTON (Now navigates to consultation page) -->
+<button class="chat-btn" id="chat-btn" onclick="goPage('consultation')"><i class="fas fa-comments"></i></button>
+<!-- This floating chat box is now effectively inactive for users, as the button navigates to the page -->
 <div class="chat-box" id="chat-box">
   <div class="chat-hdr"><span><i class="fas fa-headset"></i> Live Support</span><button class="chat-close-btn" onclick="toggleChat()"><i class="fas fa-times"></i></button></div>
   <div class="chat-messages" id="chat-messages"></div>
@@ -1737,17 +1767,27 @@ footer{background:#04111e;padding:65px 5% 26px;}
 
 <div id="stbtn"><i class="fas fa-chevron-up"></i></div>
 
+<!-- ============================================================
+     FIREBASE + ALL JAVASCRIPT
+     ============================================================ -->
 <script type="module">
-// ── 1. FIREBASE SDK IMPORTS ──
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getDatabase, ref, push, set, get, onValue, update, remove, increment, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getDatabase, ref, push, set, get, onValue, update, remove, increment, query, orderByChild, limitToLast
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { 
+  getFirestore, doc, setDoc, getDoc 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"; // Added Firestore imports
 import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
 
-// ── 2. FIREBASE CONFIG ──
+
+// ── FIREBASE CONFIG ──
 const firebaseConfig = {
   apiKey: "AIzaSyDulYuUV4Km2e67SSzveNl9poq90-EhkU8",
   authDomain: "zigzoog-5708f.firebaseapp.com",
@@ -1760,125 +1800,32 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
-const firestore = getFirestore(app);
+const firestore = getFirestore(app); // Initialized Firestore
+const storage = getStorage(app);
 const messaging = getMessaging(app);
+const googleProvider = new GoogleAuthProvider();
 
-// ── 3. SETTINGS & GLOBALS ──
-const VAPID_KEY = "BDCIX9UAIBDhv5LAGIaPMzgonv5eLr55dQdeEMlkO8Qqcgg_m2cvwn43L0cidvWoL28Ovhi7iUA9fqxpbdgRCbs";
+// IMPORTANT: Replace this with your actual VAPID key from Firebase Console
+const VAPID_KEY = "YOUR_VAPID_KEY_HERE";
+
+const ADMIN_EMAIL = "infoskyeagle12@gmail.com";
 let currentUser = null;
+let currentRating = 5;
+
+// New global variables for pending actions
+let pendingConsultMessage = null;
+let pendingBookingData = null;
+
+// Audio for new message notification
 const notificationSound = new Audio('https://www.soundjay.com/buttons/beep-07.mp3');
+notificationSound.volume = 0.5;
+let prevChatMessagesCount = {};
 
-// ── 4. NOTIFICATION LOGIC ──
 
-// Permission lena aur Token Firestore mein save karna
-async function setupNotifications(user) {
-  try {
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      const token = await getToken(messaging, { vapidKey: VAPID_KEY });
-      if (token) {
-        // Token ko Firestore mein save kar rahe hain taake Backend ko pata ho kahan notification bhejni hai
-        await setDoc(doc(firestore, "users", user.uid), {
-          token: token,
-          uid: user.uid,
-          role: 'patient',
-          email: user.email,
-          lastActive: Date.now()
-        }, { merge: true });
-        console.log("Notification address (Token) saved!");
-      }
-    }
-  } catch (err) {
-    console.error("Token Error:", err);
-  }
-}
-
-// Jab website KHULI ho tab notification aana
-onMessage(messaging, (payload) => {
-  showToast(`🔔 ${payload.notification.title}: ${payload.notification.body}`);
-  notificationSound.play().catch(e => {});
-});
-
-// ── 5. AUTH STATE (Login Check) ──
-onAuthStateChanged(auth, async (user) => {
-  currentUser = user;
-  updateNavForUser(user); // Nav update karne ka function niche hai
-  
-  if (user) {
-    setupNotifications(user); // Login hotay hi token save karo
-    loadMyBookings(user.uid);
-    loadConsultChat(user.uid);
-  } else {
-    // Clear data if logged out
-    const container = document.getElementById('my-bookings-container');
-    if (container) container.innerHTML = '<p style="text-align:center">Please login to view bookings.</p>';
-  }
-});
-
-// ── 6. ALL OTHER FUNCTIONS (REQUIRED) ──
-
-window.handleLogin = async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const pass = document.getElementById('login-pass').value;
-  try {
-    await signInWithEmailAndPassword(auth, email, pass);
-    closeAuthModal();
-    showToast('✅ Welcome back!');
-  } catch (err) { showToast('❌ Login Failed', true); }
-};
-
-window.handleRegister = async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('reg-email').value;
-  const pass = document.getElementById('reg-pass').value;
-  const name = document.getElementById('reg-fname').value + " " + document.getElementById('reg-lname').value;
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(cred.user, { displayName: name });
-    await setDoc(doc(firestore, "users", cred.user.uid), { name, email, uid: cred.user.uid, role: 'patient' });
-    closeAuthModal();
-    showToast('✅ Account Created!');
-  } catch (err) { showToast('❌ Error: ' + err.message, true); }
-};
-
-window.sendChatMsg = async () => {
-  const input = document.getElementById('chat-input');
-  if (!input.value.trim() || !currentUser) return;
-  await push(ref(db, `chats/${currentUser.uid}`), {
-    sender: 'user',
-    text: input.value,
-    timestamp: Date.now()
-  });
-  input.value = '';
-};
-
-// Help helper for Toast
-window.showToast = (msg, isError = false) => {
-  const toast = document.createElement('div');
-  toast.className = 'toast show';
-  toast.style.position = 'fixed';
-  toast.style.bottom = '20px';
-  toast.style.right = '20px';
-  toast.style.background = isError ? 'red' : '#0b1f3a';
-  toast.style.color = 'white';
-  toast.style.padding = '15px';
-  toast.style.borderRadius = '10px';
-  toast.style.zIndex = '9999';
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
-};
-
-// Service Worker Register (Background notifications ke liye)
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/firebase-messaging-sw.js')
-    .then(reg => console.log('SW Registered'))
-    .catch(err => console.log('SW Failed', err));
-}
-
+// ── STATIC DATA (defaults, can be overridden by admin) ──
 const STATIC_DENTAL_SERVICES = [
   {name:'Teeth Whitening',icon:'✨',desc:'Advanced professional whitening — brighter smile by 5-10 shades in one visit.',price:'Consult for Price',cat:'dental'},
   {name:'Root Canal (RCT)',icon:'🩺',desc:'Pain-free root canal treatment to save your natural tooth permanently.',price:'Consult for Price',cat:'dental'},
@@ -1931,80 +1878,53 @@ const VIDEO_SECTIONS = [
 ];
 
 // ── FCM NOTIFICATION FUNCTIONS ──
-async function requestNotificationPermissionAndToken(serviceWorkerRegistration) {
-  if (!currentUser) {
-    console.log("FCM: No user logged in, cannot get token yet.");
-    return;
-  }
+let swRegistration = null;
 
-  // Check if permission is already granted
-  if (Notification.permission === 'granted') {
-    console.log("FCM: Notification permission already granted.");
-    await getAndSaveToken(serviceWorkerRegistration);
-  } else if (Notification.permission === 'denied') {
-    console.log("FCM: Notification permission denied by user.");
-    showToast("❌ Notifications blocked. Please enable in browser settings if you wish to receive updates.", true);
-  } else { // 'default' state, prompt user
-    console.log("FCM: Requesting notification permission...");
+// 1. Service Worker Register Karna
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
+    console.log('✅ Service Worker Registered!');
+    swRegistration = registration;
+    // Agar user logged in hai to foran token generate karo
+    if (currentUser) {
+      requestNotificationPermissionAndToken();
+    }
+  }).catch(err => console.log('❌ SW Registration failed:', err));
+}
+
+// 2. Token Generate Karna aur Firestore mein Save karna
+async function requestNotificationPermissionAndToken() {
+  if (!currentUser || !swRegistration) return;
+  try {
     const permission = await Notification.requestPermission();
     if (permission === 'granted') {
-      console.log("FCM: Notification permission granted!");
-      await getAndSaveToken(serviceWorkerRegistration);
+      const currentToken = await getToken(messaging, {
+        vapidKey: VAPID_KEY,
+        serviceWorkerRegistration: swRegistration
+      });
+      if (currentToken) {
+        console.log("✅ FCM Token generated successfully!");
+        // Save Token to Database
+        await setDoc(doc(firestore, "users", currentUser.uid), { 
+          fcmToken: currentToken,
+          token: currentToken 
+        }, { merge: true });
+      } else {
+        console.log("⚠️ No FCM token received.");
+      }
     } else {
-      console.log("FCM: Notification permission denied. You won't receive updates.", true);
-    }
-  }
-}
-
-async function getAndSaveToken(serviceWorkerRegistration) {
-  try {
-    const currentToken = await getToken(messaging, {
-      vapidKey: VAPID_KEY,
-      serviceWorkerRegistration: serviceWorkerRegistration // Pass the SW registration
-    });
-    if (currentToken) {
-      console.log("FCM Token:", currentToken);
-      // Save the token to Firestore for the current user
-      // Structure: users -> userId -> fcmToken
-      await setDoc(doc(firestore, "users", currentUser.uid), { fcmToken: currentToken }, { merge: true });
-      console.log(`FCM Token saved for user ${currentUser.uid}.`);
-    } else {
-      console.warn("FCM: No registration token available. Request permission to generate one.");
+      showToast("❌ Notifications blocked by user.", true);
     }
   } catch (err) {
-    console.error("FCM: An error occurred while retrieving or saving token:", err);
-    showToast("❌ Failed to get notification token. Please ensure notifications are enabled and try again.", true);
+    console.error("❌ Token Error:", err);
   }
 }
 
-// Listen for messages when the app is in the foreground
+// Listen for Foreground Messages
 onMessage(messaging, (payload) => {
   console.log('Foreground FCM message received:', payload);
-  const notificationTitle = payload.notification.title || 'New Update';
-  const notificationBody = payload.notification.body || 'You have a new notification.';
-  
-  // Display a toast for foreground notifications
-  showToast(`🔔 ${notificationTitle}: ${notificationBody}`);
-
-  // You can also show a custom in-app notification UI here if needed,
-  // or trigger a local browser notification.
-  // Example local notification (optional, handled by SW if app is in background)
-  if (Notification.permission === 'granted') {
-    new Notification(notificationTitle, {
-      body: notificationBody,
-      icon: '/favicon.ico', // Ensure this path is correct
-      data: payload.data.url || window.location.origin
-    }).onclick = (event) => {
-      event.preventDefault();
-      const url = event.target.data;
-      if (url && typeof url === 'string') {
-        window.focus(); // Focus the current window
-        window.navigate(url.replace(window.location.origin + '#', '').replace('#', ''), false); // Navigate if it's an internal hash link
-      } else {
-        window.focus();
-      }
-    };
-  }
+  showToast(`🔔 ${payload.notification.title}: ${payload.notification.body}`);
+  notificationSound.play().catch(e => {});
 });
 
 // ── AUTH STATE ──
@@ -2012,32 +1932,22 @@ onAuthStateChanged(auth, user => {
   currentUser = user;
   updateNavForUser(user);
 
-  // Handle Free Consultation page UI (always show chat, but load history if logged in)
   loadConsultChat(user?.uid);
 
-  // Handle My Bookings page (only load if logged in)
   if (user) {
-    // After successful login, attempt to get FCM token
-    // We need to ensure the service worker is registered before requesting the token
-    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-      console.log("FCM: Service Worker already active for logged-in user. Requesting token.");
-      requestNotificationPermissionAndToken(navigator.serviceWorker.controller);
-    } else if ('serviceWorker' in navigator) {
-      // If SW is not yet active, it will be registered by DOMContentLoaded and call the function.
-      console.log("FCM: Service Worker not yet active, will register and get token on DOMContentLoaded.");
-    } else {
-      console.warn("FCM: Service Workers not supported in this browser.");
+    // Agar SW pehle se ready hai tou token maango
+    if (swRegistration) {
+      requestNotificationPermissionAndToken();
     }
     
     loadMyBookings(user.uid);
-    // If floating chat is open, load it for the logged in user
     if (document.getElementById('chat-box')?.classList.contains('open')) {
       loadUserChat(user.uid);
     }
+    processPendingActions();
   } else {
     const myBookingsContainer = document.getElementById('my-bookings-container');
-    // Only show login prompt if currently on the my-bookings page and not logged in
-    if (myBookingsContainer && document.getElementById('pg-my-bookings').classList.contains('active')) {
+    if (myBookingsContainer && document.getElementById('pg-my-bookings')?.classList.contains('active')) {
       myBookingsContainer.innerHTML = `
         <div style="text-align:center;padding:50px;color:var(--text3)">
           <i class="fas fa-lock" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i>
@@ -2048,28 +1958,14 @@ onAuthStateChanged(auth, user => {
         </div>
       `;
     }
-    // Clear floating chat if user logs out
-    const chatMessagesContainer = document.getElementById('chat-messages');
-    if (chatMessagesContainer) {
-        chatMessagesContainer.innerHTML = '<div class="chat-msg admin">Welcome to Al-Fazal! How can we help you today? 😊</div>';
-        prevChatMessagesCount = {}; // Reset counts
+    const consultMessagesContainer = document.getElementById('consult-messages');
+    if (consultMessagesContainer) {
+        consultMessagesContainer.innerHTML = '<div class="chat-msg admin">Welcome! Ask your health question and our doctors will reply soon. 👨‍⚕️</div>';
+        prevChatMessagesCount = {}; 
     }
   }
-
-  // Handle Book Appointment page prompt visibility
-  const bookLoginPrompt = document.getElementById('book-login-prompt');
-  if (bookLoginPrompt) {
-    if (user) {
-      bookLoginPrompt.style.display = 'none';
-    } else {
-      bookLoginPrompt.style.display = 'block';
-    }
-  }
-
-  // Process pending actions after successful login
-  if (user) {
-      processPendingActions();
-  }
+  
+  loadVideoIdsFromDb();
 });
 
 function updateNavForUser(user) {
@@ -2120,7 +2016,7 @@ window.handleRegister = async (e) => {
       uid: cred.user.uid,
       role: 'patient', // Default role for new users
       createdAt: Date.now()
-    }, {merge: true}); // Use merge:true to not overwrite existing fcmToken if it exists
+    });
 
     closeAuthModal();
     showToast('✅ Account created! Welcome to Al-Fazal!');
@@ -2172,7 +2068,7 @@ window.handleGoogleLogin = async () => {
             age: null,
             whatsapp: '',
             city: ''
-        }, {merge: true}); // Use merge:true here as well
+        });
     }
     // If user exists, we don't overwrite. The `onAuthStateChanged` listener will handle UI updates.
     
@@ -2224,7 +2120,7 @@ window.handleBookingSubmit = async (e) => {
     await push(ref(db, 'bookings'), { ...data, uid: currentUser.uid, email: currentUser.email });
     showToast('✅ Appointment booked! We will confirm within 1 hour.');
     e.target.reset();
-    navigate('home');
+    goPage('home');
   } catch (err) {
     showToast('❌ Failed to book. Please try again.', true);
   } finally {
@@ -2266,12 +2162,12 @@ function loadMyBookings(uid) {
   onValue(query(ref(db, 'bookings'), orderByChild('uid')), snap => {
     const data = snap.val();
     if (!data) {
-      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="navigate(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
+      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="goPage(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
       return;
     }
     const myBookings = Object.entries(data).filter(([k,v]) => v.uid === uid).map(([id,v]) => ({id,...v})).sort((a,b) => b.createdAt - a.createdAt);
     if (!myBookings.length) {
-      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="navigate(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
+      container.innerHTML = '<div style="text-align:center;padding:50px;color:var(--text3)"><i class="fas fa-calendar" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--rose-soft)"></i><p>No bookings yet.</p><button class="btn btn-rose" style="margin-top:14px" onclick="goPage(\'book\')"><i class="fas fa-calendar-check"></i> Book Appointment</button></div>';
       return;
     }
     container.innerHTML = `<div style="overflow-x:auto"><table><thead><tr><th>Service</th><th>Doctor</th><th>Date &amp; Time</th><th>Status</th></tr></thead><tbody>${myBookings.map(b => `<tr><td style="font-weight:600">${esc(b.service)}</td><td>${esc(b.doctor||'Any')}</td><td>${b.date} · ${b.time}</td><td><span class="sbadge sb-${b.status}">${b.status}</span></td></tr>`).join('')}</tbody></table></div>`;
@@ -2360,11 +2256,13 @@ function loadReviews() {
   });
 }
 
-// ── LIVE CHAT (Floating) ──
+// ── LIVE CHAT (Floating - now unused directly by chat-btn, but retained for admin) ──
 function playSoundNotification() {
   notificationSound.play().catch(e => console.warn("Failed to play notification sound:", e));
 }
 
+// This function is for a floating chat window. The chat-btn now navigates to the consultation page.
+// If you want a floating chat for logged-in users, you'd enable the #chat-box and call this.
 function loadUserChat(uid) {
   const container = document.getElementById('chat-messages');
   if (!container) return;
@@ -2409,6 +2307,8 @@ function loadUserChat(uid) {
   });
 }
 
+// This function is for sending messages from a floating chat window.
+// Now, the floating chat button navigates to a dedicated page.
 window.sendChatMsg = async () => {
   const input = document.getElementById('chat-input');
   const messageText = input?.value.trim();
@@ -2416,6 +2316,8 @@ window.sendChatMsg = async () => {
   if (!messageText) return;
 
   if (!currentUser) {
+    // This part should technically not be hit if the button navigates to consultation
+    // But if somehow the floating chat itself is shown, this is a fallback.
     pendingConsultMessage = messageText;
     openAuthModal('login');
     showToast('⚠️ Please login to send your message.', true);
@@ -2434,16 +2336,17 @@ window.sendChatMsg = async () => {
   }
 };
 
-// ── FREE CONSULTATION CHAT ──
+// ── FREE CONSULTATION CHAT (Page-specific chat) ──
 function loadConsultChat(uid) {
   const container = document.getElementById('consult-messages');
   if (!container) return;
 
-  container.innerHTML = '';
+  container.innerHTML = ''; // Clear existing messages for fresh load
 
   if (uid) {
-    onValue(ref(db, `chats/${uid}`), snap => {
-      container.innerHTML = '';
+    // Use onValue for real-time updates
+    onValue(query(ref(db, `chats/${uid}`), orderByChild('timestamp')), snap => {
+      container.innerHTML = ''; // Clear before re-rendering
       const messages = [];
       snap.forEach(child => {
         messages.push(child.val());
@@ -2461,6 +2364,7 @@ function loadConsultChat(uid) {
           div.textContent = d.text;
           container.appendChild(div);
 
+          // Play sound for new admin messages
           if (d.sender === 'admin' && currentMessageCount > previousMessageCount) {
              const newAdminMessages = messages.filter(msg => msg.sender === 'admin');
              const previousAdminMessagesCount = prevChatMessagesCount[`${uid}_admin`] || 0;
@@ -2472,10 +2376,11 @@ function loadConsultChat(uid) {
           }
         });
       }
-      prevChatMessagesCount[uid] = currentMessageCount;
+      prevChatMessagesCount[uid] = currentMessageCount; // Update total count
       container.scrollTop = container.scrollHeight;
     });
   } else {
+    // Show default message if not logged in
     container.innerHTML = '<div class="chat-msg admin">Welcome! Ask your health question and our doctors will reply soon. 👨‍⚕️</div>';
   }
 }
@@ -2496,15 +2401,8 @@ window.sendConsultMsg = async () => {
 
   const msg = { sender: 'user', text: messageText, timestamp: Date.now() };
   try {
+    // Message will be automatically rendered by the onValue listener
     await push(ref(db, `chats/${currentUser.uid}`), msg);
-    const container = document.getElementById('consult-messages');
-    if (container) {
-      const div = document.createElement('div');
-      div.className = 'chat-msg user';
-      div.textContent = msg.text;
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
-    }
     input.value = '';
   } catch (error) {
     console.error("Failed to send consultation message:", error);
@@ -2522,14 +2420,7 @@ function processPendingActions() {
         sender: 'user', text: messageToSend, timestamp: Date.now()
       }).then(() => {
         showToast('✅ Your pending message has been sent!');
-        const container = document.getElementById('consult-messages');
-        if (container) {
-            const div = document.createElement('div');
-            div.className = 'chat-msg user';
-            div.textContent = messageToSend;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-        }
+        // No need to manually append, onValue will handle it.
       }).catch(err => {
         showToast('❌ Failed to send pending message: ' + err.message, true);
       });
@@ -2551,7 +2442,7 @@ function processPendingActions() {
       }).then(() => {
         showToast('✅ Your pending appointment has been booked!');
         if (formEl) formEl.reset();
-        navigate('home');
+        goPage('home');
       }).catch(err => {
         showToast('❌ Failed to book pending appointment: ' + err.message, true);
       }).finally(() => {
@@ -2602,7 +2493,7 @@ function renderDoctors() {
         <div class="doc-nm">${esc(d.name)}</div>
         <div class="doc-sp">${esc(d.spec)}</div>
         ${d.exp ? `<div style="font-size:.76rem;color:var(--text3);margin-top:4px">${esc(d.exp)} Experience</div>` : ''}
-        <a class="doc-book-btn" onclick="navigate('book')"><i class="fas fa-calendar"></i> Book Appointment</a>
+        <a class="doc-book-btn" onclick="goPage('book')"><i class="fas fa-calendar"></i> Book Appointment</a>
       </div>
     </div>`).join('');
     window.initAOS();
@@ -2671,20 +2562,42 @@ window.playVideo = function(card) {
 };
 
 
-// Load video URLs from DB and apply to all video cards
+// Load video URLs and like counts/status from DB and apply to all video cards
 function loadVideoIdsFromDb() {
   onValue(ref(db, 'videos'), snap => {
     const videos = snap.val() || {};
-    VIDEO_SECTIONS.forEach(sec => {
+    VIDEO_SECTIONS.forEach(async sec => { // Use async because we might fetch user-specific like status
       const videoElement = document.querySelector(sec.selector);
       if (videoElement) {
-        const storedUrl = videos[sec.key];
+        const storedUrl = videos[sec.key]?.url || '';
+        const likeCount = videos[sec.key]?.likes || 0;
         
-        videoElement.dataset.videoSrc = storedUrl || '';
+        videoElement.dataset.videoSrc = storedUrl;
 
         const posterImg = videoElement.querySelector('.video-poster');
         if (posterImg) {
-          posterImg.src = sec.defaultPoster;
+          // If a custom poster is set in DB, use it, otherwise fallback to default
+          posterImg.src = videos[sec.key]?.poster || sec.defaultPoster;
+        }
+
+        const likeCountSpan = videoElement.querySelector('.like-count');
+        if (likeCountSpan) {
+          likeCountSpan.textContent = likeCount;
+        }
+
+        // Correctly select the like button using its data-video-key
+        const likeBtn = videoElement.querySelector(`.v-action-btn[data-video-key="${sec.key}"]`);
+        if (likeBtn) {
+          if (currentUser) {
+            const userLikeSnap = await get(ref(db, `userLikes/${currentUser.uid}/${sec.key}`));
+            if (userLikeSnap.exists() && userLikeSnap.val() === true) {
+              likeBtn.classList.add('liked');
+            } else {
+              likeBtn.classList.remove('liked');
+            }
+          } else {
+            likeBtn.classList.remove('liked'); // Not logged in, so not liked
+          }
         }
       }
     });
@@ -2692,12 +2605,49 @@ function loadVideoIdsFromDb() {
 }
 
 
-window.toggleLike = (btn) => {
-  btn.classList.toggle('liked');
-  const count = btn.querySelector('.like-count');
-  if (count) count.textContent = parseInt(count.textContent) + (btn.classList.contains('liked') ? 1 : -1);
-  showToast(btn.classList.contains('liked') ? '❤️ Liked!' : 'Unliked');
+window.toggleLike = async (btn) => {
+  event.stopPropagation(); // Prevent the video card from playing/pausing
+
+  if (!currentUser) {
+    openAuthModal('login');
+    showToast('⚠️ Please login to like videos.', true);
+    return;
+  }
+
+  const videoKey = btn.dataset.videoKey;
+  if (!videoKey) {
+    console.error("Video key not found for like button.");
+    return;
+  }
+
+  const userLikeRef = ref(db, `userLikes/${currentUser.uid}/${videoKey}`);
+  const videoRef = ref(db, `videos/${videoKey}`);
+
+  try {
+    const userLikeSnap = await get(userLikeRef);
+    const isLiked = userLikeSnap.exists() && userLikeSnap.val() === true;
+
+    if (isLiked) {
+      // Unlike the video
+      await set(userLikeRef, null); // Remove user's like entry
+      await update(videoRef, { likes: increment(-1) }); // Decrement total likes
+      btn.classList.remove('liked');
+      btn.querySelector('.like-count').textContent = parseInt(btn.querySelector('.like-count').textContent) - 1;
+      showToast('👎 Unliked!');
+    } else {
+      // Like the video
+      await set(userLikeRef, true); // Add user's like entry
+      await update(videoRef, { likes: increment(1) }); // Increment total likes
+      btn.classList.add('liked');
+      btn.querySelector('.like-count').textContent = parseInt(btn.querySelector('.like-count').textContent) + 1;
+      showToast('❤️ Liked!');
+    }
+  } catch (error) {
+    console.error("Error toggling like:", error);
+    showToast('❌ Failed to toggle like. Please try again.', true);
+  }
 };
+
 
 window.shareVideo = (title) => {
   if (navigator.share) {
@@ -2734,7 +2684,7 @@ renderServices('dental');
 renderServices('medical');
 renderServices('all'); // This will render for 'treatments' page
 renderDoctors();
-loadVideoIdsFromDb();
+loadVideoIdsFromDb(); // Called on auth state change to update like status
 
 // Counter animation
 function animateCounters() {
@@ -2758,120 +2708,130 @@ if (statsEl) {
 if (!localStorage.getItem('af_priv')) setTimeout(() => { document.getElementById('priv-modal')?.classList.add('show'); }, 30000);
 </script>
 
-<!-- Firebase Messaging Service Worker Registration -->
-<script>
-  if ('serviceWorker' in navigator) {
-    // Register the service worker. It should be in the root directory.
-    navigator.serviceWorker.register('/firebase-messaging-sw.js')
-      .then((registration) => {
-        console.log('Main: Service Worker registered with scope:', registration.scope);
-        // If user is already logged in at the time of SW registration, request token.
-        // If not logged in, onAuthStateChanged will handle it later.
-        if (window.currentUser) {
-          window.requestNotificationPermissionAndToken(registration);
-        }
-        
-        // Handle cases where a notification might open the page with a specific hash
-        if (window.location.hash) {
-          const pageId = window.location.hash.slice(1);
-          window.navigate(pageId, false); // false to avoid adding to history again
-        }
-      })
-      .catch((error) => {
-        console.error('Main: Service Worker registration failed:', error);
-      });
-  }
-</script>
-
 <script>
 // ── NON-MODULE JS (Navigation, UI) ──
 
-// Internal function to update the UI content based on pageId
-function updatePageContent(pageId) {
-  document.querySelectorAll('.pg').forEach(p => p.style.display = 'none');
-  const el = document.getElementById('pg-' + pageId);
-  if (el) {
-    el.style.display = 'block';
-    window.scrollTo(0, 0);
-  } else {
-    // Fallback to home if pageId is invalid
-    console.warn(`Page ID '${pageId}' not found. Redirecting to home.`);
-    document.getElementById('pg-home').style.display = 'block';
-    pageId = 'home'; // Update pageId for nav highlighting
-    window.scrollTo(0, 0);
-  }
-
-  // Update nav active links
-  document.querySelectorAll('.nav-links a[data-p]').forEach(a => {
-    a.classList.toggle('anav', a.dataset.p === pageId);
-  });
-
-  // Close mobile menu if open
-  document.getElementById('mob-nav')?.classList.remove('open');
-
-  // Stop all playing videos on page change
-  document.querySelectorAll('.video-card-wrap').forEach(card => {
-    const playerContainer = card.querySelector('.video-player-container');
-    const thumb = card.querySelector('.video-thumb');
-    if (playerContainer && playerContainer.dataset.isPlaying === 'true') {
-      playerContainer.innerHTML = '';
-      playerContainer.style.display = 'none';
-      playerContainer.dataset.isPlaying = 'false';
-      if (thumb) thumb.style.display = 'block';
-    }
-  });
-
-  // Re-initialize AOS animations for the new page content
-  setTimeout(() => window.initAOS(), 100);
-}
-
-// Global function for navigation that interacts with browser history
-window.navigate = function(pageId, pushToHistory = true) {
-  if (pushToHistory) {
-    history.pushState({ pageId: pageId }, '', `#${pageId}`);
-  }
-  updatePageContent(pageId);
+// Map page IDs to their respective URL paths
+const pageRoutes = {
+    'home': '/',
+    'about': '/about',
+    'dental-services': '/dental-services',
+    'medical-services': '/medical-services',
+    'doctors': '/doctors',
+    'treatments': '/treatments',
+    'patients': '/patients',
+    'reviews': '/reviews',
+    'gallery': '/gallery',
+    'contact': '/contact',
+    'book': '/book',
+    'consultation': '/consultation',
+    'my-bookings': '/my-bookings',
+    // 'admin': '/admin' // Admin panel is not included in this user-facing version
 };
 
-// Initial Page Load Logic
+// Reverse map for easy lookup from path to pageId
+const pathToPageId = Object.fromEntries(Object.entries(pageRoutes).map(([key, value]) => [value, key]));
+
+let currentPageId = 'home'; // Track current page for exit confirmation
+
+window.goPage = function(pageId, pushState = true) {
+    const path = pageRoutes[pageId];
+    if (!path) {
+        console.error('Unknown pageId:', pageId);
+        return;
+    }
+
+    // Stop all videos before changing page
+    document.querySelectorAll('.video-card-wrap').forEach(card => {
+        const playerContainer = card.querySelector('.video-player-container');
+        const thumb = card.querySelector('.video-thumb');
+        if (playerContainer && playerContainer.dataset.isPlaying === 'true') {
+            playerContainer.innerHTML = '';
+            playerContainer.style.display = 'none';
+            playerContainer.dataset.isPlaying = 'false';
+            if (thumb) thumb.style.display = 'block';
+        }
+    });
+
+    // Hide all pages, then show the target page
+    document.querySelectorAll('.pg').forEach(p => p.style.display = 'none');
+    const targetPageElement = document.getElementById('pg-' + pageId);
+    if (targetPageElement) {
+        targetPageElement.style.display = 'block';
+        window.scrollTo(0, 0); // Scroll to top of the new page
+        currentPageId = pageId; // Update current page tracker
+    } else {
+        console.error('Page element not found for:', pageId);
+        return;
+    }
+
+    // Update browser history if pushing state
+    if (pushState) {
+        history.pushState({ page: pageId }, '', path);
+    }
+
+    // Update navigation active links
+    document.querySelectorAll('.nav-links a[data-p]').forEach(a => {
+        a.classList.toggle('anav', a.dataset.p === pageId);
+    });
+    // For dropdown items without data-p (like Dental Services or Medical Services under "Services")
+    // Ensure the parent dropdown link remains active if one of its children is the current page
+    const currentPath = window.location.pathname;
+    const parentServiceDD = document.querySelector('.nav-dd > a');
+    if (parentServiceDD) {
+        const dentalServiceLink = document.querySelector('.nav-dd-menu a[onclick*="dental-services"]');
+        const medicalServiceLink = document.querySelector('.nav-dd-menu a[onclick*="medical-services"]');
+        if ((dentalServiceLink && currentPath === pageRoutes['dental-services']) ||
+            (medicalServiceLink && currentPath === pageRoutes['medical-services'])) {
+            parentServiceDD.classList.add('anav');
+        } else {
+            parentServiceDD.classList.remove('anav');
+        }
+    }
+
+
+    // Close mobile menu if open
+    toggleMob(false); // Pass false to explicitly close
+
+    // Re-initialize AOS for the new content
+    setTimeout(() => window.initAOS(), 100);
+};
+
+// Handle initial page load based on URL
 document.addEventListener('DOMContentLoaded', () => {
-  const initialPageId = window.location.hash.slice(1) || 'home';
-  
-  // Set our first real state, replacing the default browser state
-  history.replaceState({ pageId: initialPageId }, '', `#${initialPageId}`);
-  updatePageContent(initialPageId);
-  
-  // Push a dummy state *after* the initial page state.
-  // This dummy state will be 'null'. When the user pops this null state,
-  // it means they are trying to navigate *out* of our controlled history,
-  // triggering the exit confirmation.
-  history.pushState(null, '', null);
+    const initialPath = window.location.pathname;
+    const initialPageId = pathToPageId[initialPath] || 'home';
+    window.goPage(initialPageId, false); // Render initial page without pushing state
+    history.replaceState({ page: initialPageId }, '', initialPath); // Replace current history entry
 });
 
-// Browser History (Back/Forward buttons) Handler
-window.onpopstate = function(event) {
-  if (event.state === null) {
-    // This means the user popped our dummy state, indicating an attempt to exit.
-    if (confirm("Do you want to exit Al-Fazal Hospital?")) {
-      // If confirmed, allow the browser to proceed with its default navigation (which will exit the page).
-      // We don't need to do anything here, as the history.back() was already triggered by the popstate.
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.page) {
+        window.goPage(event.state.page, false);
     } else {
-      // If canceled, push the dummy state back onto the stack to prevent exit.
-      history.pushState(null, '', null);
-      // Ensure the 'home' page is displayed as they chose not to exit.
-      updatePageContent('home'); 
+        // This handles cases where popstate might return to a state not created by pushState (e.g., initial load or browser back beyond initial app load)
+        const currentPath = window.location.pathname;
+        const pageIdFromPath = pathToPageId[currentPath];
+        
+        if (pageIdFromPath === 'home' && currentPageId === 'home') {
+            // If we're already on the homepage and popstate tries to go back further, show exit confirmation
+            if (confirm("Do you want to exit the website?")) {
+                // Let the browser handle the exit
+                // For web views, this might close the app. For browsers, it goes to the previous website.
+                // We don't need to do anything here, just don't pushState back.
+            } else {
+                // User cancelled, push the current homepage state back to history to prevent exiting
+                history.pushState({ page: 'home' }, '', '/');
+            }
+        } else if (pageIdFromPath) {
+            window.goPage(pageIdFromPath, false);
+        } else {
+            // Fallback to home if path is unrecognized
+            window.goPage('home', false);
+        }
     }
-  } else if (event.state && event.state.pageId) {
-    // User navigated within our controlled application history.
-    updatePageContent(event.state.pageId);
-  } else {
-    // Fallback for unexpected or malformed states (should not happen with our setup).
-    console.warn("Unexpected history state. Redirecting to home.");
-    updatePageContent('home');
-    history.replaceState({ pageId: 'home' }, '', '#home'); // Clean up history
-    history.pushState(null, '', null); // Re-add dummy state
-  }
-};
+});
 
 
 window.initAOS = function() {
@@ -2896,11 +2856,29 @@ document.getElementById('stbtn').onclick = () => window.scrollTo({top:0,behavior
 // Loader
 window.addEventListener('load', () => setTimeout(() => document.getElementById('loader')?.classList.add('out'), 1800));
 
-// CHANGE: Updated Mobile Menu Toggle
-window.toggleMob = function() {
+// Mobile menu
+window.toggleMob = function(forceClose = undefined) {
   const m = document.getElementById('mob-nav');
+  const b = document.getElementById('hamburger');
   if (!m) return;
-  m.classList.toggle('open');
+
+  const isOpen = m.classList.contains('open');
+  if (forceClose === true) { // Explicitly close
+    m.classList.remove('open');
+  } else if (forceClose === false) { // Explicitly keep closed
+    // Do nothing, it's already closed or being told to stay closed
+  } else { // Toggle behavior if no explicit instruction
+    m.classList.toggle('open');
+  }
+
+  const spans = b.querySelectorAll('span');
+  if (m.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translateY(7px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
+  } else {
+    spans.forEach(s => { s.style.transform=''; s.style.opacity=''; });
+  }
 };
 
 // User dropdown
@@ -2922,13 +2900,6 @@ document.addEventListener('click', (e) => {
   const faqQ = e.target.closest('.faq-q');
   if (faqQ) {
     faqQ.closest('.faq-item').classList.toggle('open');
-  }
-  
-  // Close Mobile Menu if clicked outside
-  const mobNav = document.getElementById('mob-nav');
-  const hamburger = document.getElementById('hamburger');
-  if (mobNav && mobNav.classList.contains('open') && !mobNav.contains(e.target) && !hamburger.contains(e.target)) {
-    mobNav.classList.remove('open');
   }
 });
 
@@ -2967,7 +2938,7 @@ window.switchAuthTab = function(btn) {
   }
 };
 
-// ── LIVE CHAT TOGGLE ──
+// ── LIVE CHAT TOGGLE (for the floating chat box, not the button) ──
 window.toggleChat = function() {
   const box = document.getElementById('chat-box');
   if (box) {
@@ -2991,13 +2962,7 @@ window.closePrivacy = function() {
     modal.classList.remove('show');
   }
 };
-// --- AUTO CLOSE MOBILE MENU LOGIC ---
-document.querySelectorAll('.mob-nav a').forEach(function(link) {
-  link.addEventListener('click', function() {
-    // Jaise hi kisi link par click hoga, sidebar se 'open' class hat jayegi
-    document.getElementById('mob-nav').classList.remove('open');
-  });
-});
+
 </script>
 </body>
 </html>
