@@ -1191,7 +1191,8 @@ window.deleteReview  = async(id)=>{if(!confirm('Delete?'))return;await remove(re
 window.unreadCounts = window.unreadCounts || {};
 window.chatListenersAdded = window.chatListenersAdded || {};
 window.presenceListeners = window.presenceListeners || {};
-window.lastMessageTimestamps = {}; // مریضوں کو ترتیب دینے کے لیے
+window.lastMessageTimestamps = {}; 
+window.prevMsgCounts = {}; // پچھلے میسجز کی تعداد یاد رکھنے کے لیے
 
 // Local Storage Helpers
 window.getSeenCounts = () => JSON.parse(localStorage.getItem('admin_seen_chats') || '{}');
@@ -1219,7 +1220,6 @@ function updateTotalConsultBadge() {
 }
 
 function loadChats() {
-  // پورے 'chats' نوڈ پر لسنر تاکہ ترتیب (Sorting) برقرار رہے
   onValue(ref(db, 'chats'), chatSnap => {
     const el = document.getElementById('chat-patient-list');
     if (!chatSnap.exists()) {
@@ -1230,15 +1230,30 @@ function loadChats() {
     const chatsData = chatSnap.val();
     const chatUids = Object.keys(chatsData);
 
-    // ہر مریض کے آخری میسج کا ٹائم نکالنا تاکہ اسے ٹاپ پر لا سکیں
+    // Beep Logic: نئے میسج کی پہچان
     chatUids.forEach(uid => {
       const msgs = Object.values(chatsData[uid]);
-      if (msgs.length > 0) {
-        window.lastMessageTimestamps[uid] = msgs[msgs.length - 1].timestamp;
+      const currentCount = msgs.length;
+      const prevCount = window.prevMsgCounts[uid] || 0;
+
+      // اگر میسجز بڑھے ہیں اور آخری میسج یوزر کا ہے
+      if (currentCount > prevCount) {
+        const lastMsg = msgs[currentCount - 1];
+        if (lastMsg.sender === 'user' && prevCount !== 0) {
+           // اگر یہ میسج موجودہ کھلی ہوئی چیٹ کا نہیں ہے تو بیپ بجاؤ
+           if (currentChatUID !== uid) {
+             playSound('consult'); // بیپ بجے گی
+           }
+        }
+        window.prevMsgCounts[uid] = currentCount;
+      }
+      
+      if (currentCount > 0) {
+        window.lastMessageTimestamps[uid] = msgs[currentCount - 1].timestamp;
       }
     });
 
-    // میسجز کو وقت کے حساب سے ترتیب دینا (نیا میسج سب سے اوپر)
+    // ترتیب (Sorting): نیا میسج سب سے اوپر
     chatUids.sort((a, b) => (window.lastMessageTimestamps[b] || 0) - (window.lastMessageTimestamps[a] || 0));
 
     get(ref(db, 'users')).then(userSnap => {
@@ -1253,17 +1268,15 @@ function loadChats() {
         const color = colors[i % colors.length];
         const isActive = (currentChatUID === uid) ? 'active' : '';
         
-        // میسجز کی گنتی چیک کرنا
         const msgs = Object.values(chatsData[uid]);
         const userMsgs = msgs.filter(m => m.sender === 'user');
         const seenCounts = window.getSeenCounts();
         const unread = Math.max(0, userMsgs.length - (seenCounts[uid] || 0));
         window.unreadCounts[uid] = unread;
 
-        // اگر ان-ریڈ میسج ہے تو سٹائل تبدیل کریں
         const isUnread = unread > 0 && currentChatUID !== uid;
         const nameStyle = isUnread ? 'color:var(--rose); font-weight:800;' : 'color:var(--text); font-weight:700;';
-        const itemBg = isUnread ? 'background: rgba(232, 49, 90, 0.05);' : '';
+        const itemBg = isUnread ? 'background: rgba(232, 49, 90, 0.08);' : '';
 
         html += `
           <div class="chat-item ${isActive}" onclick="selectChat('${uid}','${esc(name)}','${color}')" id="ci-${uid}" style="${itemBg}">
@@ -1275,10 +1288,10 @@ function loadChats() {
             <div style="flex:1;overflow:hidden;margin-left:10px;">
               <div class="chat-item-nm" id="nm-${uid}" style="${nameStyle}">${esc(name)}</div>
               <div class="chat-item-last" style="font-size:.74rem; ${isUnread ? 'color:var(--rose); font-weight:600;' : 'color:var(--text3);'}">
-                ${isUnread ? '📩 New Message' : esc(msgs[msgs.length-1].text || '')}
+                ${isUnread ? '📩 New Message...' : esc(msgs[msgs.length-1].text || '')}
               </div>
             </div>
-            ${isUnread ? `<div class="chat-unread" style="background:var(--rose); margin-left:5px;">${unread}</div>` : ''}
+            ${isUnread ? `<div class="chat-unread" style="background:var(--rose); color:white; padding:2px 8px; border-radius:10px; font-size:0.7rem;">${unread}</div>` : ''}
           </div>`;
       });
 
@@ -1286,7 +1299,6 @@ function loadChats() {
       el.scrollTop = scrollTop;
       updateTotalConsultBadge();
       
-      // Active Chat Messages update
       if (currentChatUID && chatsData[currentChatUID]) {
         renderChatMessages(chatsData[currentChatUID]);
       }
@@ -1295,12 +1307,12 @@ function loadChats() {
 }
 
 window.selectChat = (uid, name, color) => {
+  initAudio(); // آواز انلاک کریں
   currentChatUID = uid;
   document.getElementById('cw-name').textContent = name;
   document.getElementById('cw-av').textContent = name.charAt(0).toUpperCase();
   document.getElementById('cw-av').style.background = color;
 
-  // UI سے ریڈ الرٹ فوراً ختم کرنا
   const ci = document.getElementById(`ci-${uid}`);
   if (ci) {
     ci.style.background = '';
@@ -1345,7 +1357,8 @@ window.sendAdminMsg = async () => {
   const input = document.getElementById('cw-input');
   if (!input?.value.trim() || !currentChatUID) return;
   const messageText = input.value.trim();
-  await push(ref(db, `chats/${currentChatUID}`), {
+  const newMsgRef = push(ref(db, `chats/${currentChatUID}`));
+  await set(newMsgRef, {
     sender: 'admin', text: messageText, timestamp: Date.now()
   });
   input.value = '';
