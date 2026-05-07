@@ -5,7 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Al-Fazal Admin Panel</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
@@ -104,7 +106,7 @@ input,select,textarea{font-family:var(--font);}
 .sb-link .lbl{transition:all .3s;overflow:hidden;}
 .sidebar.collapsed .sb-link .lbl{width:0;opacity:0;}
 .sb-badge{margin-left:auto;background:var(--rose);color:#fff;font-size:.6rem;font-weight:900;padding:2px 7px;border-radius:50px;min-width:20px;text-align:center;flex-shrink:0;animation:badgePulse 2s ease-in-out infinite;}
-@keyframes badgePulse{0%,100%{opacity:1}50%{opacity:.6)}}
+@keyframes badgePulse{0%,100%{opacity:1}50%{opacity:.6}}
 .sidebar.collapsed .sb-badge{position:absolute;top:6px;right:6px;}
 .sb-divider{height:1px;background:rgba(255,255,255,.06);margin:8px 14px;}
 .sb-user{padding:16px 18px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;gap:10px;overflow:hidden;}
@@ -286,9 +288,9 @@ tbody td{padding:13px 16px;color:var(--text2);vertical-align:middle;}
 .chat-win-status{font-size:.72rem;color:var(--green);display:flex;align-items:center;gap:4px;}
 .chat-win-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:livePulse 1.5s infinite;}
 .chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:var(--off);min-height:320px;max-height:380px;}
-.msg-bubble{max-width:72%;padding:10px 15px;border-radius:14px;font-size:.85rem;line-height:1.55;}
-.msg-user{background:var(--rose);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
-.msg-admin{background:#fff;color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;box-shadow:var(--sh1);}
+.msg-bubble{max-width:72%;padding:10px 15px;border-radius:14px;font-size:.85rem;line-height:1.55;box-shadow:var(--sh1);}
+.msg-user{background:#fff;color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg-consultant{background:var(--rose);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
 .msg-time{font-size:.65rem;opacity:.6;margin-top:3px;}
 .chat-input-row{padding:14px;border-top:1px solid var(--border);display:flex;gap:9px;}
 .chat-in{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:.88rem;outline:none;transition:border-color .2s;}
@@ -402,7 +404,7 @@ tbody td{padding:13px 16px;color:var(--text2);vertical-align:middle;}
   <div class="login-box">
     <div class="login-logo">
       <div class="login-logo-ico">
-  <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwHghVlF&_nc_oc=AdqOJ-Ac1llHmmPRDxgBVF7J7gLG9P4mJhMZUh2J5-_-KlcgAxV4XexlaGhA6UkanPw&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=BL8LM-J3NYqKGiMOIqduPw&_nc_ss=7a3a8&oh=00_Af1nBC-TKukubOfGDW25DChFv9kr8WWaS3swFjQhYzAlaA&oe=69DD3C45" alt="Logo">
+  <img src="logo.png" alt="Logo">
 </div>
       <div class="login-logo-name">Al-Fazal Hospital</div>
       <div class="login-logo-sub">Medical &amp; Dental · Lahore</div>
@@ -435,7 +437,7 @@ tbody td{padding:13px 16px;color:var(--text2);vertical-align:middle;}
   <aside class="sidebar" id="sidebar">
     <div class="sb-header">
       <div class="sb-logo-ico">
-  <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwHghVlF&_nc_oc=AdqOJ-Ac1llHmmPRDxgBVF7J7gLG9P4mJhMZUh2J5-_-KlcgAxV4XexlaGhA6UkanPw&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=BL8LM-J3NYqKGiMOIqduPw&_nc_ss=7a3a8&oh=00_Af1nBC-TKukubOfGDW25DChFv9kr8WWaS3swFjQhYzAlaA&oe=69DD3C45" alt="Logo">
+  <img src="logo.png" alt="Logo">
 </div>
       <div class="sb-logo-txt">
         <div class="sb-logo-name">Al-Fazal</div>
@@ -607,13 +609,13 @@ tbody td{padding:13px 16px;color:var(--text2);vertical-align:middle;}
                   <img id="cw-img-preview-admin" src="" style="display:none;max-width:160px;border-radius:10px;border:2px solid var(--border);margin-bottom:4px;">
                   <div style="display:flex;gap:8px;align-items:center">
                     <input type="text" class="chat-in" id="cw-input" placeholder="Type your reply..."
-                      onkeypress="if(event.key==='Enter')sendAdminMsg()"
-                      oninput="adminSetTyping(currentChatUID)">
+                       onkeydown="if(event.key==='Enter'){event.preventDefault();sendAdminMsg();}"
+                       oninput="adminSetTyping(currentChatUID)">
                     <label style="cursor:pointer;width:38px;height:38px;border-radius:9px;background:var(--off);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text3);flex-shrink:0;" title="Send Image">
                       <i class="fas fa-image"></i>
                       <input type="file" id="cw-img-input" accept="image/*" style="display:none" onchange="handleCwAdminImg(this)">
                     </label>
-                    <button class="btn btn-rose btn-sm" onclick="sendAdminMsg()"><i class="fas fa-paper-plane"></i></button>
+                    <button class="btn btn-rose btn-sm" id="cw-send-btn" onclick="sendAdminMsg()"><i class="fas fa-paper-plane"></i></button>
                   </div>
                 </div>
               </div>
@@ -980,6 +982,11 @@ const firestoreDb = getFirestore(app); // Firestore Database
 const messaging = getMessaging(app); // Firebase Cloud Messaging
 const storage = getStorage(app); // Initialize Firebase Storage
 
+// Expose Firestore to window for non-module scripts (loadUsers)
+window._firestoreDb = firestoreDb;
+window._getDocs = getDocs;
+window._collection = collection;
+
 // VAPID Key for Web Push
 const VAPID_KEY = "BHtkYFJNFbxX2Mj9mLCHoiBL0Qz2Kz8wj5VvQn2pRLxhNsX4-dXJf4sNKFCbFHDRkJ3XTzHf7aKmO9pNsFqvZ0";
 
@@ -1169,8 +1176,11 @@ function loadDashboard() {
       </div>`).join('');
     } else { el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text3);font-size:.84rem">No reviews yet</div>'; }
   });
-  onValue(ref(db,'users'), s => {
-    document.getElementById('s-patients').textContent = s.exists() ? Object.keys(s.val()).length : 0;
+  // Load patient count from Firestore
+  getDocs(collection(firestoreDb, 'users')).then(snap => {
+    document.getElementById('s-patients').textContent = snap.size;
+  }).catch(() => {
+    document.getElementById('s-patients').textContent = '0';
   });
   onValue(ref(db,'chats'), s => {
     document.getElementById('s-chats').textContent = s.exists() ? Object.keys(s.val()).length : 0;
@@ -1500,7 +1510,7 @@ function renderChatMessages(chatData, uid) {
     
     const deleteBtn = !isDeleted && msgUid ? `<button onclick="adminDeleteMsg('${msgId}','${msgUid}')" style="background:none;border:none;cursor:pointer;opacity:0;transition:opacity .2s;margin-left:4px;color:var(--red);font-size:.7rem" class="admin-del-btn" title="Delete"><i class="fas fa-trash"></i></button>` : '';
 
-    html += `<div class="msg-bubble msg-${isUser?'user':'admin'}" style="max-width:75%;position:relative" onmouseover="this.querySelector('.admin-del-btn')&&(this.querySelector('.admin-del-btn').style.opacity='1')" onmouseout="this.querySelector('.admin-del-btn')&&(this.querySelector('.admin-del-btn').style.opacity='0')">
+    html += `<div class="msg-bubble msg-${isUser?'user':'consultant'}" style="max-width:75%;position:relative" onmouseover="this.querySelector('.admin-del-btn')&&(this.querySelector('.admin-del-btn').style.opacity='1')" onmouseout="this.querySelector('.admin-del-btn')&&(this.querySelector('.admin-del-btn').style.opacity='0')">
       ${textHtml}${editedHtml}${imgHtml}
       <div class="msg-time" style="font-size:.62rem;opacity:.55;margin-top:4px;text-align:right;display:flex;align-items:center;justify-content:flex-end;gap:4px">
         ${fmtTime(d.timestamp)} ${seenHtml} ${deleteBtn}
@@ -1519,35 +1529,51 @@ window.adminDeleteMsg = async (msgId, uid) => {
 };
 
 
+let _isAdminSending = false;
 window.sendAdminMsg = async () => {
+  if (_isAdminSending || !currentChatUID) return;
   const input = document.getElementById('cw-input');
+  const sendBtn = document.getElementById('cw-send-btn');
   const imgInput = document.getElementById('cw-img-input');
   const text = input?.value.trim();
-  if ((!text && !window.cwPendingImg) || !currentChatUID) return;
+  
+  if (!text && !window.cwPendingImg) return;
 
   const msgData = {
-    sender: 'admin',
+    sender: 'consultant',
     text: text || '',
     timestamp: Date.now(),
-    image: window.cwPendingImg || ''
+    image: window.cwPendingImg || '',
+    seenByUser: false
   };
 
-  await push(ref(db, `chats/${currentChatUID}`), msgData);
-  input.value = '';
-  window.cwPendingImg = '';
-  const preview = document.getElementById('cw-img-preview-admin');
-  if (preview) { preview.style.display='none'; preview.src=''; }
-  if (imgInput) imgInput.value='';
+  try {
+    _isAdminSending = true;
+    if (sendBtn) sendBtn.disabled = true;
 
-  // User ko push notification bhejo
-  const userSnap = await get(ref(db, `users/${currentChatUID}`));
-  const userName = userSnap.exists() ? (userSnap.val().name || 'Patient') : 'Patient';
-  await sendNotificationToUser(currentChatUID, {
-    title: '💬 New Message from Al-Fazal Hospital',
-    body: text ? `Dr. replied: "${text.substring(0,80)}"` : '📷 Doctor sent an image',
-    type: 'chat',
-    uid: currentChatUID
-  });
+    await push(ref(db, `chats/${currentChatUID}`), msgData);
+    
+    if (input) input.value = '';
+    window.cwPendingImg = '';
+    const preview = document.getElementById('cw-img-preview-admin');
+    if (preview) { preview.style.display='none'; preview.src=''; }
+    if (imgInput) imgInput.value='';
+
+    // User ko push notification bhejo
+    const userSnap = await get(ref(db, `users/${currentChatUID}`));
+    // Note: sendNotificationToUser needs to be defined
+    await sendNotificationToUser(currentChatUID, {
+      title: '💬 New Message from Al-Fazal Hospital',
+      body: text ? `Dr. replied: "${text.substring(0,80)}"` : '📷 Doctor sent an image',
+      type: 'chat',
+      uid: currentChatUID
+    });
+  } catch (err) {
+    console.error("Failed to send admin msg:", err);
+  } finally {
+    _isAdminSending = false;
+    if (sendBtn) sendBtn.disabled = false;
+  }
 };
 // ── VIDEOS ──
 function loadVideos() {
@@ -2142,20 +2168,19 @@ function loadUsers() {
   const tbody = document.getElementById('users-tbody');
   if (!tbody) return;
   tbody.innerHTML = '<tr><td colspan="5" class="empty-row"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
-  // Try loading from Realtime DB 'users' node
-  if (typeof get !== 'undefined' && typeof ref !== 'undefined' && typeof db !== 'undefined') {
-    get(ref(db, 'users')).then(snap => {
-      if (!snap.exists()) {
-        tbody.innerHTML = '<tr><td colspan="5" class="empty-row"><i class="fas fa-user-slash"></i> No registered users yet</td></tr>';
-        return;
-      }
-      allUsersData = Object.entries(snap.val()).map(([uid, u]) => ({ uid, ...u }));
-      document.getElementById('users-count').textContent = allUsersData.length + ' users';
-      renderUsersTable(allUsersData);
-    }).catch(() => {
-      tbody.innerHTML = '<tr><td colspan="5" class="empty-row">Error loading users</td></tr>';
-    });
-  }
+  // Load from Firestore 'users' collection
+  window._getDocs(window._collection(window._firestoreDb, 'users')).then(snap => {
+    if (snap.empty) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-row"><i class="fas fa-user-slash"></i> No registered users yet</td></tr>';
+      return;
+    }
+    allUsersData = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
+    document.getElementById('users-count').textContent = allUsersData.length + ' users';
+    renderUsersTable(allUsersData);
+  }).catch(err => {
+    console.error('Error loading users from Firestore:', err);
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-row">Error loading users</td></tr>';
+  });
 }
 
 function renderUsersTable(users) {

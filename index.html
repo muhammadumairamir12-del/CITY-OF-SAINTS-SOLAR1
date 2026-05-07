@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Al-Fazal Medical & Dental Hospital | Johar Town, Lahore</title>
 <meta name="description" content="Al-Fazal Medical & Dental Hospital — Johar Town Lahore. Expert doctors, pain-free dental & medical treatments, online booking & free consultation.">
+<link rel="icon" type="image/png" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 /* ============================================================
@@ -155,7 +157,7 @@ input,select,textarea{font-family:var(--font);}
 @keyframes blobPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 /* Floating particles */
 .hero-particle{position:absolute;width:6px;height:6px;background:var(--rose);border-radius:50%;opacity:.3;animation:particleFloat 6s ease-in-out infinite;}
-@keyframes particleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.3}50%{transform:translateY(-30px) scale(1.5);opacity:.6)}}
+@keyframes particleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.3}50%{transform:translateY(-30px) scale(1.5);opacity:.6}}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--rose-pale);border:1px solid var(--rose-soft);border-radius:50px;padding:7px 16px;margin-bottom:20px;width:fit-content;animation:fadeUp .6s .1s both;}
 .hero-badge span{font-size:.72rem;letter-spacing:3px;color:var(--rose);font-weight:700;text-transform:uppercase;}
@@ -284,8 +286,9 @@ p.sub.center{margin:12px auto 50px;}
 .video-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;}
 .video-info-title{font-weight:800;font-size:1rem;color:#fff;margin-bottom:4px;}
 .video-info-sub{font-size:.78rem;color:rgba(255,255,255,.7);}
-/* Video Actions — Like/Share/Download */
-.v-action-btn{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--text2);background:none;border:none;padding:5px 10px;border-radius:6px;transition:all .2s;cursor:pointer;}
+/* Video Actions — Like/Share/Download (Row Layout) */
+.video-actions{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--off);border-top:1px solid var(--border);}
+.v-action-btn{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--text2);background:none;border:none;padding:6px 14px;border-radius:8px;transition:all .2s;cursor:pointer;flex:1;justify-content:center;}
 .v-action-btn:hover{background:var(--rose-pale);color:var(--rose);}
 .v-action-btn.liked{color:var(--rose);}
 /* New: Style for video player inside video card */
@@ -766,7 +769,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 #consult-img-preview{max-width:120px;border-radius:10px;display:none;border:2px solid var(--border);margin-bottom:6px;}
 
 /* ══ WHATSAPP-STYLE CHAT UPGRADES ══ */
-.wa-chat-wrap{display:flex;flex-direction:column;height:100%;min-height:400px;max-height:70vh;background:#f0f0f0;border-radius:var(--radius2);overflow:hidden;}
+.wa-chat-wrap{display:flex;flex-direction:column;height:600px;max-height:85vh;overflow:hidden;background:#fff;border-radius:var(--radius2);box-shadow:var(--sh3);position:relative;}
 .wa-chat-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
 .wa-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--pink));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;}
 .wa-status{display:flex;align-items:center;gap:6px;font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px;}
@@ -774,7 +777,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 .wa-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:6px;background:#e5ddd5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' opacity='0.03'%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-size='200' fill='%23000'%3E💬%3C/text%3E%3C/svg%3E");}
 .wa-bubble{max-width:75%;padding:8px 14px 4px;border-radius:12px;font-size:.88rem;line-height:1.55;position:relative;word-break:break-word;animation:fadeUp .3s ease;}
 .wa-bubble.user-msg{background:#dcf8c6;color:#111;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.1);}
-.wa-bubble.admin-msg{background:#fff;color:#111;align-self:flex-start;border-bottom-left-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.1);}
+.wa-bubble.consultant-msg{background:#fff;color:#111;align-self:flex-start;border-bottom-left-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.1);}
 .wa-time{font-size:.63rem;color:rgba(0,0,0,.4);text-align:right;margin-top:3px;display:flex;align-items:center;justify-content:flex-end;gap:4px;}
 .wa-seen{color:#53bdeb;font-size:.65rem;}
 .wa-delivered{color:rgba(0,0,0,.4);font-size:.65rem;}
@@ -784,7 +787,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 .wa-typing-dots span:nth-child(2){animation-delay:.15s;}
 .wa-typing-dots span:nth-child(3){animation-delay:.3s;}
 @keyframes waDot{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
-.wa-toolbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f0f0f0;border-top:1px solid var(--border);flex-shrink:0;}
+.wa-toolbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f0f2f5;border-top:1px solid var(--border);flex-shrink:0;position:sticky;bottom:0;z-index:10;}
 .wa-emoji-btn{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text3);transition:transform .2s;padding:4px;}
 .wa-emoji-btn:hover{transform:scale(1.15);}
 .wa-input{flex:1;padding:10px 14px;border:none;border-radius:22px;font-size:.9rem;background:#fff;outline:none;box-shadow:0 1px 3px rgba(0,0,0,.1);resize:none;max-height:120px;font-family:var(--font);}
@@ -797,6 +800,31 @@ footer{background:#04111e;padding:65px 5% 26px;}
 .wa-img-preview-wrap{background:#fff;padding:8px 14px;border-top:1px solid var(--border);display:none;align-items:center;gap:10px;}
 .wa-img-preview-wrap img{width:60px;height:60px;border-radius:10px;object-fit:cover;}
 .wa-img-preview-wrap button{background:none;border:none;color:var(--red);font-size:1rem;cursor:pointer;}
+
+/* ── Reply-to-message (Quoted Reply) ── */
+.wa-reply-quote{background:rgba(0,0,0,.06);border-left:3px solid var(--rose);border-radius:6px;padding:6px 10px;margin-bottom:5px;font-size:.78rem;cursor:pointer;transition:background .2s;overflow:hidden;}
+.wa-reply-quote:hover{background:rgba(0,0,0,.1);}
+.wa-reply-quote .wa-rq-sender{font-weight:800;font-size:.7rem;color:var(--rose);margin-bottom:2px;}
+.wa-reply-quote .wa-rq-text{color:rgba(0,0,0,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+.wa-bubble.user-msg .wa-reply-quote{background:rgba(0,0,0,.08);border-left-color:#075e54;}
+.wa-bubble.user-msg .wa-reply-quote .wa-rq-sender{color:#075e54;}
+/* Reply button on bubble hover */
+.wa-bubble .wa-reply-btn{position:absolute;top:4px;right:-30px;width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--text3);cursor:pointer;opacity:0;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.wa-bubble:hover .wa-reply-btn{opacity:1;}
+.wa-bubble .wa-reply-btn:hover{background:var(--rose-pale);color:var(--rose);border-color:var(--rose);}
+.wa-bubble.user-msg .wa-reply-btn{right:auto;left:-30px;}
+/* Reply bar above input */
+.wa-reply-bar{display:none;align-items:center;gap:10px;padding:8px 14px;background:#fff;border-top:1px solid var(--border);border-left:3px solid var(--rose);animation:slideDown .2s ease;}
+.wa-reply-bar.show{display:flex;}
+.wa-reply-bar .wa-rb-content{flex:1;overflow:hidden;}
+.wa-reply-bar .wa-rb-sender{font-size:.72rem;font-weight:800;color:var(--rose);}
+.wa-reply-bar .wa-rb-text{font-size:.8rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wa-reply-bar .wa-rb-close{background:none;border:none;color:var(--text3);font-size:1rem;cursor:pointer;padding:4px;transition:color .2s;}
+.wa-reply-bar .wa-rb-close:hover{color:var(--red);}
+/* Date separator */
+.wa-date-sep{text-align:center;padding:6px 0;margin:6px 0;}
+.wa-date-sep span,.wa-date-sep{font-size:.68rem;color:rgba(0,0,0,.45);background:rgba(255,255,255,.85);display:inline-block;padding:4px 14px;border-radius:8px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 .wa-date-sep{text-align:center;font-size:.7rem;color:rgba(0,0,0,.5);background:rgba(255,255,255,.7);padding:4px 12px;border-radius:50px;margin:6px auto;width:fit-content;font-weight:600;}
 .wa-msg-menu{position:absolute;right:0;top:-60px;background:#fff;border-radius:10px;box-shadow:var(--sh3);padding:4px 0;z-index:50;min-width:130px;display:none;}
 .wa-msg-menu.open{display:block;}
@@ -833,7 +861,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <!-- LOADER -->
 <div id="loader">
   <!-- NEW: Splash screen logo image -->
-  <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwE7b5YK&_nc_oc=AdqCi1hx4epJvuZuJpRF7CoBBPO1zxHuP-DS0k4IKPu5zorRa2RAn1j9IECfAdWDe-g&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=d797lZ06ggoaY4wtoCBWKg&_nc_ss=7a3a8&oh=00_Af1rOK5UA9t9_xnz7CnfIkQxjgIlEeLnf6l6RwnurIxQmQ&oe=69DEC605" alt="Al-Fazal Hospital Logo" class="ld-logo-img">
+  <img src="logo.png" alt="Al-Fazal Hospital Logo" class="ld-logo-img">
   <div class="ld-name">Al-Fazal Hospital</div>
   <div class="ld-tag">Johar Town · Lahore</div>
   <div class="ld-bar"><div class="ld-fill"></div></div>
@@ -862,7 +890,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
 <nav class="navbar" id="navbar">
   <div class="nav-logo" onclick="goPage('home')">
     <div class="logo-ico">
-      <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwE7b5YK&_nc_oc=AdqCi1hx4epJvuZuJpRF7CoBBPO1zxHuP-DS0k4IKPu5zorRa2RAn1j9IECfAdWDe-g&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=d797lZ06ggoaY4wtoCBWKg&_nc_ss=7a3a8&oh=00_Af1rOK5UA9t9_xnz7CnfIkQxjgIlEeLnf6l6RwnurIxQmQ&oe=69DEC605" alt="Al-Fazal Hospital Logo" style="width:100%; height:100%; object-fit:contain;">
+      <img src="logo.png" alt="Al-Fazal Hospital Logo" style="width:100%; height:100%; object-fit:contain;">
     </div>
     <div>
       <div class="logo-n">Al-Fazal Hospital</div>
@@ -1755,13 +1783,13 @@ footer{background:#04111e;padding:65px 5% 26px;}
           <div id="consult-typing-indicator" style="font-size:.72rem;color:rgba(255,255,255,.6);font-style:italic;display:none">Doctor is typing<span class="wa-typing-dots" style="display:inline"><span></span><span></span><span></span></span></div>
         </div>
         <!-- Messages -->
-        <div class="wa-messages" id="consult-messages">
-          <div class="wa-date-sep">Today</div>
-          <div class="wa-bubble admin-msg">
-            👋 Welcome to Al-Fazal Hospital! Login to send messages for personalized medical advice from our doctors.
-            <div class="wa-time">Now <i class="fas fa-check-double wa-seen"></i></div>
-          </div>
+      <div id="consult-messages" class="wa-messages">
+        <div class="wa-date-sep">Today</div>
+        <div class="wa-bubble consultant-msg">
+          👋 Welcome to Al-Fazal Hospital! Login to send messages for personalized medical advice from our doctors.
+          <div class="wa-time">Now <i class="fas fa-check-double wa-seen"></i></div>
         </div>
+      </div>
         <!-- Typing bubble -->
         <div class="wa-typing-bubble" id="wa-typing-bubble">
           <div class="wa-typing-dots"><span></span><span></span><span></span></div>
@@ -1793,9 +1821,9 @@ footer{background:#04111e;padding:65px 5% 26px;}
             <input type="file" id="consult-img-input" accept="image/*" style="display:none" onchange="handleConsultImg(this)">
           </label>
           <textarea id="consult-input" class="wa-input" placeholder="Type your health question..." rows="1"
-            onkeypress="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConsultMsg();}"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConsultMsg();}"
             oninput="autoResizeTextarea(this);setUserTyping()"></textarea>
-          <button class="wa-send-btn" onclick="sendConsultMsg()"><i class="fas fa-paper-plane"></i></button>
+          <button class="wa-send-btn" id="consult-send-btn" onclick="sendConsultMsg()"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
@@ -1960,13 +1988,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile
+  signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile,
+  setPersistence, browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getDatabase, ref, push, set, get, onValue, update, remove, increment, query, orderByChild, limitToLast
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { 
-  getFirestore, doc, setDoc, getDoc 
+  getFirestore, doc, setDoc, getDoc, updateDoc 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"; // Added Firestore imports
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
@@ -1986,6 +2015,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+// Set persistence to LOCAL — user stays logged in until they explicitly logout
+setPersistence(auth, browserLocalPersistence).catch(e => console.warn('Persistence error:', e));
 const db = getDatabase(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app);
@@ -2149,8 +2180,17 @@ async function initUserNotifications(uid) {
     if (permission === 'granted') {
       const token = await getToken(messaging, { vapidKey: VAPID_KEY });
       if (token) {
+        // Save to Realtime DB (existing logic)
         await set(ref(db, `fcmTokens/${uid}`), { token, role: 'patient', updatedAt: Date.now() });
-        console.log('[User] FCM Token saved');
+        // Save to Firestore (as requested)
+        await updateDoc(doc(firestore, "users", uid), {
+          fcmToken: token,
+          tokenUpdatedAt: Date.now()
+        }).catch(err => {
+          // If doc doesn't exist, set it
+          setDoc(doc(firestore, "users", uid), { fcmToken: token, uid: uid }, { merge: true });
+        });
+        console.log('[User] FCM Token saved to Firestore');
       }
     }
   } catch (e) { console.warn('[User] FCM token error:', e); }
@@ -2591,8 +2631,8 @@ function loadUserChat(uid) {
         div.textContent = d.text;
         container.appendChild(div);
 
-        if (d.sender === 'admin' && currentMessageCount > previousMessageCount) {
-             const newAdminMessages = messages.filter(msg => msg.sender === 'admin');
+        if (d.sender === 'consultant' && currentMessageCount > previousMessageCount) {
+             const newAdminMessages = messages.filter(msg => msg.sender === 'consultant');
              const previousAdminMessagesCount = prevChatMessagesCount[`${uid}_admin`] || 0;
 
              if (newAdminMessages.length > previousAdminMessagesCount) {
@@ -2655,7 +2695,7 @@ function loadConsultChat(uid) {
   if (!uid) {
     container.innerHTML = `
       <div class="wa-date-sep">Today</div>
-      <div class="wa-bubble admin-msg">
+      <div class="wa-bubble consultant-msg">
         👋 Welcome to Al-Fazal Hospital! Please <strong style="color:var(--rose);cursor:pointer" onclick="openAuthModal('login')">Login</strong> to send messages for personalized medical advice. 🏥
         <div class="wa-time">Now <i class="fas fa-check-double wa-seen"></i></div>
       </div>`;
@@ -2690,7 +2730,7 @@ function loadConsultChat(uid) {
     if (!messages.length) {
       container.innerHTML = `
         <div class="wa-date-sep">Today</div>
-        <div class="wa-bubble admin-msg">
+        <div class="wa-bubble consultant-msg">
           👋 Welcome! اپنا سوال لکھیں اور ہمارے ڈاکٹر جلد جواب دیں گے 👨‍⚕️
           <div class="wa-time">Now <i class="fas fa-check-double wa-seen"></i></div>
         </div>`;
@@ -2713,7 +2753,7 @@ function loadConsultChat(uid) {
         const statusHtml = isUser ? `<i class="fas fa-check-double ${d.seen ? 'wa-seen' : 'wa-delivered'}"></i>` : '';
 
         const div = document.createElement('div');
-        div.className = `wa-bubble ${isUser ? 'user-msg' : 'admin-msg'}`;
+        div.className = `wa-bubble ${isUser ? 'user-msg' : 'consultant-msg'}`;
         div.dataset.msgId = d.id;
         div.innerHTML = `
           ${textHtml}${editedHtml}${imgHtml}
@@ -2732,14 +2772,14 @@ function loadConsultChat(uid) {
     }
 
     // Mark all admin messages as seen
-    messages.filter(m => m.sender === 'admin' && !m.seenByUser).forEach(m => {
+    messages.filter(m => m.sender === 'consultant' && !m.seenByUser).forEach(m => {
       update(ref(db, `chats/${uid}/${m.id}`), { seenByUser: true });
     });
 
     // New admin message sound
     if (currentCount > prevCount && messages.length > 0) {
       const lastMsg = messages[messages.length - 1];
-      if (lastMsg.sender === 'admin' && prevCount !== 0) {
+      if (lastMsg.sender === 'consultant' && prevCount !== 0) {
         playUserSound('message');
         showInAppNotification('💬 Doctor replied!', lastMsg.text?.substring(0, 60) || 'Image sent', 'chat');
       }
@@ -2816,8 +2856,11 @@ window.clearConsultImg = () => {
   if (inp) inp.value = '';
 };
 
+let _isSendingConsult = false;
 window.sendConsultMsg = async () => {
+  if (_isSendingConsult) return;
   const input = document.getElementById('consult-input');
+  const sendBtn = document.getElementById('consult-send-btn');
   const messageText = input?.value.trim();
   const pendingImg = window.consultPendingImg || '';
 
@@ -2840,13 +2883,20 @@ window.sendConsultMsg = async () => {
   };
 
   try {
+    _isSendingConsult = true;
+    if (sendBtn) sendBtn.disabled = true;
+    
     await push(ref(db, `chats/${currentUser.uid}`), msg);
+    
     if (input) { input.value = ''; input.style.height = 'auto'; }
     clearConsultImg();
     // Stop typing indicator
     set(ref(db, `typing/${currentUser.uid}_user`), { typing: false });
   } catch (error) {
     showToast('❌ Failed to send message.', true);
+  } finally {
+    _isSendingConsult = false;
+    if (sendBtn) sendBtn.disabled = false;
   }
 };
 
@@ -3149,40 +3199,51 @@ function loadVideoIdsFromDb() {
   onValue(ref(db, 'videos'), snap => {
     const videos = snap.val() || {};
     VIDEO_SECTIONS.forEach(async sec => { 
-      const videoElement = document.querySelector(sec.selector);
-      if (videoElement) {
+      // Use specific selector for the card wrap to avoid ambiguity with buttons
+      const videoElements = document.querySelectorAll(`.video-card-wrap[data-video-key="${sec.key}"]`);
+      
+      if (videoElements.length > 0) {
         const videoData = videos[sec.key] || {};
         const storedUrl = videoData.url || '';
         const likeCount = videoData.likes || 0;
         const viewCount = videoData.views || 0;
         const isTrending = viewCount > 100 || likeCount > 50;
-        
-        videoElement.dataset.videoSrc = storedUrl;
-        videoElement.dataset.videoTitle = sec.title || '';
+        const posterUrl = videoData.poster || sec.defaultPoster;
 
-        const posterImg = videoElement.querySelector('.video-poster');
-        if (posterImg) posterImg.src = videoData.poster || sec.defaultPoster;
+        videoElements.forEach(async videoElement => {
+          videoElement.dataset.videoSrc = storedUrl;
+          videoElement.dataset.videoTitle = sec.title || sec.label || '';
 
-        const likeCountSpan = videoElement.querySelector('.like-count');
-        if (likeCountSpan) likeCountSpan.textContent = likeCount;
+          // Update poster
+          const posterImg = videoElement.querySelector('.video-poster');
+          if (posterImg) posterImg.src = posterUrl;
 
-        // View count display
-        const viewEl = videoElement.querySelector('.video-view-count');
-        if (viewEl) viewEl.innerHTML = `<i class='fas fa-eye'></i> ${viewCount.toLocaleString()}`;
+          // Update likes
+          const likeCountSpan = videoElement.querySelector('.like-count');
+          if (likeCountSpan) likeCountSpan.textContent = likeCount;
 
-        // Trending badge
-        const trendingBadge = videoElement.querySelector('.video-trending-badge');
-        if (trendingBadge) trendingBadge.classList.toggle('show', isTrending);
-
-        const likeBtn = videoElement.querySelector(`.v-action-btn[data-video-key="${sec.key}"]`);
-        if (likeBtn) {
-          if (currentUser) {
-            const userLikeSnap = await get(ref(db, `userLikes/${currentUser.uid}/${sec.key}`));
-            likeBtn.classList.toggle('liked', userLikeSnap.exists() && userLikeSnap.val() === true);
-          } else {
-            likeBtn.classList.remove('liked'); 
+          // Update views
+          const viewEl = videoElement.querySelector('.video-view-count');
+          if (viewEl) {
+             const viewFormatted = typeof viewCount === 'number' ? viewCount.toLocaleString() : '0';
+             viewEl.innerHTML = `<i class='fas fa-eye'></i> ${viewFormatted}`;
           }
-        }
+
+          // Update trending badge
+          const trendingBadge = videoElement.querySelector('.video-trending-badge');
+          if (trendingBadge) trendingBadge.classList.toggle('show', isTrending);
+
+          // Update like button state
+          const likeBtn = videoElement.querySelector(`.v-action-btn[data-video-key="${sec.key}"]`);
+          if (likeBtn) {
+            if (currentUser) {
+              const userLikeSnap = await get(ref(db, `userLikes/${currentUser.uid}/${sec.key}`));
+              likeBtn.classList.toggle('liked', userLikeSnap.exists() && userLikeSnap.val() === true);
+            } else {
+              likeBtn.classList.remove('liked'); 
+            }
+          }
+        });
       }
     });
   });
