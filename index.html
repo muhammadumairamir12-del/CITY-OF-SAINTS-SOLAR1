@@ -298,14 +298,40 @@ p.sub.center{margin:12px auto 50px;}
   display: none; /* Hidden by default */
   background: black; /* To ensure black background for videos */
 }
-.video-card-wrap .video-player-container video {
+.video-card-wrap .video-player-container video,
+.video-card-wrap .video-player-container iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures the entire video is visible */
+  object-fit: contain;
+  border: none;
+}
+.video-card-wrap.is-playing{
+  width:100%;
+  max-width:100%;
+  transform:none;
+}
+.video-card-wrap.is-playing .video-player-container{
+  display:block !important;
+  aspect-ratio:16/9;
+  height:auto !important;
+  min-height:min(52vw, 480px);
+  max-height:85vh;
+}
+.video-card-wrap.is-playing .video-player-container video{
+  object-fit:cover;
+  background:#000;
+}
+.video-full-wrap .video-card-wrap.is-playing,
+.about-video-grid .video-card-wrap.is-playing,
+.dental-video-grid .video-card-wrap.is-playing,
+.medical-video-grid .video-card-wrap.is-playing,
+.doctors-video-grid .video-card-wrap.is-playing{
+  grid-column:1 / -1;
+  width:100%;
 }
 
 /* Full-width video */
-.video-full-wrap{max-width:900px;margin:0 auto;}
+.video-full-wrap{max-width:900px;margin:0 auto;width:100%;}
 .video-section-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;}
 .video-section-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px;}
 
@@ -313,8 +339,8 @@ p.sub.center{margin:12px auto 50px;}
 .doctors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;}
 .doc-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius2);overflow:hidden;transition:all .35s;}
 .doc-card:hover{transform:translateY(-6px);box-shadow:var(--sh3);border-color:transparent;}
-.doc-img{height:240px;position:relative;overflow:hidden;background:var(--light);}
-.doc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.doc-img{height:280px;position:relative;overflow:hidden;background:var(--light);}
+.doc-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .5s;}
 .doc-card:hover .doc-img img{transform:scale(1.05);}
 .doc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,58,.7) 0%,transparent 55%);opacity:0;transition:opacity .4s;}
 .doc-card:hover .doc-overlay{opacity:1;}
@@ -682,12 +708,12 @@ footer{background:#04111e;padding:65px 5% 26px;}
     grid-template-columns:1fr;
     gap: 25px; /* Adjusted gap */
   }
-  .video-card-wrap .video-thumb img {
-    height: 250px; /* Increase video poster height for mobile */
+  .video-thumb{aspect-ratio:16/9;}
+  .video-card-wrap.is-playing .video-player-container{
+    min-height:min(56vw, 72vh);
+    aspect-ratio:16/9;
   }
-  .video-card-wrap .video-player-container {
-      height: 250px; /* Ensure player container matches poster height */
-  }
+  .video-card-wrap .video-player-container video{object-fit:cover;}
 
   /* Mobile Chat Box Adjustments (floating chat is hidden, but consulted page chat is adjusted) */
   .chat-box{ /* This is the floating chat, now display:none */
@@ -729,12 +755,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .topbar-left{flex-direction:column;align-items:flex-start;gap:5px;}
   .topbar-right{width:100%;justify-content:center;}
   .topbar{justify-content:center;}
-  .video-card-wrap .video-thumb img {
-    height: 180px; /* Further reduce video poster height for very small mobiles */
-  }
-  .video-card-wrap .video-player-container {
-      height: 180px; /* Match player container height */
-  }
+  .slot-grid{grid-template-columns:repeat(3,1fr);}
 } /* end @media 480px */
 
 /* ── IN-APP NOTIFICATION TOAST (User) ── */
@@ -876,6 +897,23 @@ footer{background:#04111e;padding:65px 5% 26px;}
 @keyframes bellShake{0%,100%{transform:rotate(0)}15%{transform:rotate(-15deg)}30%{transform:rotate(10deg)}45%{transform:rotate(-10deg)}60%{transform:rotate(5deg)}75%{transform:rotate(-5deg)}}
 .notif-bell-shake .fa-bell{animation:bellShake .8s ease;}
 @keyframes slideInRight{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* ── BOOKING TIME SLOTS ── */
+.slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px;margin-top:10px;}
+.slot-btn{padding:9px 4px;border:1.5px solid var(--border);border-radius:8px;background:#fff;font-size:.72rem;font-weight:700;color:var(--text2);cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;}
+.slot-btn:hover:not(:disabled):not(.booked){border-color:var(--rose);color:var(--rose);background:var(--rose-pale);}
+.slot-btn.selected{border-color:var(--navy);background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;box-shadow:var(--sh2);}
+.slot-btn.booked{background:#fef2f2;border-color:var(--red);color:var(--red);cursor:not-allowed;text-decoration:line-through;opacity:.9;}
+.slot-btn:disabled{opacity:.45;cursor:not-allowed;}
+.slot-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:.72rem;color:var(--text3);}
+.slot-legend i{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:middle;}
+.slot-legend .lg-av{background:#fff;border:1.5px solid var(--border);}
+.slot-legend .lg-sel{background:var(--navy);}
+.slot-legend .lg-bk{background:#fef2f2;border:1.5px solid var(--red);}
+.auth-returning-hint{display:none;background:var(--rose-pale);border:1px solid var(--rose-soft);padding:10px 14px;border-radius:9px;font-size:.8rem;color:var(--text2);margin-bottom:14px;text-align:center;line-height:1.5;}
+.auth-returning-hint.show{display:block;}
+.google-btn-prominent{order:-1;margin-bottom:4px;box-shadow:var(--sh2);}
+.ft-logo-img{width:52px;height:52px;object-fit:contain;border-radius:10px;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -1737,7 +1775,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
     <div style="max-width:680px;margin:0 auto">
       <div class="form-card">
         <div class="form-ttl">📅 Complete Appointment Form</div>
-        <p id="book-login-prompt" style="font-size:.85rem;color:var(--text3);margin-bottom:20px;text-align:center"><i class="fas fa-lock" style="color:var(--rose)"></i> Login required to book. <span style="color:var(--rose);font-weight:700;cursor:pointer" onclick="openAuthModal('login')">Login here</span></p>
+        <p id="book-login-prompt" style="font-size:.85rem;color:var(--text3);margin-bottom:20px;text-align:center;padding:12px;background:var(--rose-pale);border-radius:10px;border:1px solid var(--rose-soft)"><i class="fas fa-lock" style="color:var(--rose)"></i> <span id="book-login-msg">Login required to book an appointment.</span> <span style="color:var(--rose);font-weight:700;cursor:pointer" onclick="openAuthModalForBooking()">Continue</span></p>
         <form onsubmit="handleBookingSubmit(event)">
           <div class="fg-row">
             <div class="fg"><label>Full Name *</label><input type="text" id="bk-name" placeholder="Your full name" required></div>
@@ -1763,7 +1801,17 @@ footer{background:#04111e;padding:65px 5% 26px;}
           </div>
           <div class="fg-row">
             <div class="fg"><label>Preferred Date *</label><input type="date" id="bk-date" required></div>
-            <div class="fg"><label>Time Slot *</label><select id="bk-time" required><option>Morning (11:30-2pm)</option><option>Afternoon (2-6pm)</option><option>Evening (6-11:30pm)</option></select></div>
+          </div>
+          <div class="fg">
+            <label>Time Slot * <span style="font-weight:400;font-size:.72rem;color:var(--text3)">(12:00 PM – 12:00 AM)</span></label>
+            <input type="hidden" id="bk-time" value="">
+            <div class="slot-grid" id="bk-slot-grid"></div>
+            <div class="slot-legend">
+              <span><i class="lg-av"></i> Available</span>
+              <span><i class="lg-sel"></i> Your pick</span>
+              <span><i class="lg-bk"></i> Booked (this doctor)</span>
+            </div>
+            <p id="bk-slot-hint" style="font-size:.75rem;color:var(--text3);margin-top:8px"><i class="fas fa-info-circle"></i> Select date &amp; doctor first. Same time with a different doctor may still be available.</p>
           </div>
           <div class="fg"><label>Message (Optional)</label><textarea id="bk-msg" placeholder="Any specific concern, allergy, or medical condition to inform the doctor..."></textarea></div>
           <button type="submit" class="btn btn-rose form-submit"><i class="fas fa-calendar-check"></i> Book Appointment</button>
@@ -1871,9 +1919,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
   <div class="footer-grid">
     <div>
       <div class="ft-logo">
-        <div class="logo-ico">
-          <img src="https://scontent.flhe2-4.fna.fbcdn.net/v/t39.30808-6/668669594_122116458531233257_3345747139197208070_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF-LTIJU9ySRcVa4sV0zysv_dH8l3Arfcz90fyXcCt9zMU9bORgm3rjWOKvTklnBE04bbhuk5nK0_3egvxhdRqT&_nc_ohc=U5WNLwU6hd8Q7kNvwE7b5YK&_nc_oc=AdqCi1hx4epJvuZuJpRF7CoBBPO1zxHuP-DS0k4IKPu5zorRa2RAn1j9IECfAdWDe-g&_nc_zt=23&_nc_ht=scontent.flhe2-4.fna&_nc_gid=d797lZ06ggoaY4wtoCBWKg&_nc_ss=7a3a8&oh=00_Af1rOK5UA9t9_xnz7CnfIkQxjgIlEeLnf6l6RwnurIxQmQ&oe=69DEC605" alt="Al-Fazal Hospital Logo" style="width:100%; height:100%; object-fit:contain;">
-        </div>
+        <img src="logo.png" alt="Al-Fazal Hospital Logo" class="ft-logo-img">
         <div><div class="logo-n">Al-Fazal Hospital</div><div class="logo-s">Medical &amp; Dental · Lahore</div></div>
       </div>
       <p class="ft-desc">Providing world-class medical &amp; dental care in Johar Town, Lahore since 2005. Expert doctors, pain-free treatments, genuine care — because your health matters.</p>
@@ -1933,6 +1979,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
       </div>
       <!-- Login Form -->
       <div id="auth-form-login">
+        <div class="auth-returning-hint" id="auth-returning-hint"><i class="fas fa-user-check" style="color:var(--rose)"></i> Welcome back! Use <strong>Continue with Google</strong> or your email to login.</div>
         <form onsubmit="handleLogin(event)">
           <div class="auth-field"><label>Email Address</label><input type="email" id="login-email" placeholder="your@email.com" required></div>
           <div class="auth-field"><label>Password</label><input type="password" id="login-pass" placeholder="Your password" required></div>
@@ -2169,6 +2216,174 @@ const STATIC_DOCTORS = [
   {name:'ZAKIA',spec:'BDT — Dental Technician',img:'https://i.ibb.co/vxssfBQq/Whats-App-Image-2026-03-12-at-8-32-38-PM.jpg',exp:'8 Years'},
 ];
 
+const BOOKING_DOCTOR_OPTIONS = [
+  'Dr. Yasir Khawaja (Dental Director)',
+  'Dr. Ayesha (General Dentistry)',
+  'Dr. Zunash Sohail (Restorative)',
+  'Dr. Maham Rahat (General Dentistry)',
+  'Dr. Rushna (Oral & Maxillofacial)',
+  'Dr. Ghulam Fareed (Hygienist)',
+  'Dr. Junaid Ishfaq (Urologist)'
+];
+
+const BOOKING_SLOTS = (() => {
+  const slots = [];
+  for (let h = 12; h <= 23; h++) {
+    for (const m of [0, 30]) {
+      const hr = h > 12 ? h - 12 : 12;
+      slots.push(`${hr}:${String(m).padStart(2, '0')} PM`);
+    }
+  }
+  slots.push('12:00 AM');
+  return slots;
+})();
+
+let bookedSlotsCache = {};
+let bookingsSlotListenerReady = false;
+
+function markAccountCreated() {
+  try { localStorage.setItem('af_has_account', '1'); } catch (e) {}
+}
+
+function normDoctorKey(name) {
+  if (!name || !String(name).trim()) return '';
+  return String(name).toLowerCase().replace(/dr\.?/g, '').replace(/[^a-z0-9]/g, '').slice(0, 18);
+}
+
+function isActiveBookingStatus(status) {
+  return !status || status === 'pending' || status === 'confirmed';
+}
+
+function timesMatch(a, b) {
+  return String(a || '').trim() === String(b || '').trim();
+}
+
+function isDirectVideoUrl(url) {
+  if (!url || !String(url).trim()) return false;
+  const u = String(url).trim();
+  return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(u)
+    || u.includes('firebasestorage.googleapis.com')
+    || u.includes('storage.googleapis.com')
+    || (u.startsWith('http') && !/youtube|youtu\.be|vimeo/i.test(u));
+}
+
+function isSlotUnavailable(date, timeLabel, doctor) {
+  if (!date || !timeLabel) return false;
+  const bookings = Object.values(bookedSlotsCache || {}).filter(b =>
+    b.date === date && isActiveBookingStatus(b.status) && timesMatch(b.time, timeLabel)
+  );
+  if (!doctor) {
+    if (bookings.some(b => !normDoctorKey(b.doctor))) return true;
+    const bookedKeys = new Set(bookings.map(b => normDoctorKey(b.doctor)).filter(Boolean));
+    return BOOKING_DOCTOR_OPTIONS.every(d => bookedKeys.has(normDoctorKey(d)));
+  }
+  const docKey = normDoctorKey(doctor);
+  return bookings.some(b => {
+    const bk = normDoctorKey(b.doctor);
+    if (!bk) return false;
+    return bk === docKey || docKey.includes(bk) || bk.includes(docKey);
+  });
+}
+
+function listenBookingsForSlots() {
+  if (bookingsSlotListenerReady) return;
+  bookingsSlotListenerReady = true;
+  onValue(ref(db, 'bookings'), snap => {
+    bookedSlotsCache = snap.val() || {};
+    window.refreshSlotAvailability?.();
+  });
+}
+
+window.refreshSlotAvailability = function() {
+  const date = document.getElementById('bk-date')?.value;
+  const doctor = document.getElementById('bk-doctor')?.value || '';
+  const hidden = document.getElementById('bk-time');
+  const selected = hidden?.value || '';
+  document.querySelectorAll('#bk-slot-grid .slot-btn').forEach(btn => {
+    const slot = btn.dataset.slot;
+    btn.classList.remove('selected', 'booked');
+    btn.disabled = !date;
+    if (!date) return;
+    if (isSlotUnavailable(date, slot, doctor)) {
+      btn.classList.add('booked');
+      btn.disabled = true;
+      if (selected === slot && hidden) hidden.value = '';
+    } else if (selected === slot) {
+      btn.classList.add('selected');
+    }
+  });
+};
+
+window.selectBookingSlot = function(timeLabel) {
+  const date = document.getElementById('bk-date')?.value;
+  const doctor = document.getElementById('bk-doctor')?.value || '';
+  if (!date) {
+    showToast('⚠️ Please select a date first', true);
+    return;
+  }
+  if (isSlotUnavailable(date, timeLabel, doctor)) {
+    showToast('⚠️ This slot is already booked for the selected doctor', true);
+    return;
+  }
+  const hidden = document.getElementById('bk-time');
+  if (hidden) hidden.value = timeLabel;
+  refreshSlotAvailability();
+};
+
+window.initBookingPage = function() {
+  const dateEl = document.getElementById('bk-date');
+  if (dateEl) {
+    const today = new Date().toISOString().split('T')[0];
+    if (!dateEl.min) dateEl.min = today;
+    if (!dateEl.dataset.slotBound) {
+      dateEl.dataset.slotBound = '1';
+      dateEl.addEventListener('change', () => {
+        const h = document.getElementById('bk-time');
+        if (h) h.value = '';
+        refreshSlotAvailability();
+      });
+    }
+  }
+  const docEl = document.getElementById('bk-doctor');
+  if (docEl && !docEl.dataset.slotBound) {
+    docEl.dataset.slotBound = '1';
+    docEl.addEventListener('change', () => {
+      const h = document.getElementById('bk-time');
+      if (h) h.value = '';
+      refreshSlotAvailability();
+    });
+  }
+  const grid = document.getElementById('bk-slot-grid');
+  if (grid && !grid.dataset.rendered) {
+    grid.dataset.rendered = '1';
+    grid.innerHTML = BOOKING_SLOTS.map(t =>
+      `<button type="button" class="slot-btn" data-slot="${esc(t)}">${esc(t)}</button>`
+    ).join('');
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('.slot-btn');
+      if (!btn || btn.disabled || btn.classList.contains('booked')) return;
+      selectBookingSlot(btn.dataset.slot);
+    });
+  }
+  if (currentUser) {
+    const nameEl = document.getElementById('bk-name');
+    if (nameEl && !nameEl.value && currentUser.displayName) nameEl.value = currentUser.displayName;
+  }
+  listenBookingsForSlots();
+  refreshSlotAvailability();
+  updateBookLoginPrompt();
+};
+
+function updateBookLoginPrompt() {
+  const msg = document.getElementById('book-login-msg');
+  if (!msg) return;
+  if (currentUser) return;
+  const had = localStorage.getItem('af_has_account') === '1';
+  msg.textContent = had
+    ? 'Welcome back! Continue with Google or email to book.'
+    : 'New patient? Please sign up or login to book an appointment.';
+}
+
 // Updated to match video-card-wrap elements and use a generic default poster
 const VIDEO_SECTIONS = [
   {key:'main_tour',       label:'Home — Clinic Tour Video',       selector:'[data-video-key="main_tour"]',      defaultPoster:'https://images.unsplash.com/photo-1588776814546-1ffbb172d4e5?w=900&q=80&auto=format&fit=crop'},
@@ -2221,6 +2436,11 @@ onAuthStateChanged(auth, async user => {
   if (bookLoginPrompt) bookLoginPrompt.style.display = user ? 'none' : 'block';
   if (user) processPendingActions();
   loadVideoIdsFromDb();
+  updateBookLoginPrompt();
+
+  if (document.getElementById('pg-book')?.style.display === 'block') {
+    initBookingPage();
+  }
 
   // Broadcasts bhi live load karo
   listenForBroadcasts();
@@ -2430,6 +2650,7 @@ window.handleRegister = async (e) => {
       createdAt: Date.now()
     });
 
+    markAccountCreated();
     closeAuthModal();
     showToast('✅ Account created! Welcome to Al-Fazal!');
   } catch (err) {
@@ -2447,6 +2668,7 @@ window.handleLogin = async (e) => {
   if (btn) { btn.disabled = true; btn.textContent = 'Logging in...'; }
   try {
     await signInWithEmailAndPassword(auth, email, pass);
+    markAccountCreated();
     closeAuthModal();
     showToast('✅ Welcome back!');
   } catch (err) {
@@ -2484,6 +2706,7 @@ window.handleGoogleLogin = async () => {
     }
     // If user exists, we don't overwrite. The `onAuthStateChanged` listener will handle UI updates.
     
+    markAccountCreated();
     closeAuthModal();
     showToast('✅ Logged in with Google!');
   } catch (err) {
@@ -2514,15 +2737,21 @@ window.handleBookingSubmit = async (e) => {
     createdAt: Date.now()
   };
 
-  if (!data.name || !data.phone || !data.service || !data.date) {
-    showToast('⚠️ Please fill all required fields', true);
+  if (!data.name || !data.phone || !data.service || !data.date || !data.time) {
+    showToast('⚠️ Please fill all required fields and select a time slot', true);
     return;
   }
 
   if (!currentUser) {
     pendingBookingData = data;
-    openAuthModal('login');
+    window.openAuthModalForBooking?.();
     showToast('⚠️ Please login to submit your booking.', true);
+    return;
+  }
+
+  if (isSlotUnavailable(data.date, data.time, data.doctor)) {
+    showToast('⚠️ This time slot was just booked. Please choose another.', true);
+    refreshSlotAvailability();
     return;
   }
 
@@ -2532,6 +2761,9 @@ window.handleBookingSubmit = async (e) => {
     await push(ref(db, 'bookings'), { ...data, uid: currentUser.uid, email: currentUser.email });
     showToast('✅ Appointment booked! We will confirm within 1 hour.');
     e.target.reset();
+    const h = document.getElementById('bk-time');
+    if (h) h.value = '';
+    refreshSlotAvailability();
     goPage('home');
   } catch (err) {
     showToast('❌ Failed to book. Please try again.', true);
@@ -3091,6 +3323,12 @@ function processPendingActions() {
       const dataToSubmit = { ...pendingBookingData };
       pendingBookingData = null;
 
+      if (isSlotUnavailable(dataToSubmit.date, dataToSubmit.time, dataToSubmit.doctor)) {
+        showToast('⚠️ Your selected slot is no longer available. Please pick another time.', true);
+        refreshSlotAvailability();
+        return;
+      }
+
       const formEl = document.querySelector('#pg-book form');
       const submitBtn = formEl?.querySelector('button[type=submit]');
 
@@ -3162,92 +3400,98 @@ function renderDoctors() {
 }
 
 // ── VIDEO MANAGEMENT ──
+function stopVideoCard(card) {
+  if (!card) return;
+  const playerContainer = card.querySelector('.video-player-container');
+  const thumb = card.querySelector('.video-thumb');
+  if (playerContainer) {
+    playerContainer.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (e) {} });
+    playerContainer.innerHTML = '';
+    playerContainer.style.display = 'none';
+    playerContainer.dataset.isPlaying = 'false';
+  }
+  card.classList.remove('is-playing');
+  if (thumb) thumb.style.display = 'block';
+}
+window.stopVideoCard = stopVideoCard;
+
 window.playVideo = function(card) {
-  const videoKey = card.dataset.videoKey;
-  const videoUrl = card.dataset.videoSrc;
+  const videoUrl = (card.dataset.videoSrc || '').trim();
   const thumb = card.querySelector('.video-thumb');
   const playerContainer = card.querySelector('.video-player-container');
 
   if (!playerContainer) return;
 
-  // 1. Agar koi aur video chal rahi hai to usay FORAN STOP kar do
   document.querySelectorAll('.video-card-wrap').forEach(otherCard => {
-    if (otherCard !== card) {
-      const otherPlayer = otherCard.querySelector('.video-player-container');
-      const otherThumb = otherCard.querySelector('.video-thumb');
-      if (otherPlayer && otherPlayer.dataset.isPlaying === 'true') {
-        otherPlayer.innerHTML = '';
-        otherPlayer.style.display = 'none';
-        otherPlayer.dataset.isPlaying = 'false';
-        if (otherThumb) otherThumb.style.display = 'block';
-      }
-    }
+    if (otherCard !== card) stopVideoCard(otherCard);
   });
 
-  // 2. Agar current video chal rahi hai to usay click karne par STOP kar do
   if (playerContainer.dataset.isPlaying === 'true') {
-    playerContainer.innerHTML = '';
-    playerContainer.style.display = 'none';
-    playerContainer.dataset.isPlaying = 'false';
-    if (thumb) thumb.style.display = 'block';
-  } 
-  // 3. Agar nahi chal rahi, to PLAY karo
-  else {
-    if (!videoUrl || videoUrl.trim() === '') {
-      showToast('⚠️ No video found! Admin has not uploaded a video yet.', true);
+    stopVideoCard(card);
+    return;
+  }
+
+  if (!videoUrl) {
+    showToast('⚠️ No video found! Admin has not uploaded a video yet.', true);
+    return;
+  }
+
+  playerContainer.innerHTML = '';
+  let embedded = false;
+
+  if (isDirectVideoUrl(videoUrl)) {
+    const videoEl = document.createElement('video');
+    videoEl.src = videoUrl;
+    videoEl.controls = true;
+    videoEl.autoplay = true;
+    videoEl.playsInline = true;
+    videoEl.setAttribute('playsinline', '');
+    videoEl.setAttribute('webkit-playsinline', '');
+    videoEl.preload = 'auto';
+    videoEl.style.width = '100%';
+    videoEl.style.height = '100%';
+    videoEl.style.objectFit = window.innerWidth <= 768 ? 'cover' : 'contain';
+    videoEl.addEventListener('error', () => {
+      showToast('⚠️ Video could not load. Please try again later.', true);
+      stopVideoCard(card);
+    });
+    playerContainer.appendChild(videoEl);
+    embedded = true;
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        videoEl.muted = true;
+        videoEl.play().catch(() => {});
+      });
+    }
+  } else if (videoUrl.includes('vimeo.com') || /^\d+$/.test(videoUrl)) {
+    const vimeoId = videoUrl.match(/vimeo\.com\/(\d+)/)?.[1] || videoUrl;
+    playerContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&controls=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    embedded = true;
+  } else if (/youtube|youtu\.be|yt:/i.test(videoUrl)) {
+    const ytMatch = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+    const youtubeId = ytMatch ? ytMatch[1] : (videoUrl.startsWith('yt:') ? videoUrl.substring(3) : null);
+    if (youtubeId) {
+      playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      embedded = true;
+    } else {
+      showToast('Invalid YouTube link!', true);
       return;
     }
-
-    playerContainer.innerHTML = '';
-
-    // FIREBASE STORAGE VIDEO (Admin ne jo upload ki hai)
-    if (videoUrl.includes('.mp4') || videoUrl.startsWith('https://firebasestorage.googleapis.com/')) {
-      const videoEl = document.createElement('video');
-      videoEl.src = videoUrl;
-      videoEl.controls = true;
-      videoEl.autoplay = true;
-      videoEl.playsInline = true;
-      videoEl.style.width = '100%';
-      videoEl.style.height = '100%';
-      videoEl.style.objectFit = 'cover';
-      
-      playerContainer.appendChild(videoEl);
-      
-      // Autoplay handle (Browsers block unmuted autoplay)
-      let playPromise = videoEl.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay blocked by browser. Muting to allow play.");
-          videoEl.muted = true;
-          videoEl.play();
-        });
-      }
-    } 
-    // Fallback for Vimeo
-    else if (videoUrl.includes('vimeo.com') || videoUrl.match(/^\d+$/)) {
-      const vimeoId = videoUrl.match(/vimeo\.com\/(\d+)/)?.[1] || videoUrl;
-      playerContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&controls=1" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    } 
-    // Fallback for YouTube
-    else if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') || videoUrl.startsWith('yt:')) {
-      const ytMatch = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
-      const youtubeId = ytMatch ? ytMatch[1] : (videoUrl.startsWith('yt:') ? videoUrl.substring(3) : null);
-      if (youtubeId) {
-        playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-      } else {
-        showToast('Invalid YouTube link!', true);
-        return;
-      }
-    }
-
-    playerContainer.style.display = 'block';
-    playerContainer.dataset.isPlaying = 'true';
-    if (thumb) thumb.style.display = 'none';
-
-    // Increment view count
-    const vKey = card.dataset.videoKey;
-    if (vKey) update(ref(db, `videos/${vKey}`), { views: increment(1) });
   }
+
+  if (!embedded) {
+    showToast('⚠️ Unsupported video format. Please contact admin.', true);
+    return;
+  }
+
+  playerContainer.style.display = 'block';
+  playerContainer.dataset.isPlaying = 'true';
+  card.classList.add('is-playing');
+  if (thumb) thumb.style.display = 'none';
+
+  const vKey = card.dataset.videoKey;
+  if (vKey) update(ref(db, `videos/${vKey}`), { views: increment(1) }).catch(() => {});
 };
 
 // ── LOAD VIDEOS FROM FIREBASE (Enhanced) ──
@@ -3457,6 +3701,7 @@ renderServices('medical');
 renderServices('all'); // This will render for 'treatments' page
 renderDoctors();
 loadVideoIdsFromDb(); // Called on auth state change to update like status
+listenBookingsForSlots();
 
 // Counter animation
 function animateCounters() {
@@ -3515,12 +3760,16 @@ window.goPage = function(pageId, pushState = true) {
 
     // Stop all videos before changing page
     document.querySelectorAll('.video-card-wrap').forEach(card => {
-        const playerContainer = card.querySelector('.video-player-container');
-        const thumb = card.querySelector('.video-thumb');
-        if (playerContainer && playerContainer.dataset.isPlaying === 'true') {
-            playerContainer.innerHTML = '';
-            playerContainer.style.display = 'none';
-            playerContainer.dataset.isPlaying = 'false';
+        if (window.stopVideoCard) window.stopVideoCard(card);
+        else {
+            const playerContainer = card.querySelector('.video-player-container');
+            const thumb = card.querySelector('.video-thumb');
+            if (playerContainer) {
+                playerContainer.innerHTML = '';
+                playerContainer.style.display = 'none';
+                playerContainer.dataset.isPlaying = 'false';
+            }
+            card.classList.remove('is-playing');
             if (thumb) thumb.style.display = 'block';
         }
     });
@@ -3567,6 +3816,10 @@ window.goPage = function(pageId, pushState = true) {
 
     // Re-initialize AOS for the new content
     setTimeout(() => window.initAOS(), 100);
+
+    if (pageId === 'book' && window.initBookingPage) {
+        setTimeout(() => window.initBookingPage(), 120);
+    }
 };
 
 // Handle initial page load based on URL
@@ -3685,12 +3938,29 @@ document.addEventListener('click', (e) => {
 });
 
 // ── AUTH MODAL FUNCTIONS ──
+window.openAuthModalForBooking = function() {
+  const had = localStorage.getItem('af_has_account') === '1';
+  const hint = document.getElementById('auth-returning-hint');
+  if (hint) hint.classList.toggle('show', had);
+  const msg = document.getElementById('book-login-msg');
+  if (msg) {
+    msg.textContent = had
+      ? 'Welcome back! Continue with Google or email to book.'
+      : 'New patient? Please sign up first, then book your appointment.';
+  }
+  window.openAuthModal(had ? 'login' : 'register');
+};
+
 window.openAuthModal = function(tab) {
   const modal = document.getElementById('auth-modal');
   if (modal) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+  const had = localStorage.getItem('af_has_account') === '1';
+  const hint = document.getElementById('auth-returning-hint');
+  if (hint && tab === 'login') hint.classList.toggle('show', had);
+  else if (hint && tab === 'register') hint.classList.remove('show');
   if (tab) {
     const btn = document.querySelector(`.auth-tab[data-tab="${tab}"]`);
     if (btn) switchAuthTab(btn);
