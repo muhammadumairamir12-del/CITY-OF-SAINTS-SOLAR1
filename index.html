@@ -955,7 +955,7 @@ footer{background:#04111e;padding:65px 5% 26px;}
     flex-direction: column;
   }
 }
-@media(max-width:480px){
+@media(max-width:580px){
   .hero-title{font-size:2.3rem;}
   .dept-card{flex-direction:column;}
   .timing-grid{grid-template-columns:repeat(3,1fr);}
@@ -970,8 +970,25 @@ footer{background:#04111e;padding:65px 5% 26px;}
   .topbar-right{width:100%;justify-content:center;}
   .topbar{justify-content:center;}
   .slot-grid{grid-template-columns:repeat(3,1fr);}
-  .doctors-grid{grid-template-columns:1fr 1fr;}
-} /* end @media 480px */
+  .doctors-grid{
+    grid-template-columns:1fr;
+    justify-items:center;
+    gap:30px;
+  }
+  .doc-card{
+    max-width:320px;
+    width:100%;
+    margin-top:60px;
+    padding-top:60px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    border-color:var(--rose-soft);
+  }
+  .doc-img{
+    width:120px;
+    height:120px;
+    top:-60px;
+  }
+} /* end @media 580px */
 
 /* ── IN-APP NOTIFICATION TOAST (User) ── */
 #in-app-notif{
@@ -3681,7 +3698,6 @@ window.playVideo = function(card) {
   // Check for Firebase Storage or any direct video file URL
   if (isDirectVideoUrl(videoUrl)) {
     const videoEl = document.createElement('video');
-    videoEl.src = videoUrl;
     videoEl.controls = true;
     videoEl.autoplay = true;
     videoEl.playsInline = true;
@@ -3689,8 +3705,21 @@ window.playVideo = function(card) {
     videoEl.setAttribute('webkit-playsinline', '');
     videoEl.preload = 'auto';
     videoEl.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block;';
+    
+    // Add source child element with type for robust playback
+    const sourceEl = document.createElement('source');
+    sourceEl.src = videoUrl;
+    let mimeType = 'video/mp4';
+    if (videoUrl.includes('.webm')) mimeType = 'video/webm';
+    else if (videoUrl.includes('.ogg')) mimeType = 'video/ogg';
+    else if (videoUrl.includes('.mov')) mimeType = 'video/quicktime';
+    sourceEl.type = mimeType;
+    videoEl.appendChild(sourceEl);
+
     videoEl.addEventListener('error', (e) => {
-      console.error('Video error:', e, videoUrl);
+      const err = videoEl.error;
+      if (err && err.code === 1) return; // Ignore aborted
+      console.error('Video error:', err || e, videoUrl);
       showToast('⚠️ Video could not load. Please check your connection.', true);
       stopVideoCard(card);
     });
@@ -3752,7 +3781,7 @@ function loadVideoIdsFromDb() {
       
       if (videoElements.length > 0) {
         const videoData = videos[sec.key] || {};
-        const storedUrl = videoData.url || '';
+        const storedUrl = typeof videoData === 'string' ? videoData : (videoData.url || '');
         const likeCount = videoData.likes || 0;
         const viewCount = videoData.views || 0;
         const isTrending = viewCount > 100 || likeCount > 50;

@@ -1124,7 +1124,8 @@ function loadVideos() {
 window.handleVideoUpload = (input, key) => {
   const file = input.files[0]; if (!file) return;
   const stat = document.getElementById(`vfile-status-${key}`); stat.style.display = 'block'; stat.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Uploading...`;
-  const t = uploadBytesResumable(storageRef(storage, `videos/${key}/${file.name}`), file);
+  const metadata = { contentType: file.type || 'video/mp4' };
+  const t = uploadBytesResumable(storageRef(storage, `videos/${key}/${file.name}`), file, metadata);
   t.on('state_changed', null, err => { stat.innerHTML = '❌ Failed'; toast('Upload failed', true); }, async () => {
     const url = await getDownloadURL(t.snapshot.ref);
     await set(ref(db, `videos/${key}`), { url, uploadedAt: Date.now() });
