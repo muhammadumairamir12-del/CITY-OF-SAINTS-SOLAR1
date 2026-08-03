@@ -1,0 +1,9 @@
+/* TEAM */
+Chef Architect: Dr. Yasir Khawaja (PMDC #7284-D)
+Clinic Director: Dr. Bilal Yasir
+SEO & Optimization Team: Antigravity AI Coding Assistant by Google DeepMind
+
+/* SITE */
+Domain: https://www.al-fazalhospital.com/
+Location: BOR Society, Johar Town, Lahore, Pakistan
+Technologies: HTML5, CSS3, Vanilla JavaScript, SPA Router, Dynamic JSON-LD Schema

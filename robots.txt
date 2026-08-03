@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin.html
+Allow: /
+
+Sitemap: https://www.al-fazalhospital.com/sitemap.xml
+Sitemap: https://www.al-fazalhospital.com/sitemap-pages.xml
+Sitemap: https://www.al-fazalhospital.com/sitemap-images.xml

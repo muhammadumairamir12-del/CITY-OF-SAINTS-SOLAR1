@@ -20,9 +20,9 @@ messaging.onBackgroundMessage(function(payload) {
   const notificationTitle = payload.notification?.title || payload.data?.title || 'Al-Fazal Hospital';
   const notificationOptions = {
     body: payload.notification?.body || payload.data?.body || 'You have a new notification',
-    icon: payload.notification?.icon || 'logo.png',
+    icon: payload.notification?.icon || 'logo_small.png',
     image: payload.notification?.image || payload.data?.image || null,
-    badge: 'logo.png',
+    badge: 'logo_small.png',
     tag: payload.data?.tag || 'alfazal-notif-' + Date.now(),
     data: {
       url: payload.data?.url || '/',

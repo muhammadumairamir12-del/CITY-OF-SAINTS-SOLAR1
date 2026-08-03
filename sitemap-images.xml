@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.al-fazalhospital.com/</loc>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/logo.png</image:loc>
+      <image:title>Al-Fazal Hospital Logo</image:title>
+      <image:caption>Al-Fazal Hospital Logo - Medical and Dental Clinic Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/logo_small.png</image:loc>
+      <image:title>Al-Fazal Hospital Small Logo</image:title>
+      <image:caption>Al-Fazal Hospital Medical &amp; Dental Icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/clinic_exterior.jpg</image:loc>
+      <image:title>Al-Fazal Hospital Building Exterior</image:title>
+      <image:caption>Al-Fazal Hospital Exterior in BOR Society, Johar Town, Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/clinic_interior.jpg</image:loc>
+      <image:title>Al-Fazal Hospital Reception Desk</image:title>
+      <image:caption>Al-Fazal Hospital Reception and Lobby Area in Johar Town, Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/treatment_room.jpg</image:loc>
+      <image:title>Dental Treatment Room</image:title>
+      <image:caption>Fully Equipped Dental Operatory and Treatment Room at Al-Fazal Hospital Lahore</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.al-fazalhospital.com/before-after</loc>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/before_after_implants.jpg</image:loc>
+      <image:title>Dental Implants Transformation</image:title>
+      <image:caption>Dental Implants Before and After Treatment Result at Al-Fazal Hospital Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/before_after_whitening.jpg</image:loc>
+      <image:title>Laser Teeth Whitening Result</image:title>
+      <image:caption>Teeth Bleaching and Laser Whitening Before and After at Al-Fazal Hospital Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.al-fazalhospital.com/images/before_after_braces.jpg</image:loc>
+      <image:title>Orthodontic Braces Result</image:title>
+      <image:caption>Teeth Realignment and Braces Treatment Before and After at Al-Fazal Hospital Lahore</image:caption>
+    </image:image>
+  </url>
+</urlset>
